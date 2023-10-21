@@ -1,0 +1,33 @@
+header {
+  color: #fff;
+}
+
+.top-nav {
+  background-color: #131921;
+
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1rem;
+}
+
+.left-top-nav,
+.right-top-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+
+  font-size: 2rem;
+
+  text-decoration: none;
+  color: #fff;
+}
+
+#logo img {
+  width: 5rem;
+}
