@@ -2,6 +2,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  cursor: pointer;
+}
+
+.login span {
+  font-size: 1.2rem;
 }
 
 .login img {
