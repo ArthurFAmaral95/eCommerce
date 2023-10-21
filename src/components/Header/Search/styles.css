@@ -1,0 +1,41 @@
+.search {
+  position: relative;
+}
+
+.search form input {
+  height: 4.4rem;
+  width: calc(100vw - 2rem);
+  max-width: 74.8rem;
+
+  padding: 0 9.5rem 0 1rem;
+  margin-left: 1rem;
+  border: none;
+
+  position: absolute;
+
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.search button {
+  padding: 0.4rem 0.6rem;
+
+  position: absolute;
+  right: 1rem;
+
+  border: none;
+
+  background: -webkit-linear-gradient(top, #febd69, #febd69);
+
+  cursor: pointer;
+}
+
+.search input,
+.search button {
+  border-radius: 0.8rem;
+  height: 4.4rem;
+}
+
+.search button img {
+  width: 2.7rem;
+}
