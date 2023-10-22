@@ -1,7 +1,7 @@
 import path from 'path'
 import knex from 'knex'
 
-const dbPath = path.resolve('server/db/database.sqlite')
+const dbPath = path.resolve('db/database.sqlite')
 
 const config = {
   client: 'sqlite3',
@@ -13,8 +13,4 @@ const config = {
 
 const knx = knex(config)
 
-knx
-  .select('*')
-  .from('categories')
-  .then(data => console.log(data))
-  .catch(err => console.log(err))
+export { knx }
