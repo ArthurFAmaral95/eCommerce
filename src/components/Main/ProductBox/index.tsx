@@ -1,7 +1,7 @@
 import './styles.css'
 
 type ProductProps = {
-  products: {
+  product: {
     category: string
     img_path: string
     price: number
@@ -11,17 +11,15 @@ type ProductProps = {
 }
 
 export function ProductBox(props: ProductProps) {
-  const textPrice = String(props.products.price)
+  const textPrice = String(props.product.price)
   const splitPrice = textPrice.split('.')
   const priceUnit = splitPrice[0]
   const priceCents = splitPrice[1] || '00'
 
-  console.log({ priceUnit, priceCents })
-
   return (
-    <div className="product-box" title={props.products.product_name}>
-      <img src={`${props.products.img_path}`} alt="Product image" />
-      <p id="product-name">{props.products.product_name}</p>
+    <div className="product-box" title={props.product.product_name}>
+      <img src={`${props.product.img_path}`} alt="Product image" />
+      <p id="product-name">{props.product.product_name}</p>
       <p id="price">
         <sup>$</sup>&nbsp;
         <span id="unit">{priceUnit}</span>

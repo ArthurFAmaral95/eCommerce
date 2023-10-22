@@ -4,17 +4,3 @@ main {
 
   padding: 2rem 1rem;
 }
-
-main .products-gallery {
-  display: grid;
-
-  gap: 0.8rem;
-
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (max-width: 424px) {
-  main .products-gallery {
-    grid-template-columns: 1fr;
-  }
-}

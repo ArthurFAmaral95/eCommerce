@@ -1,8 +1,11 @@
 import { CategoryName } from './CategoryName'
-import { ProductBox } from './ProductBox'
-import './styles.css'
 
-type ProductsProps = {
+import { CategoriesProps } from '../Header'
+
+import './styles.css'
+import { Gallery } from './Gallery'
+
+export type ProductsProps = {
   category: string
   img_path: string
   price: number
@@ -12,23 +15,35 @@ type ProductsProps = {
 
 type MainProps = {
   products: ProductsProps[]
+  categories: CategoriesProps[]
 }
 
 export function Main(props: MainProps) {
-  // const renderMain: any = []
+  const renderMain: any = []
 
-  // console.log(props.products.length)
-  return (
-    <main>
-      <div className="category-name-row">
-        <CategoryName category={props.products[0].category} />
+  for (const category of props.categories) {
+    const productsForGallery = []
+    let i = 0
+    for (const product of props.products) {
+      if (i >= 4) {
+        break
+      }
+      if (product.category !== category.category) {
+        continue
+      }
+      productsForGallery.push(product)
+      i++
+    }
+
+    renderMain.push(
+      <div className="category">
+        <div className="category-name-row">
+          <CategoryName category={category.category} key={category.id} />
+        </div>
+        <Gallery products={productsForGallery} key={category.id} />
       </div>
-      <div className="products-gallery">
-        <ProductBox products={props.products[0]} />
-        <ProductBox products={props.products[1]} />
-        <ProductBox products={props.products[2]} />
-        <ProductBox products={props.products[3]} />
-      </div>
-    </main>
-  )
+    )
+  }
+
+  return <main>{renderMain}</main>
 }

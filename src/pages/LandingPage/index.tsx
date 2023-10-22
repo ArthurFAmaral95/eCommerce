@@ -53,7 +53,7 @@ export function LandingPage() {
   return (
     <div className="container">
       <Header categories={categories} />
-      <Main products={products} />
+      <Main products={products} categories={categories} />
     </div>
   )
 }
