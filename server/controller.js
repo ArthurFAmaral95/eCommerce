@@ -16,4 +16,13 @@ const products = async (req, res) => {
     .catch(err => res.json(err))
 }
 
-export { categories, products }
+const test = async (req, res) => {
+  knx
+    .select('products.product_name', 'products.price', 'categories.category')
+    .from('products')
+    .join('categories', { 'categories.id': 'products.category_id' })
+    .then(data => res.json(data))
+    .catch(err => res.json(err))
+}
+
+export { categories, products, test }

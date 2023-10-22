@@ -1,7 +1,7 @@
 import path from 'path'
 import knex from 'knex'
 
-const dbPath = path.resolve('db/database.sqlite')
+const dbPath = path.resolve('server/db/database.sqlite')
 
 const config = {
   client: 'sqlite3',
