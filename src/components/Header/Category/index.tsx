@@ -1,5 +1,9 @@
 import './styles.css'
 
-export function Category() {
-  return <li></li>
+type CategoryProps = {
+  category: string
+}
+
+export function Category(props: CategoryProps) {
+  return <li>{props.category}</li>
 }

@@ -1,3 +1,4 @@
+import { Categories } from './Categories'
 import { Login } from './Login'
 import { Menu } from './Menu'
 import { Place } from './Place'
@@ -6,12 +7,21 @@ import { ShoppingCart } from './ShoppingCart'
 
 import './styles.css'
 
-export function Header() {
+export type CategoriesProps = {
+  category: string
+  id: number
+}
+
+export type HeaderProps = {
+  categories: CategoriesProps[]
+}
+
+export function Header(props: HeaderProps) {
   return (
     <header>
       <nav>
         <div className="top-nav">
-          <div className='flex-line'>
+          <div className="flex-line">
             <div className="left-top-nav">
               <Menu />
               <a href="/" id="logo">
@@ -25,6 +35,7 @@ export function Header() {
             </div>
           </div>
           <Search />
+          <Categories categories={props.categories} />
         </div>
         <div className="botton-nav">
           <Place />

@@ -1,0 +1,19 @@
+.categories {
+  position: relative;
+  top: 4.5rem;
+
+  height: 4.5rem;
+
+  display: flex;
+  align-items: center;
+
+  padding-inline: 1rem;
+
+  overflow-x: scroll;
+}
+
+.categories ul {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
