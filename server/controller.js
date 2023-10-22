@@ -10,17 +10,35 @@ const categories = async (req, res) => {
 
 const products = async (req, res) => {
   knx
-    .select('*')
-    .from('products')
+    .select(
+      'categories.category',
+      'products.product_id',
+      'products.product_name',
+      'products.price',
+      'products_imgs.img_path'
+    )
+    .from('categories')
+    .join('products', { 'categories.id': 'products.category_id' })
+    .join('products_imgs', {
+      'products.product_id': 'products_imgs.product_id'
+    })
     .then(data => res.json(data))
     .catch(err => res.json(err))
 }
 
 const test = async (req, res) => {
   knx
-    .select('products.product_name', 'products.price', 'categories.category')
-    .from('products')
-    .join('categories', { 'categories.id': 'products.category_id' })
+    .select(
+      'categories.category',
+      'products.product_name',
+      'products.price',
+      'products_imgs.img_path'
+    )
+    .from('categories')
+    .join('products', { 'categories.id': 'products.category_id' })
+    .join('products_imgs', {
+      'products.product_id': 'products_imgs.product_id'
+    })
     .then(data => res.json(data))
     .catch(err => res.json(err))
 }
