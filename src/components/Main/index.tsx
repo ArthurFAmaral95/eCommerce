@@ -41,6 +41,7 @@ export function Main(props: MainProps) {
           <CategoryName category={category.category} key={category.id} />
         </div>
         <Gallery products={productsForGallery} key={category.id} />
+        <hr />
       </div>
     )
   }

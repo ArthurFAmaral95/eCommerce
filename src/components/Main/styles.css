@@ -2,5 +2,5 @@ main {
   position: relative;
   top: 18.7rem;
 
-  padding: 2rem 1rem;
+  padding-inline: 1rem;
 }
