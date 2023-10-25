@@ -28,17 +28,9 @@ const products = async (req, res) => {
 
 const test = async (req, res) => {
   knx
-    .select(
-      'categories.category',
-      'products.product_name',
-      'products.price',
-      'products_imgs.img_path'
-    )
-    .from('categories')
-    .join('products', { 'categories.id': 'products.category_id' })
-    .join('products_imgs', {
-      'products.product_id': 'products_imgs.product_id'
-    })
+    .select('*')
+    .from(`categories`)
+    .whereLike('category', `${req.params.category}`)
     .then(data => res.json(data))
     .catch(err => res.json(err))
 }

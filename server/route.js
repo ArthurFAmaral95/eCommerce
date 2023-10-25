@@ -8,6 +8,8 @@ router.get('/categories', routes.categories)
 
 router.get('/products', routes.products)
 
+router.get('/:category', routes.test)
+
 router.get('/test', routes.test)
 
 export { router }

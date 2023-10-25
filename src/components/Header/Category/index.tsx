@@ -5,5 +5,11 @@ type CategoryProps = {
 }
 
 export function Category(props: CategoryProps) {
-  return <li>{props.category}</li>
+  return (
+    <>
+      <li>
+        <a href={`/${props.category}`}>{props.category}</a>
+      </li>
+    </>
+  )
 }

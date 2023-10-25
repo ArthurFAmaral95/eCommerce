@@ -58,7 +58,7 @@ export function LandingPage() {
   }
 
   return (
-    <div className="container">
+    <div className={`container ${openMenu ? 'menu-expanded' : ''}`}>
       <SideBar
         categories={categories}
         handleMenu={handleMenu}

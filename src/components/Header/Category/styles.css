@@ -1,8 +1,10 @@
 .categories ul li {
+  list-style: none;
+}
+
+.categories ul li a {
   font-size: 1.5rem;
   line-height: 1.5rem;
-
-  cursor: pointer;
-
-  list-style: none;
+  text-decoration: none;
+  color: #ffffff;
 }
