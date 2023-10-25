@@ -5,6 +5,7 @@ import { Header } from '../../components/Header'
 import { Main } from '../../components/Main'
 
 import './styles.css'
+import { SideBar } from '../../components/SideBar'
 
 export function LandingPage() {
   const [categories, setCategories] = useState([
@@ -22,6 +23,8 @@ export function LandingPage() {
       product_id: 0
     }
   ])
+
+  const [openMenu, setOpenMenu] = useState(false)
 
   useEffect(() => {
     fetchCategories()
@@ -50,9 +53,18 @@ export function LandingPage() {
       })
   }
 
+  function handleMenu() {
+    setOpenMenu(!openMenu)
+  }
+
   return (
     <div className="container">
-      <Header categories={categories} />
+      <SideBar
+        categories={categories}
+        handleMenu={handleMenu}
+        openMenu={openMenu}
+      />
+      <Header categories={categories} handleMenu={handleMenu} />
       <Main products={products} categories={categories} />
     </div>
   )

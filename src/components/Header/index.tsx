@@ -16,14 +16,20 @@ export type HeaderProps = {
   categories: CategoriesProps[]
 }
 
-export function Header(props: HeaderProps) {
+type Functions = {
+  handleMenu: () => void
+}
+
+export type Header = HeaderProps & Functions
+
+export function Header(props: Header) {
   return (
     <header>
       <nav>
         <div className="top-nav">
           <div className="flex-line">
             <div className="left-top-nav">
-              <Menu />
+              <Menu onClick={props.handleMenu} />
               <a href="/" id="logo">
                 <img src="../../../public/logo.svg" alt="logo" />
                 E-Commerce
