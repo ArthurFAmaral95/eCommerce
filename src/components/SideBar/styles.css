@@ -10,13 +10,17 @@
   grid-template-areas: 'content-column close-column';
   grid-template-columns: 85% 15%;
 
-  transition: left 1s;
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0);
+  transition: all 0.3s ease-in;
 }
 
-.hidden {
-  left: -200%;
-
-  transition: left 1s;
+.side-bar.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition: all 0.3s;
 }
 
 .close {
