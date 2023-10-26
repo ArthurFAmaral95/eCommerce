@@ -1,4 +1,7 @@
 import axios from 'axios'
+
+import { Link } from 'react-router-dom'
+
 import './styles.css'
 
 type CategoryProps = {
@@ -16,9 +19,12 @@ export function Category(props: CategoryProps) {
   return (
     <>
       <li>
-        <a href={`/${props.category}`} onClick={fetchCategory} target="blank">
-          {props.category}
-        </a>
+        <Link to="/test">{props.category}</Link>
+        {/* <a
+          href={`/${props.category}`}
+          onClick={fetchCategory}
+          target="blank"
+        ></a> */}
       </li>
     </>
   )
