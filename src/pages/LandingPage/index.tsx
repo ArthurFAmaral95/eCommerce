@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import { useState, useEffect } from 'react'
 import { Header } from '../../components/Header'
 import { Main } from '../../components/Main'
+import { SideBar } from '../../components/SideBar'
 
 import './styles.css'
-import { SideBar } from '../../components/SideBar'
 
 export function LandingPage() {
   const [categories, setCategories] = useState([
