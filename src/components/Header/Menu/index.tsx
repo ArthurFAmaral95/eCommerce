@@ -1,13 +1,15 @@
 import './styles.css'
 
-type Menu = {
-  onClick: () => void
-}
+import { HandleMenu } from '../../../types/types'
 
-export function Menu(props: Menu) {
+export function Menu(props: HandleMenu) {
   return (
     <div className="menu">
-      <img src="../../../public/menu.svg" alt="menu" onClick={props.onClick} />
+      <img
+        src="../../../public/menu.svg"
+        alt="menu"
+        onClick={props.handleMenu}
+      />
     </div>
   )
 }

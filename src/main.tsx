@@ -1,11 +1,23 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { Routes, Route } from 'react-router-dom'
 
-import './styles/styles.css'
-import { App } from './App'
+import { LandingPage } from './pages/LandingPage'
+import { CategoryPage } from './pages/CategoryPage'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+import { MainProps } from './types/types'
+
+export function Main(props: MainProps) {
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <LandingPage
+            categories={props.categories}
+            products={props.products}
+          />
+        }
+      />
+      <Route path="/test" element={<CategoryPage />} />
+    </Routes>
+  )
+}

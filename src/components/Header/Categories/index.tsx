@@ -1,9 +1,10 @@
 import './styles.css'
 
-import { HeaderProps } from '../index'
 import { Category } from '../Category'
 
-export function Categories(props: HeaderProps) {
+import { CategoriesArrayProps } from '../../../types/types'
+
+export function Categories(props: CategoriesArrayProps) {
   const renderCategories: any[] = []
 
   props.categories.map(category => {

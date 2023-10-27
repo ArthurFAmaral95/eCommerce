@@ -1,14 +1,11 @@
-import { Login } from '../Header/Login'
-import { Categories } from '../Header/Categories'
-import { Header } from '../Header'
-
 import './styles.css'
 
-type SideBar = {
-  openMenu: boolean
-}
+import { Login } from '../Header/Login'
+import { Categories } from '../Header/Categories'
 
-type SideBarProps = SideBar & Header
+import { OpenMenu, CategoriesArrayProps, HandleMenu } from '../../types/types'
+
+type SideBarProps = OpenMenu & CategoriesArrayProps & HandleMenu
 
 export function SideBar(props: SideBarProps) {
   return (

@@ -1,13 +1,10 @@
 import './styles.css'
 
-import { ProductsProps } from '../../Main/index'
-import { ProductBox } from '../ProductBox'
+import { ProductBox } from './ProductBox/index.tsx'
 
-type GalleryProps = {
-  products: ProductsProps[]
-}
+import { ProductsArrayProps } from '../../types/types'
 
-export function Gallery(props: GalleryProps) {
+export function Gallery(props: ProductsArrayProps) {
   const renderGallery = []
 
   for (const product of props.products) {

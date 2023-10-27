@@ -1,16 +1,8 @@
 import './styles.css'
 
-type ProductProps = {
-  product: {
-    category: string
-    img_path: string
-    price: number
-    product_name: string
-    product_id: number
-  }
-}
+import { ProductObjectProps } from '../../../types/types'
 
-export function ProductBox(props: ProductProps) {
+export function ProductBox(props: ProductObjectProps) {
   const textPrice = String(props.product.price)
   const splitPrice = textPrice.split('.')
   const priceUnit = splitPrice[0]

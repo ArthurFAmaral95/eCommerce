@@ -1,9 +1,5 @@
-import './styles.css'
-
 export function CategoryPage() {
-  return (
-    <div className="container">
-      <h1>qualquer coisa</h1>
-    </div>
+  return(
+    <h1>opa</h1>
   )
 }
