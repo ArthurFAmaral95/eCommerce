@@ -15,7 +15,7 @@ export function SideBar(props: SideBarProps) {
           src="../../../public/close-menu.svg"
           alt="close menu icon"
           id="close-menu"
-          onClick={props.handleMenu}
+          onClick={() => props.handleMenu(false)}
         />
       </div>
       <div className="content">
@@ -33,7 +33,10 @@ export function SideBar(props: SideBarProps) {
           </a>
           <hr />
           <p>Categories</p>
-          <Categories categories={props.categories} />
+          <Categories
+            categories={props.categories}
+            handleMenu={props.handleMenu}
+          />
           <hr />
         </div>
       </div>

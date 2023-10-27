@@ -53,8 +53,8 @@ export function App() {
       })
   }
 
-  function handleMenu() {
-    setOpenMenu(!openMenu)
+  function handleMenu(boolean: boolean) {
+    setOpenMenu(boolean)
   }
 
   return (

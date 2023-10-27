@@ -7,7 +7,7 @@ import { CategoryProps } from '../../../types/types'
 export function CategoryName(props: CategoryProps) {
   return (
     <h3 className="category-name">
-      <Link to={'/test'}>{props.category}</Link>
+      <Link to={`/${props.category}`}>{props.category}</Link>
     </h3>
   )
 }

@@ -8,7 +8,7 @@ export function Menu(props: HandleMenu) {
       <img
         src="../../../public/menu.svg"
         alt="menu"
-        onClick={props.handleMenu}
+        onClick={() => props.handleMenu(true)}
       />
     </div>
   )

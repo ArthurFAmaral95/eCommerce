@@ -43,5 +43,5 @@ export type OpenMenu = {
 }
 
 export type HandleMenu = {
-  handleMenu: () => void
+  handleMenu: (boolean: boolean) => void
 }

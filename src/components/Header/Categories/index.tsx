@@ -2,14 +2,20 @@ import './styles.css'
 
 import { Category } from '../Category'
 
-import { CategoriesArrayProps } from '../../../types/types'
+import { CategoriesArrayProps, HandleMenu } from '../../../types/types'
 
-export function Categories(props: CategoriesArrayProps) {
+type CategoriesArrayFuncProps = CategoriesArrayProps & HandleMenu
+
+export function Categories(props: CategoriesArrayFuncProps) {
   const renderCategories: any[] = []
 
   props.categories.map(category => {
     renderCategories.push(
-      <Category category={category.category} key={category.id} />
+      <Category
+        category={category.category}
+        key={category.id}
+        handleMenu={props.handleMenu}
+      />
     )
   })
 
