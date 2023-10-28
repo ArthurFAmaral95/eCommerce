@@ -3,7 +3,9 @@ import { Routes, Route } from 'react-router-dom'
 import { LandingPage } from './pages/LandingPage'
 import { CategoryPage } from './pages/CategoryPage'
 
-import { MainProps } from './types/types'
+import { MainArrayProps, SelectedCategoryProps } from './types/types'
+
+type MainProps = MainArrayProps & SelectedCategoryProps
 
 export function Main(props: MainProps) {
   return (
@@ -17,7 +19,10 @@ export function Main(props: MainProps) {
           />
         }
       />
-      <Route path="/test" element={<CategoryPage />} />
+      <Route
+        path={`/${props.selectedCategory}`}
+        element={<CategoryPage selectedCategory={props.selectedCategory} />}
+      />
     </Routes>
   )
 }

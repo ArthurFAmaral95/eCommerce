@@ -3,9 +3,9 @@ import './styles.css'
 import { CategoryName } from '../../components/Gallery/CategoryName'
 import { Gallery } from '../../components/Gallery'
 
-import { MainProps } from '../../types/types'
+import { MainArrayProps } from '../../types/types'
 
-export function LandingPage(props: MainProps) {
+export function LandingPage(props: MainArrayProps) {
   const renderLandingPage = []
 
   for (const category of props.categories) {

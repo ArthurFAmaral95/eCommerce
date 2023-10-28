@@ -7,6 +7,10 @@ export type CategoryProps = {
   category: string
 }
 
+export type SelectedCategoryProps = {
+  selectedCategory: string
+}
+
 export type CategoriesArrayProps = {
   categories: CategoriesProps[]
 }
@@ -33,7 +37,7 @@ export type ProductObjectProps = {
   }
 }
 
-export type MainProps = {
+export type MainArrayProps = {
   products: ProductsProps[]
   categories: CategoriesProps[]
 }
@@ -44,4 +48,8 @@ export type OpenMenu = {
 
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
+}
+
+export type SelectCategory = {
+  selectCategory: (category: string) => void
 }

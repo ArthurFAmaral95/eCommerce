@@ -14,6 +14,8 @@ export function App() {
     }
   ])
 
+  const [selectedCategry, setSelectedCategry] = useState('')
+
   const [products, setProducts] = useState([
     {
       category: '',
@@ -57,17 +59,30 @@ export function App() {
     setOpenMenu(boolean)
   }
 
+  function selectCategory(category: string) {
+    setSelectedCategry(category)
+  }
+
   return (
     <div className={`container ${openMenu ? 'menu-expanded' : ''}`}>
       <SideBar
         categories={categories}
         handleMenu={handleMenu}
         openMenu={openMenu}
+        selectCategory={selectCategory}
       />
 
-      <Header categories={categories} handleMenu={handleMenu} />
+      <Header
+        categories={categories}
+        handleMenu={handleMenu}
+        selectCategory={selectCategory}
+      />
 
-      <Main products={products} categories={categories} />
+      <Main
+        products={products}
+        categories={categories}
+        selectedCategory={selectedCategry}
+      />
     </div>
   )
 }

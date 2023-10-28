@@ -3,9 +3,17 @@ import './styles.css'
 import { Login } from '../Header/Login'
 import { Categories } from '../Header/Categories'
 
-import { OpenMenu, CategoriesArrayProps, HandleMenu } from '../../types/types'
+import {
+  OpenMenu,
+  CategoriesArrayProps,
+  HandleMenu,
+  SelectCategory
+} from '../../types/types'
 
-type SideBarProps = OpenMenu & CategoriesArrayProps & HandleMenu
+type SideBarProps = OpenMenu &
+  CategoriesArrayProps &
+  HandleMenu &
+  SelectCategory
 
 export function SideBar(props: SideBarProps) {
   return (
@@ -36,6 +44,7 @@ export function SideBar(props: SideBarProps) {
           <Categories
             categories={props.categories}
             handleMenu={props.handleMenu}
+            selectCategory={props.selectCategory}
           />
           <hr />
         </div>

@@ -7,9 +7,13 @@ import { Place } from './Place'
 import { Search } from './Search'
 import { ShoppingCart } from './ShoppingCart'
 
-import { CategoriesArrayProps, HandleMenu } from '../../types/types'
+import {
+  CategoriesArrayProps,
+  HandleMenu,
+  SelectCategory
+} from '../../types/types'
 
-type HeaderProps = CategoriesArrayProps & HandleMenu
+type HeaderProps = CategoriesArrayProps & HandleMenu & SelectCategory
 
 export function Header(props: HeaderProps) {
   return (
@@ -30,7 +34,11 @@ export function Header(props: HeaderProps) {
             </div>
           </div>
           <Search />
-          <Categories categories={props.categories} />
+          <Categories
+            categories={props.categories}
+            handleMenu={props.handleMenu}
+            selectCategory={props.selectCategory}
+          />
         </div>
         <div className="botton-nav">
           <Place />
