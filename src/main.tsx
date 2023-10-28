@@ -26,7 +26,12 @@ export function Main(props: MainProps) {
       />
       <Route
         path={`/${props.selectedCategory}`}
-        element={<CategoryPage selectedCategory={props.selectedCategory} />}
+        element={
+          <CategoryPage
+            selectedCategory={props.selectedCategory}
+            products={props.products}
+          />
+        }
       />
     </Routes>
   )

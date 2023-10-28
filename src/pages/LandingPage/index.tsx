@@ -8,6 +8,10 @@ import { MainArrayProps, SelectCategory } from '../../types/types'
 type LandingPageProps = MainArrayProps & SelectCategory
 
 export function LandingPage(props: LandingPageProps) {
+  props.selectCategory('')
+
+  window.scrollTo(0, 0)
+
   const renderLandingPage = []
 
   for (const category of props.categories) {
