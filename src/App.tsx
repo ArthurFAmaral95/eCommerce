@@ -14,7 +14,7 @@ export function App() {
     }
   ])
 
-  const [selectedCategry, setSelectedCategry] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
 
   const [products, setProducts] = useState([
     {
@@ -31,7 +31,7 @@ export function App() {
   useEffect(() => {
     fetchCategories()
     fetchProducts()
-  }, [])
+  }, [selectedCategory])
 
   const fetchCategories = async () => {
     axios
@@ -45,14 +45,25 @@ export function App() {
   }
 
   const fetchProducts = async () => {
-    axios
-      .get('http://localhost:4001/products')
-      .then(response => {
-        setProducts(response.data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
+    if (selectedCategory === '') {
+      axios
+        .get('http://localhost:4001/products')
+        .then(response => {
+          setProducts(response.data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    } else {
+      axios
+        .get(`http://localhost:4001/${selectedCategory}`)
+        .then(response => {
+          setProducts(response.data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    }
   }
 
   function handleMenu(boolean: boolean) {
@@ -60,7 +71,7 @@ export function App() {
   }
 
   function selectCategory(category: string) {
-    setSelectedCategry(category)
+    setSelectedCategory(category)
   }
 
   return (
@@ -81,7 +92,8 @@ export function App() {
       <Main
         products={products}
         categories={categories}
-        selectedCategory={selectedCategry}
+        selectCategory={selectCategory}
+        selectedCategory={selectedCategory}
       />
     </div>
   )

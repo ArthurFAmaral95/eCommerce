@@ -3,9 +3,11 @@ import './styles.css'
 import { CategoryName } from '../../components/Gallery/CategoryName'
 import { Gallery } from '../../components/Gallery'
 
-import { MainArrayProps } from '../../types/types'
+import { MainArrayProps, SelectCategory } from '../../types/types'
 
-export function LandingPage(props: MainArrayProps) {
+type LandingPageProps = MainArrayProps & SelectCategory
+
+export function LandingPage(props: LandingPageProps) {
   const renderLandingPage = []
 
   for (const category of props.categories) {
@@ -25,7 +27,11 @@ export function LandingPage(props: MainArrayProps) {
     renderLandingPage.push(
       <div className="category">
         <div className="category-name-row">
-          <CategoryName category={category.category} key={category.id} />
+          <CategoryName
+            category={category.category}
+            key={category.id}
+            selectCategory={props.selectCategory}
+          />
         </div>
         <Gallery products={productsForGallery} key={category.id} />
         <hr />
