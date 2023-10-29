@@ -19,7 +19,8 @@
     "helmet": "^7.0.0",
     "knex": "^3.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.20",

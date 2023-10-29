@@ -1,14 +1,19 @@
-import { Login } from '../Header/Login'
-import { Categories } from '../Header/Categories'
-import { Header } from '../Header'
-
 import './styles.css'
 
-type SideBar = {
-  openMenu: boolean
-}
+import { Login } from '../Header/Login'
+import { Categories } from '../Header/Categories'
 
-type SideBarProps = SideBar & Header
+import {
+  OpenMenu,
+  CategoriesArrayProps,
+  HandleMenu,
+  SelectCategory
+} from '../../types/types'
+
+type SideBarProps = OpenMenu &
+  CategoriesArrayProps &
+  HandleMenu &
+  SelectCategory
 
 export function SideBar(props: SideBarProps) {
   return (
@@ -18,7 +23,7 @@ export function SideBar(props: SideBarProps) {
           src="../../../public/close-menu.svg"
           alt="close menu icon"
           id="close-menu"
-          onClick={props.handleMenu}
+          onClick={() => props.handleMenu(false)}
         />
       </div>
       <div className="content">
@@ -36,7 +41,11 @@ export function SideBar(props: SideBarProps) {
           </a>
           <hr />
           <p>Categories</p>
-          <Categories categories={props.categories} />
+          <Categories
+            categories={props.categories}
+            handleMenu={props.handleMenu}
+            selectCategory={props.selectCategory}
+          />
           <hr />
         </div>
       </div>

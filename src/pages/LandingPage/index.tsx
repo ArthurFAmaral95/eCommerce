@@ -1,71 +1,47 @@
-import axios from 'axios'
-
-import { useState, useEffect } from 'react'
-import { Header } from '../../components/Header'
-import { Main } from '../../components/Main'
-import { SideBar } from '../../components/SideBar'
-
 import './styles.css'
 
-export function LandingPage() {
-  const [categories, setCategories] = useState([
-    {
-      id: 0,
-      category: ''
+import { CategoryName } from '../../components/Gallery/CategoryName'
+import { Gallery } from '../../components/Gallery'
+
+import { MainArrayProps, SelectCategory } from '../../types/types'
+
+type LandingPageProps = MainArrayProps & SelectCategory
+
+export function LandingPage(props: LandingPageProps) {
+  props.selectCategory('')
+
+  window.scrollTo(0, 0)
+
+  const renderLandingPage = []
+
+  for (const category of props.categories) {
+    const productsForGallery = []
+    let i = 0
+    for (const product of props.products) {
+      if (i >= 4) {
+        break
+      }
+      if (product.category !== category.category) {
+        continue
+      }
+      productsForGallery.push(product)
+      i++
     }
-  ])
-  const [products, setProducts] = useState([
-    {
-      category: '',
-      product_name: '',
-      price: 0,
-      img_path: '',
-      product_id: 0
-    }
-  ])
 
-  const [openMenu, setOpenMenu] = useState(false)
-
-  useEffect(() => {
-    fetchCategories()
-    fetchProducts()
-  }, [])
-
-  const fetchCategories = async () => {
-    axios
-      .get('http://localhost:4001/categories')
-      .then(response => {
-        setCategories(response.data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
+    renderLandingPage.push(
+      <div className="category">
+        <div className="category-name-row">
+          <CategoryName
+            category={category.category}
+            key={category.id}
+            selectCategory={props.selectCategory}
+          />
+        </div>
+        <Gallery products={productsForGallery} key={category.id} />
+        <hr />
+      </div>
+    )
   }
 
-  const fetchProducts = async () => {
-    axios
-      .get('http://localhost:4001/products')
-      .then(response => {
-        setProducts(response.data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-  }
-
-  function handleMenu() {
-    setOpenMenu(!openMenu)
-  }
-
-  return (
-    <div className={`container ${openMenu ? 'menu-expanded' : ''}`}>
-      <SideBar
-        categories={categories}
-        handleMenu={handleMenu}
-        openMenu={openMenu}
-      />
-      <Header categories={categories} handleMenu={handleMenu} />
-      <Main products={products} categories={categories} />
-    </div>
-  )
+  return <main>{renderLandingPage}</main>
 }
