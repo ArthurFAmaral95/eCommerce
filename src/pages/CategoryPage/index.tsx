@@ -26,7 +26,7 @@ export function CategoryPage(props: CategoryPageProps) {
   window.scrollTo(0, 0)
 
   const renderProducts: any = []
-  const renderPageBtns: any = []
+  const allPageBtns: any = []
 
   props.productsOfPage.map((product: ProductsProps) => {
     renderProducts.push(
@@ -39,7 +39,7 @@ export function CategoryPage(props: CategoryPageProps) {
     buttonNumber <= props.numberOfPages;
     buttonNumber++
   ) {
-    renderPageBtns.push(
+    allPageBtns.push(
       <PageBtn
         buttonNumber={buttonNumber}
         choosePage={props.choosePage}
@@ -47,6 +47,50 @@ export function CategoryPage(props: CategoryPageProps) {
         pageNumber={props.pageNumber}
       />
     )
+  }
+
+  let renderPageBtns = []
+
+  if (allPageBtns.length <= 4) {
+    renderPageBtns = allPageBtns
+  } else if (props.pageNumber + 2 === allPageBtns.length) {
+    renderPageBtns = allPageBtns.slice(
+      props.pageNumber - 1,
+      props.pageNumber + 3
+    )
+    renderPageBtns.unshift(allPageBtns[0])
+  } else if (props.pageNumber + 2 > allPageBtns.length) {
+    renderPageBtns = allPageBtns.slice(
+      allPageBtns.length - 3,
+      allPageBtns.length
+    )
+    renderPageBtns.unshift(allPageBtns[0])
+  } else if (props.pageNumber === 1) {
+    renderPageBtns = allPageBtns.slice(
+      props.pageNumber - 1,
+      props.pageNumber + 1
+    )
+    renderPageBtns.push(
+      <PageBtn
+        buttonNumber={999}
+        key={999}
+        choosePage={props.choosePage}
+        pageNumber={9999}
+      />
+    )
+    renderPageBtns.push(allPageBtns[allPageBtns.length - 1])
+  } else {
+    renderPageBtns = allPageBtns.slice(props.pageNumber - 1, props.pageNumber)
+    renderPageBtns.unshift(allPageBtns[0])
+    renderPageBtns.push(
+      <PageBtn
+        buttonNumber={999}
+        key={999}
+        choosePage={props.choosePage}
+        pageNumber={9999}
+      />
+    )
+    renderPageBtns.push(allPageBtns[allPageBtns.length - 1])
   }
 
   return (
