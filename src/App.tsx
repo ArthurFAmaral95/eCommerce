@@ -13,7 +13,6 @@ export function App() {
       category: ''
     }
   ])
-
   const [selectedCategory, setSelectedCategory] = useState('')
 
   const [products, setProducts] = useState([
@@ -25,13 +24,37 @@ export function App() {
       product_id: 0
     }
   ])
+  const [productsOfPage, setProductsOfPage] = useState([])
 
   const [openMenu, setOpenMenu] = useState(false)
+
+  const [pageNumber, setPageNumber] = useState(1)
+  const [numberOfPages, setNumberOfPages] = useState(1)
+  const productsPerPage = 5
+
+  const arraysOfProductsOfPages: any = []
+  arraysOfProductsOfPages.push(new Array())
+  let pageIndex = 0
+  products.map(product => {
+    if ((products.indexOf(product) + 1) % productsPerPage === 0) {
+      arraysOfProductsOfPages[pageIndex].push(product)
+      pageIndex++
+      arraysOfProductsOfPages.push(new Array())
+    } else {
+      arraysOfProductsOfPages[pageIndex].push(product)
+    }
+  })
 
   useEffect(() => {
     fetchCategories()
     fetchProducts()
   }, [selectedCategory])
+
+  useEffect(() => {
+    setPages()
+    setPageNumber(1)
+    updateProductsOfPage()
+  }, [products])
 
   const fetchCategories = async () => {
     axios
@@ -74,6 +97,38 @@ export function App() {
     setSelectedCategory(category)
   }
 
+  function updateProductsOfPage() {
+    setProductsOfPage(arraysOfProductsOfPages)
+  }
+
+  function setPages() {
+    if (products.length % productsPerPage !== 0) {
+      setNumberOfPages(Math.floor(products.length / productsPerPage) + 1)
+    } else {
+      setNumberOfPages(products.length / 5)
+    }
+  }
+
+  function previousPage() {
+    if (pageNumber === 1) {
+      return
+    } else {
+      setPageNumber(n => n - 1)
+    }
+  }
+
+  function nextPage() {
+    if (pageNumber === numberOfPages) {
+      return
+    } else {
+      setPageNumber(n => n + 1)
+    }
+  }
+
+  function choosePage(number: number) {
+    setPageNumber(number)
+  }
+
   return (
     <div className={`container ${openMenu ? 'menu-expanded' : ''}`}>
       <SideBar
@@ -92,8 +147,13 @@ export function App() {
       <Main
         products={products}
         categories={categories}
+        productsOfPage={productsOfPage[pageNumber - 1]}
         selectCategory={selectCategory}
         selectedCategory={selectedCategory}
+        numberOfPages={numberOfPages}
+        previousPage={previousPage}
+        nextPage={nextPage}
+        choosePage={choosePage}
       />
     </div>
   )

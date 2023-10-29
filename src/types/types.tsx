@@ -27,6 +27,10 @@ export type ProductsArrayProps = {
   products: ProductsProps[]
 }
 
+export type productsOfPageArrayProps = {
+  productsOfPage: ProductsProps[]
+}
+
 export type ProductObjectProps = {
   product: {
     category: string
@@ -46,10 +50,26 @@ export type OpenMenu = {
   openMenu: boolean
 }
 
+export type NumberOfPages = {
+  numberOfPages: number
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
 
 export type SelectCategory = {
   selectCategory: (category: string) => void
+}
+
+export type PreviousPage = {
+  previousPage: () => void
+}
+
+export type NextPage = {
+  nextPage: () => void
+}
+
+export type ChoosePage = {
+  choosePage: (number: number) => void
 }

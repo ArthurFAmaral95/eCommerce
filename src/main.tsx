@@ -6,10 +6,22 @@ import { CategoryPage } from './pages/CategoryPage'
 import {
   MainArrayProps,
   SelectedCategoryProps,
-  SelectCategory
+  SelectCategory,
+  productsOfPageArrayProps,
+  PreviousPage,
+  NextPage,
+  ChoosePage,
+  NumberOfPages
 } from './types/types'
 
-type MainProps = MainArrayProps & SelectedCategoryProps & SelectCategory
+type MainProps = MainArrayProps &
+  SelectedCategoryProps &
+  SelectCategory &
+  productsOfPageArrayProps &
+  PreviousPage &
+  NextPage &
+  ChoosePage &
+  NumberOfPages
 
 export function Main(props: MainProps) {
   return (
@@ -29,7 +41,11 @@ export function Main(props: MainProps) {
         element={
           <CategoryPage
             selectedCategory={props.selectedCategory}
-            products={props.products}
+            productsOfPage={props.productsOfPage}
+            previousPage={props.previousPage}
+            nextPage={props.nextPage}
+            choosePage={props.choosePage}
+            numberOfPages={props.numberOfPages}
           />
         }
       />
