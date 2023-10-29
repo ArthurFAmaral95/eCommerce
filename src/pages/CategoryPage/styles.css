@@ -5,3 +5,42 @@
 
   margin-block: 1.4rem;
 }
+
+#category-page .page-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+#category-page .page-buttons button {
+  padding: 0.8rem 1.2rem 0.7rem 1.3rem;
+
+  border: 1px solid #6c6e73;
+  border-radius: 0.8rem;
+  border-color: #888c8c;
+
+  color: #0f1111;
+  background-color: transparent;
+
+  cursor: pointer;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+#category-page .page-buttons button:hover {
+  background-color: #f7fafa;
+  border-color: #d5d9d9;
+}
+
+#category-page .page-buttons button.current-page {
+  font-weight: 700;
+
+  background-color: #edfdff;
+  border-color: #007185;
+  color: #007185;
+}
+
+#category-page .page-buttons #previous-btn,
+#category-page .page-buttons #next-btn {
+  text-align: center;
+}

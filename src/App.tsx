@@ -150,6 +150,7 @@ export function App() {
         productsOfPage={productsOfPage[pageNumber - 1]}
         selectCategory={selectCategory}
         selectedCategory={selectedCategory}
+        pageNumber={pageNumber}
         numberOfPages={numberOfPages}
         previousPage={previousPage}
         nextPage={nextPage}

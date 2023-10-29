@@ -11,7 +11,8 @@ import {
   PreviousPage,
   NextPage,
   ChoosePage,
-  NumberOfPages
+  NumberOfPages,
+  PageNumber
 } from './types/types'
 
 type MainProps = MainArrayProps &
@@ -21,7 +22,8 @@ type MainProps = MainArrayProps &
   PreviousPage &
   NextPage &
   ChoosePage &
-  NumberOfPages
+  NumberOfPages &
+  PageNumber
 
 export function Main(props: MainProps) {
   return (
@@ -46,6 +48,7 @@ export function Main(props: MainProps) {
             nextPage={props.nextPage}
             choosePage={props.choosePage}
             numberOfPages={props.numberOfPages}
+            pageNumber={props.pageNumber}
           />
         }
       />

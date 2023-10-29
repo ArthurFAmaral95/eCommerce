@@ -54,6 +54,14 @@ export type NumberOfPages = {
   numberOfPages: number
 }
 
+export type PageNumber = {
+  pageNumber: number
+}
+
+export type ButtonNumber = {
+  buttonNumber: number
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
