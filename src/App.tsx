@@ -1,6 +1,6 @@
 import { SideBar } from './components/SideBar'
 import { Header } from './components/Header'
-import { Main } from './Main'
+import { Main } from './Main1'
 
 import { useState, useEffect } from 'react'
 
