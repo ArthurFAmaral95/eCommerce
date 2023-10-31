@@ -20,7 +20,7 @@ export function SideBar(props: SideBarProps) {
     <div className={`side-bar ${props.openMenu ? '' : 'hidden'}`}>
       <div className="close">
         <img
-          src="../../../public/close-menu.svg"
+          src="./close-menu.svg"
           alt="close menu icon"
           id="close-menu"
           onClick={() => props.handleMenu(false)}
@@ -37,7 +37,7 @@ export function SideBar(props: SideBarProps) {
         <div className="white-bg">
           <a href="/" id="home">
             Homepage
-            <img src="../../../public/home.svg" alt="" />
+            <img src="./home.svg" alt="" />
           </a>
           <hr />
           <p>Categories</p>

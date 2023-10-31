@@ -11,7 +11,7 @@ export function Search() {
           placeholder="Search product"
         />
         <button>
-          <img src="../../../public/search.svg" alt="Search" />
+          <img src="./search.svg" alt="Search" />
         </button>
       </form>
     </div>
