@@ -24,7 +24,7 @@ export function Header(props: HeaderProps) {
             <div className="left-top-nav">
               <Menu handleMenu={props.handleMenu} />
               <a href="/" id="logo">
-                <img src="../../../public/logo.svg" alt="logo" />
+                <img src="../../logo.svg" alt="logo" />
                 E-Commerce
               </a>
             </div>
