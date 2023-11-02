@@ -1,6 +1,7 @@
 import './styles.css'
 
 import { ProductObjectProps } from '../../types/types'
+import { ProductInfo } from '../ProductInfo'
 
 export function DetailedProductBox(props: ProductObjectProps) {
   const textPrice = String(props.product.price)
@@ -23,7 +24,7 @@ export function DetailedProductBox(props: ProductObjectProps) {
         <p id="product-name" title={props.product.product_name}>
           {productName.length === 100 ? productName + '...' : productName}
         </p>
-        <p id="info">alguma info</p>
+        <ProductInfo/>
         <p id="rating">5 ⭐️⭐️⭐️⭐️⭐️</p>
         <p id="price">
           <sup>$</sup>&nbsp;

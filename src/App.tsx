@@ -26,6 +26,8 @@ export function App() {
   ])
   const [productsOfPage, setProductsOfPage] = useState([])
 
+  const [productsInfo, setProductsInfo] = useState([])
+
   const [openMenu, setOpenMenu] = useState(false)
 
   const [pageNumber, setPageNumber] = useState(1)
@@ -86,6 +88,26 @@ export function App() {
         .catch(err => {
           console.error(err)
         })
+
+      if (selectedCategory === 'TV & Audio') {
+        axios
+          .get(`http://localhost:4001/tv_audio/products-info`)
+          .then(response => {
+            setProductsInfo(response.data)
+          })
+          .catch(err => {
+            console.error(err)
+          })
+      } else {
+        axios
+          .get(`http://localhost:4001/${selectedCategory}/products-info`)
+          .then(response => {
+            setProductsInfo(response.data)
+          })
+          .catch(err => {
+            console.error(err)
+          })
+      }
     }
   }
 
