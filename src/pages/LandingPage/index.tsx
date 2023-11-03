@@ -33,7 +33,7 @@ export function LandingPage(props: LandingPageProps) {
         <div className="category-name-row">
           <CategoryName
             category={category.category}
-            key={category.id}
+            key={category.category}
             selectCategory={props.selectCategory}
           />
         </div>

@@ -19,7 +19,7 @@ export function Categories(props: CategoriesArrayFuncProps) {
     renderCategories.push(
       <Category
         category={category.category}
-        key={category.id}
+        key={category.category}
         handleMenu={props.handleMenu}
         selectCategory={props.selectCategory}
       />

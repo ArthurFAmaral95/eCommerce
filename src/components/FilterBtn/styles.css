@@ -1,0 +1,29 @@
+.filter-btn {
+  background-color: transparent;
+
+  border-color: #888c8c;
+  color: #0f1111;
+
+  padding: 0.8rem 1.2rem 0.7rem 1.3rem;
+
+  border: 1px solid #6c6e73;
+  border-radius: 0.8rem;
+  border-color: #888c8c;
+
+  cursor: pointer;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+.filter-btn:hover {
+  background-color: #f7fafa;
+  border-color: #d5d9d9;
+}
+
+.filter-btn.selected {
+  font-weight: 700;
+
+  background-color: #edfdff;
+  border-color: #007185;
+  color: #007185;
+}

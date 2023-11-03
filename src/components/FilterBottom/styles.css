@@ -1,0 +1,48 @@
+.filter-bottom {
+  height: 6.8rem;
+  width: 100%;
+  max-width: 76.8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-inline: 2rem;
+  margin-top: 2rem;
+
+  position: fixed;
+  bottom: 0;
+
+  border-top: 0.1rem solid #e7e7e7;
+
+  background-color: #fff;
+}
+
+.filter-bottom #clear-filters {
+  color: #007185;
+  font-size: 1.3rem;
+
+  background-color: #fff;
+
+  border-radius: 0.7rem;
+  border: 0.1rem solid #f1f1f1;
+
+  padding: 0.9rem;
+
+  cursor: pointer;
+}
+
+.filter-bottom #close-filter-menu {
+  font-size: 1.3rem;
+  color: #fff;
+
+  background-color: #007185;
+
+  border-color: #007185;
+  border-radius: 0.7rem;
+  border: 0.1rem solid #f1f1f1;
+
+  padding: 0.9rem;
+
+  cursor: pointer;
+}

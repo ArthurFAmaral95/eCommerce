@@ -14,6 +14,8 @@ import {
 
 import { DetailedProductBox } from '../../components/DetaliledProductBox'
 import { PageBtn } from '../../components/PageBtn'
+import { FilterBar } from '../../components/FilterBar'
+import { FilterMenu } from '../../components/FilterMenu'
 
 type CategoryPageProps = SelectedCategoryProps &
   ProductsOfPageArrayProps &
@@ -127,18 +129,25 @@ export function CategoryPage(props: CategoryPageProps) {
   }
 
   return (
-    <main id="category-page">
-      <h1 className="category-name">{props.selectedCategory}</h1>
-      <div className="products">{renderProducts}</div>
-      <div className="page-buttons">
-        <button id="previous-btn" onClick={props.previousPage}>
-          ← Previous page
-        </button>
-        {renderPageBtns}
-        <button id="next-btn" onClick={props.nextPage}>
-          Next page →
-        </button>
-      </div>
-    </main>
+    <>
+      <FilterBar />
+      <FilterMenu
+        selectedCategory={props.selectedCategory}
+        productsInfo={props.productsInfo}
+      />
+      <main id="category-page">
+        <h1 className="category-name">{props.selectedCategory}</h1>
+        <div className="products">{renderProducts}</div>
+        <div className="page-buttons">
+          <button id="previous-btn" onClick={props.previousPage}>
+            ← Previous page
+          </button>
+          {renderPageBtns}
+          <button id="next-btn" onClick={props.nextPage}>
+            Next page →
+          </button>
+        </div>
+      </main>
+    </>
   )
 }

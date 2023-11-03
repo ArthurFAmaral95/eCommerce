@@ -1,0 +1,44 @@
+.filter {
+  position: relative;
+  top: 18.7rem;
+
+  height: 4.8rem;
+
+  padding-inline: 1rem;
+
+  display: grid;
+  grid-template-columns: 1fr 10.5rem;
+
+  align-items: center;
+
+  box-shadow: 0 1px 2px 0 rgba(17, 17, 17, 0.15);
+}
+
+.filter .selected-filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter .filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-inline: 1rem;
+
+  height: 100%;
+  box-shadow: inset 1px 0 0 0 #e6e6e6;
+
+  font-size: 1.4rem;
+  color: #007185;
+}
+
+.filter .filters span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter .filters .arrow {
+  transform: rotate(180deg);
+}

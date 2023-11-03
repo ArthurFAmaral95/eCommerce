@@ -108,6 +108,14 @@ export type ButtonNumber = {
   buttonNumber: number
 }
 
+export type FieldProps = {
+  field: string
+}
+
+export type ValueProps = {
+  value: any
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
