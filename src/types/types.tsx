@@ -27,8 +27,50 @@ export type ProductsArrayProps = {
   products: ProductsProps[]
 }
 
-export type productsOfPageArrayProps = {
+export type ProductsOfPageArrayProps = {
   productsOfPage: ProductsProps[]
+}
+
+export type ProductsInfoProps = {
+  item_id: number
+  brand: string
+  type: string
+  gender: string
+  author: string
+  best_sellet: number
+  publisher: string
+  seller: string
+  new: number
+  size: any
+  color: string
+  department: string
+  in_stock: number
+  storage: number
+  age: string
+}
+
+export type ProductsInfoArrayProps = {
+  productsInfo: ProductsInfoProps[]
+}
+
+export type ProductInfoObjectProps = {
+  productInfo: {
+    item_id: number
+    brand: string
+    type: string
+    gender: string
+    author: string
+    best_sellet: number
+    publisher: string
+    seller: string
+    new: number
+    size: string | number
+    color: string
+    department: string
+    in_stock: number
+    storage: number
+    age: string
+  }
 }
 
 export type ProductObjectProps = {
@@ -39,6 +81,10 @@ export type ProductObjectProps = {
     product_name: string
     product_id: number
   }
+}
+
+export type HighlightInfoProps = {
+  info: string
 }
 
 export type MainArrayProps = {

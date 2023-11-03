@@ -1,7 +1,7 @@
 import './styles.css'
 
-export function ProductInfo(){
-  return(
-    <p id='info'>alguma info</p>
-  )
+import { HighlightInfoProps } from '../../types/types'
+
+export function ProductInfo(props: HighlightInfoProps) {
+  return <p id="info">{props.info}</p>
 }

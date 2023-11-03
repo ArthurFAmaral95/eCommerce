@@ -7,23 +7,25 @@ import {
   MainArrayProps,
   SelectedCategoryProps,
   SelectCategory,
-  productsOfPageArrayProps,
+  ProductsOfPageArrayProps,
   PreviousPage,
   NextPage,
   ChoosePage,
   NumberOfPages,
-  PageNumber
+  PageNumber,
+  ProductsInfoArrayProps
 } from './types/types'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
   SelectCategory &
-  productsOfPageArrayProps &
+  ProductsOfPageArrayProps &
   PreviousPage &
   NextPage &
   ChoosePage &
   NumberOfPages &
-  PageNumber
+  PageNumber &
+  ProductsInfoArrayProps
 
 export function Main(props: MainProps) {
   return (
@@ -44,6 +46,7 @@ export function Main(props: MainProps) {
           <CategoryPage
             selectedCategory={props.selectedCategory}
             productsOfPage={props.productsOfPage}
+            productsInfo={props.productsInfo}
             previousPage={props.previousPage}
             nextPage={props.nextPage}
             choosePage={props.choosePage}
