@@ -1,8 +1,17 @@
 import './styles.css'
 
-import { ProductObjectProps } from '../../types/types'
+import {
+  ProductObjectProps,
+  ProductInfoObjectProps,
+  SelectedCategoryProps
+} from '../../types/types'
+import { ProductInfo } from '../ProductInfo'
 
-export function DetailedProductBox(props: ProductObjectProps) {
+type DetailedProductBoxProps = ProductObjectProps &
+  ProductInfoObjectProps &
+  SelectedCategoryProps
+
+export function DetailedProductBox(props: DetailedProductBoxProps) {
   const textPrice = String(props.product.price)
   const splitPrice = textPrice.split('.')
   const priceUnit = splitPrice[0]
@@ -12,6 +21,33 @@ export function DetailedProductBox(props: ProductObjectProps) {
     .split('')
     .splice(0, 100)
     .join('')
+
+  const highlightBrand =
+    props.selectedCategory === 'Automotive' ||
+    props.selectedCategory === 'Baby' ||
+    props.selectedCategory === 'Computers' ||
+    props.selectedCategory === 'Eletronics' ||
+    props.selectedCategory === 'Home' ||
+    props.selectedCategory === 'Office' ||
+    props.selectedCategory === 'Phones' ||
+    props.selectedCategory === 'Shoes' ||
+    props.selectedCategory === 'Sports' ||
+    props.selectedCategory === 'Toys' ||
+    props.selectedCategory === 'TV & Audio'
+
+  const highlightAuthor = props.selectedCategory === 'Books'
+
+  const highlightDepartment = props.selectedCategory === 'Games'
+
+  let highlightedProductInfo: string = ''
+
+  if (highlightBrand) {
+    highlightedProductInfo = `by ${props.productInfo.brand}`
+  } else if (highlightAuthor) {
+    highlightedProductInfo = `by ${props.productInfo.author}`
+  } else if (highlightDepartment) {
+    highlightedProductInfo = `${props.productInfo.department}`
+  }
 
   return (
     <div className="detailed-product-box" title={props.product.product_name}>
@@ -23,7 +59,7 @@ export function DetailedProductBox(props: ProductObjectProps) {
         <p id="product-name" title={props.product.product_name}>
           {productName.length === 100 ? productName + '...' : productName}
         </p>
-        <p id="info">alguma info</p>
+        <ProductInfo info={highlightedProductInfo} />
         <p id="rating">5 ⭐️⭐️⭐️⭐️⭐️</p>
         <p id="price">
           <sup>$</sup>&nbsp;

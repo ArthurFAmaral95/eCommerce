@@ -3,24 +3,26 @@ import './styles.css'
 import {
   SelectedCategoryProps,
   ProductsProps,
-  productsOfPageArrayProps,
+  ProductsOfPageArrayProps,
   PreviousPage,
   NextPage,
   ChoosePage,
   NumberOfPages,
-  PageNumber
+  PageNumber,
+  ProductsInfoArrayProps
 } from '../../types/types'
 
 import { DetailedProductBox } from '../../components/DetaliledProductBox'
 import { PageBtn } from '../../components/PageBtn'
 
 type CategoryPageProps = SelectedCategoryProps &
-  productsOfPageArrayProps &
+  ProductsOfPageArrayProps &
   PreviousPage &
   NextPage &
   ChoosePage &
   NumberOfPages &
-  PageNumber
+  PageNumber &
+  ProductsInfoArrayProps
 
 export function CategoryPage(props: CategoryPageProps) {
   window.scrollTo(0, 0)
@@ -29,8 +31,39 @@ export function CategoryPage(props: CategoryPageProps) {
   const allPageBtns: any = []
 
   props.productsOfPage.map((product: ProductsProps) => {
+    const productInfo = [
+      {
+        item_id: 0,
+        brand: '',
+        type: '',
+        gender: '',
+        author: '',
+        best_sellet: 0,
+        publisher: '',
+        seller: '',
+        new: 0,
+        size: '',
+        color: '',
+        department: '',
+        in_stock: 0,
+        storage: 0,
+        age: ''
+      }
+    ]
+
+    for (const item of props.productsInfo) {
+      if (item.item_id === product.product_id) {
+        productInfo.push(item)
+      }
+    }
+
     renderProducts.push(
-      <DetailedProductBox product={product} key={product.product_id} />
+      <DetailedProductBox
+        product={product}
+        key={product.product_id}
+        productInfo={productInfo[productInfo.length - 1]}
+        selectedCategory={props.selectedCategory}
+      />
     )
   })
 

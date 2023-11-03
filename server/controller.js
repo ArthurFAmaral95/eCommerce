@@ -45,13 +45,20 @@ const categoryPage = async (req, res) => {
     .catch(err => res.json(err))
 }
 
-const test = async (req, res) => {
+const productsInfo = async (req, res) => {
   knx
     .select('*')
-    .from(`categories`)
-    .whereLike('category', `${req.params.category}`)
+    .from(`${req.params.category}`)
     .then(data => res.json(data))
     .catch(err => res.json(err))
 }
 
-export { categories, products, categoryPage, test }
+const test = async (req, res) => {
+  knx
+    .select('*')
+    .from(`${req.params.category}`)
+    .then(data => res.json(data))
+    .catch(err => res.json(err))
+}
+
+export { categories, products, categoryPage, productsInfo, test }

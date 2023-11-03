@@ -10,6 +10,6 @@ router.get('/products', routes.products)
 
 router.get('/:category', routes.categoryPage)
 
-router.get('/test', routes.test)
+router.get('/:category/products-info', routes.productsInfo)
 
 export { router }

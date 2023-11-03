@@ -60,7 +60,6 @@
   line-height: 1.4rem;
 }
 
-.detailed-product-box .details #info,
 .detailed-product-box .details #rating,
 .detailed-product-box .details #delivery-date,
 .detailed-product-box .details #shipping {
@@ -68,7 +67,6 @@
   line-height: 1.5rem;
 }
 
-.detailed-product-box .details #info,
 .detailed-product-box .details #delivery-date,
 .detailed-product-box .details #shipping {
   font-weight: 300;

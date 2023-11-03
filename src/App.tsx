@@ -26,6 +26,26 @@ export function App() {
   ])
   const [productsOfPage, setProductsOfPage] = useState([])
 
+  const [productsInfo, setProductsInfo] = useState([
+    {
+      item_id: 0,
+      brand: '',
+      type: '',
+      gender: '',
+      author: '',
+      best_sellet: 0,
+      publisher: '',
+      seller: '',
+      new: 0,
+      size: '',
+      color: '',
+      department: '',
+      in_stock: 0,
+      storage: 0,
+      age: ''
+    }
+  ])
+
   const [openMenu, setOpenMenu] = useState(false)
 
   const [pageNumber, setPageNumber] = useState(1)
@@ -86,6 +106,26 @@ export function App() {
         .catch(err => {
           console.error(err)
         })
+
+      if (selectedCategory === 'TV & Audio') {
+        axios
+          .get(`http://localhost:4001/tv_audio/products-info`)
+          .then(response => {
+            setProductsInfo(response.data)
+          })
+          .catch(err => {
+            console.error(err)
+          })
+      } else {
+        axios
+          .get(`http://localhost:4001/${selectedCategory}/products-info`)
+          .then(response => {
+            setProductsInfo(response.data)
+          })
+          .catch(err => {
+            console.error(err)
+          })
+      }
     }
   }
 
@@ -148,6 +188,7 @@ export function App() {
         products={products}
         categories={categories}
         productsOfPage={productsOfPage[pageNumber - 1]}
+        productsInfo={productsInfo}
         selectCategory={selectCategory}
         selectedCategory={selectedCategory}
         pageNumber={pageNumber}
