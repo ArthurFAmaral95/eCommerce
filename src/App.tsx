@@ -181,7 +181,21 @@ export function App() {
       field: field,
       value: value
     }
-    setSelectedFilters(prevState => [...prevState, filter])
+
+    let addFilter = true
+
+    for (const item of selectedFilters) {
+      if (item.field === filter.field && item.value === filter.value) {
+        selectedFilters.splice(selectedFilters.indexOf(item), 1)
+        addFilter = false
+      }
+    }
+
+    if (addFilter) {
+      setSelectedFilters(prevState => [...prevState, filter])
+    } else {
+      setSelectedFilters([...selectedFilters])
+    }
   }
 
   function clearFilters() {
