@@ -116,6 +116,11 @@ export type ValueProps = {
   value: any
 }
 
+export type SelectedFiltersProps = {
+  field: string
+  value: string | number
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
@@ -134,4 +139,8 @@ export type NextPage = {
 
 export type ChoosePage = {
   choosePage: (number: number) => void
+}
+
+export type SelectFilter = {
+  selectFilter: (field: string, value: string | number) => void
 }

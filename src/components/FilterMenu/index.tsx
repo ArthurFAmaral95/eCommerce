@@ -4,13 +4,16 @@ import { FilterBottom } from '../FilterBottom'
 
 import {
   SelectedCategoryProps,
-  ProductsInfoArrayProps
+  ProductsInfoArrayProps,
+  SelectFilter
 } from '../../types/types'
 import { FilterField } from '../FilterField'
 import { FilterBtn } from '../FilterBtn'
 import { Key } from 'react'
 
-type FilterMenuProps = SelectedCategoryProps & ProductsInfoArrayProps
+type FilterMenuProps = SelectedCategoryProps &
+  ProductsInfoArrayProps &
+  SelectFilter
 
 export function FilterMenu(props: FilterMenuProps) {
   const uniqueFilterFields: any = []
@@ -36,8 +39,15 @@ export function FilterMenu(props: FilterMenuProps) {
       }
     }
 
-    fieldValues.map((value: Key | null | undefined) => {
-      renderFieldValues.push(<FilterBtn value={value} key={value} />)
+    fieldValues.sort().map((value: Key | null | undefined) => {
+      renderFieldValues.push(
+        <FilterBtn
+          value={value}
+          key={unique + value}
+          field={unique}
+          selectFilter={props.selectFilter}
+        />
+      )
     })
 
     renderFilterMenu.push(

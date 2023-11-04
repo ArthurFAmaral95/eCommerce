@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
+import { SelectedFiltersProps } from './types/types'
+
 export function App() {
   const [categories, setCategories] = useState([
     {
@@ -64,6 +66,10 @@ export function App() {
       arraysOfProductsOfPages[pageIndex].push(product)
     }
   })
+
+  const [selectedFilters, setSelectedFilters] = useState<
+    SelectedFiltersProps[]
+  >([])
 
   useEffect(() => {
     fetchCategories()
@@ -135,6 +141,7 @@ export function App() {
 
   function selectCategory(category: string) {
     setSelectedCategory(category)
+    setSelectedFilters([])
   }
 
   function updateProductsOfPage() {
@@ -169,6 +176,14 @@ export function App() {
     setPageNumber(number)
   }
 
+  function selectFilter(field: string, value: string | number) {
+    const filter = {
+      field: field,
+      value: value
+    }
+    setSelectedFilters(prevState => [...prevState, filter])
+  }
+
   return (
     <div className={`container ${openMenu ? 'menu-expanded' : ''}`}>
       <SideBar
@@ -196,6 +211,7 @@ export function App() {
         previousPage={previousPage}
         nextPage={nextPage}
         choosePage={choosePage}
+        selectFilter={selectFilter}
       />
     </div>
   )
