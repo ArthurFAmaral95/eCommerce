@@ -16,7 +16,7 @@ export function FilterBar(props: FilterBarProps) {
         value={filter.value}
         selectFilter={props.selectFilter}
         key={filter.field + '-' + filter.value}
-        selected={true}
+        selectedFilters={props.selectedFilters}
       />
     )
   })

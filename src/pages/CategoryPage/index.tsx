@@ -142,6 +142,7 @@ export function CategoryPage(props: CategoryPageProps) {
         productsInfo={props.productsInfo}
         selectFilter={props.selectFilter}
         clearFilters={props.clearFilters}
+        selectedFilters={props.selectedFilters}
       />
       <main id="category-page">
         <h1 className="category-name">{props.selectedCategory}</h1>

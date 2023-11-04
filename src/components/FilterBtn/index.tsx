@@ -1,13 +1,23 @@
 import './styles.css'
 
-import { ValueProps, FieldProps, SelectFilter } from '../../types/types'
+import {
+  ValueProps,
+  FieldProps,
+  SelectFilter,
+  SelectedFiltersArrayProps
+} from '../../types/types'
 
-type Selected = { selected: boolean }
 
-type FilterBtnProps = ValueProps & FieldProps & SelectFilter & Selected
+
+type FilterBtnProps = ValueProps &
+  FieldProps &
+  SelectFilter &
+  SelectedFiltersArrayProps
 
 export function FilterBtn(props: FilterBtnProps) {
   let value = props.value
+
+  let selected = false
 
   if (props.value === 1 && props.field === 'new') {
     value = 'New'
@@ -19,9 +29,15 @@ export function FilterBtn(props: FilterBtnProps) {
     value = 'No'
   }
 
+  props.selectedFilters.map(filter => {
+    if (filter.field === props.field && filter.value === props.value) {
+      selected = true
+    }
+  })
+
   return (
     <button
-      className={props.selected ? 'filter-btn selected' : 'filter-btn'}
+      className={selected ? 'filter-btn selected' : 'filter-btn'}
       onClick={() => {
         props.selectFilter(props.field, props.value)
       }}
