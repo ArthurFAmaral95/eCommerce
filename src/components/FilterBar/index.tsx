@@ -1,18 +1,33 @@
-import { FilterBtn } from '../FilterBtn'
 import './styles.css'
 
-export function FilterBar() {
+import { FilterBtn } from '../FilterBtn'
+
+import { SelectedFiltersArrayProps, SelectFilter } from '../../types/types'
+
+type FilterBarProps = SelectFilter & SelectedFiltersArrayProps
+
+export function FilterBar(props: FilterBarProps) {
+  const renderBtns: any = []
+
+  props.selectedFilters.map(filter => {
+    renderBtns.push(
+      <FilterBtn
+        field={filter.field}
+        value={filter.value}
+        selectFilter={props.selectFilter}
+        key={filter.field + '-' + filter.value}
+        selected={true}
+      />
+    )
+  })
+
   return (
     <div className="filter">
-      <div className="selected-filters">
-        <FilterBtn/>
-        <FilterBtn/>
-        <FilterBtn/>
-        <FilterBtn/>
-      </div>
+      <div className="selected-filters">{renderBtns}</div>
       <div className="filters">
         <span>
-          Filters (1) <span className="arrow">^</span>
+          Filters ({props.selectedFilters.length}){' '}
+          <span className="arrow">^</span>
         </span>
       </div>
     </div>

@@ -231,6 +231,7 @@ export function App() {
         choosePage={choosePage}
         selectFilter={selectFilter}
         clearFilters={clearFilters}
+        selectedFilters={selectedFilters}
       />
     </div>
   )

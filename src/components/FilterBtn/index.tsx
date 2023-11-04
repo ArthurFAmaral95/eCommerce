@@ -2,7 +2,9 @@ import './styles.css'
 
 import { ValueProps, FieldProps, SelectFilter } from '../../types/types'
 
-type FilterBtnProps = ValueProps & FieldProps & SelectFilter
+type Selected = { selected: boolean }
+
+type FilterBtnProps = ValueProps & FieldProps & SelectFilter & Selected
 
 export function FilterBtn(props: FilterBtnProps) {
   let value = props.value
@@ -19,7 +21,7 @@ export function FilterBtn(props: FilterBtnProps) {
 
   return (
     <button
-      className="filter-btn"
+      className={props.selected ? 'filter-btn selected' : 'filter-btn'}
       onClick={() => {
         props.selectFilter(props.field, props.value)
       }}

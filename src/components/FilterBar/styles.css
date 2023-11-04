@@ -17,6 +17,8 @@
 .filter .selected-filters {
   display: flex;
   gap: 0.5rem;
+
+  overflow: scroll;
 }
 
 .filter .filters {

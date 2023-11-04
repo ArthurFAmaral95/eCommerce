@@ -13,6 +13,8 @@
   cursor: pointer;
 
   font-family: 'Roboto', sans-serif;
+
+  text-wrap: nowrap;
 }
 
 .filter-btn:hover {

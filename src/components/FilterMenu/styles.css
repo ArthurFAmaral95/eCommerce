@@ -1,7 +1,24 @@
 .filter-menu {
-  height: 70vh;
+  height: 100vh;
   width: 100%;
   max-width: 76.8rem;
+
+  display: grid;
+  grid-template-areas:
+    'shadow'
+    'menu';
+  grid-template-rows: 30vh 70vh;
+
+  position: absolute;
+  top: 0;
+}
+
+.filter-menu .shadow {
+  grid-area: shadow;
+}
+
+.filter-menu .menu {
+  grid-area: menu;
 
   background-color: #fff;
 
@@ -21,6 +38,9 @@
   overflow: scroll;
 
   box-shadow: 0 -30vh rgba(0, 0, 0, 0.3);
+
+  width: 100%;
+  max-width: 76.8rem;
 }
 
 .filter-menu.hidden {
@@ -31,11 +51,12 @@
 }
 
 .filter-menu .filter-content {
-  height: calc(70vh - 6.8rem - 4.9rem);
+  height: calc(70vh - 4.9rem - 6.8rem);
 
   overflow: scroll;
 
   padding-bottom: 2rem;
+  margin-bottom: 6.8rem;
 }
 
 .filter-menu .filter-content,

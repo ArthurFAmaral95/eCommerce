@@ -62,9 +62,12 @@ export function FilterMenu(props: FilterMenuProps) {
 
   return (
     <div className="filter-menu ">
-      <h2>{props.selectedCategory}</h2>
-      <div className="filter-content">{renderFilterMenu}</div>
-      <FilterBottom clearFilters={props.clearFilters} />
+      <span className="shadow"></span>
+      <div className="menu">
+        <h2>{props.selectedCategory}</h2>
+        <div className="filter-content">{renderFilterMenu}</div>
+        <FilterBottom clearFilters={props.clearFilters} />
+      </div>
     </div>
   )
 }
