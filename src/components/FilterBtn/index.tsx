@@ -7,8 +7,6 @@ import {
   SelectedFiltersArrayProps
 } from '../../types/types'
 
-
-
 type FilterBtnProps = ValueProps &
   FieldProps &
   SelectFilter &
@@ -23,10 +21,14 @@ export function FilterBtn(props: FilterBtnProps) {
     value = 'New'
   } else if (props.value === 0 && props.field === 'new') {
     value = 'Used'
-  } else if (props.value === 1) {
-    value = 'Yes'
-  } else if (props.value === 0) {
-    value = 'No'
+  } else if (props.value === 1 && props.field === 'best_seller') {
+    value = 'Bestseller'
+  } else if (props.value === 0 && props.field === 'best_seller') {
+    value = 'No Bestseller'
+  } else if (props.value === 1 && props.field === 'in_stock') {
+    value = 'In Stock'
+  } else if (props.value === 0 && props.field === 'in_stock') {
+    value = 'Out of Stock'
   }
 
   props.selectedFilters.map(filter => {

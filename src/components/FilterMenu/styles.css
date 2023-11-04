@@ -10,7 +10,12 @@
   grid-template-rows: 30vh 70vh;
 
   position: absolute;
+  z-index: 3;
   top: 0;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: transform 0.3s ease-in;
 }
 
 .filter-menu .shadow {
@@ -30,11 +35,6 @@
   border-top-right-radius: 1.5rem;
   border-top-left-radius: 1.5rem;
 
-  opacity: 1;
-  visibility: visible;
-  transform: translate(0);
-  transition: all 0.3s ease-in;
-
   overflow: scroll;
 
   box-shadow: 0 -30vh rgba(0, 0, 0, 0.3);
@@ -46,8 +46,9 @@
 .filter-menu.hidden {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(100%);
-  transition: all 0.3s;
+  transform: translateY(150%);
+  transition: all 0.1s ease-out;
+  height: 0;
 }
 
 .filter-menu .filter-content {

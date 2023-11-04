@@ -7,7 +7,9 @@ import {
   ProductsInfoArrayProps,
   SelectFilter,
   ClearFilters,
-  SelectedFiltersArrayProps
+  SelectedFiltersArrayProps,
+  HandleFilters,
+  OpenFilters
 } from '../../types/types'
 import { FilterField } from '../FilterField'
 import { FilterBtn } from '../FilterBtn'
@@ -17,7 +19,9 @@ type FilterMenuProps = SelectedCategoryProps &
   ProductsInfoArrayProps &
   SelectFilter &
   ClearFilters &
-  SelectedFiltersArrayProps
+  SelectedFiltersArrayProps &
+  HandleFilters &
+  OpenFilters
 
 export function FilterMenu(props: FilterMenuProps) {
   const uniqueFilterFields: any = []
@@ -64,12 +68,15 @@ export function FilterMenu(props: FilterMenuProps) {
   }
 
   return (
-    <div className="filter-menu ">
+    <div className={props.openFilters ? 'filter-menu' : 'filter-menu hidden'}>
       <span className="shadow"></span>
       <div className="menu">
         <h2>{props.selectedCategory}</h2>
         <div className="filter-content">{renderFilterMenu}</div>
-        <FilterBottom clearFilters={props.clearFilters} />
+        <FilterBottom
+          clearFilters={props.clearFilters}
+          handleFilters={props.handleFilters}
+        />
       </div>
     </div>
   )

@@ -96,6 +96,10 @@ export type OpenMenu = {
   openMenu: boolean
 }
 
+export type OpenFilters = {
+  openFilters: boolean
+}
+
 export type NumberOfPages = {
   numberOfPages: number
 }
@@ -121,12 +125,16 @@ export type SelectedFiltersProps = {
   value: string | number
 }
 
-export type SelectedFiltersArrayProps={
+export type SelectedFiltersArrayProps = {
   selectedFilters: SelectedFiltersProps[]
 }
 
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
+}
+
+export type HandleFilters = {
+  handleFilters: (boolean: boolean) => void
 }
 
 export type SelectCategory = {

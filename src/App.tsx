@@ -49,6 +49,7 @@ export function App() {
   ])
 
   const [openMenu, setOpenMenu] = useState(false)
+  const [openFilters, setOpenFilters] = useState(false)
 
   const [pageNumber, setPageNumber] = useState(1)
   const [numberOfPages, setNumberOfPages] = useState(1)
@@ -139,6 +140,10 @@ export function App() {
     setOpenMenu(boolean)
   }
 
+  function handleFilters(boolean: boolean) {
+    setOpenFilters(boolean)
+  }
+
   function selectCategory(category: string) {
     setSelectedCategory(category)
     setSelectedFilters([])
@@ -202,8 +207,13 @@ export function App() {
     setSelectedFilters([])
   }
 
+  console.log('teste')
   return (
-    <div className={`container ${openMenu ? 'menu-expanded' : ''}`}>
+    <div
+      className={
+        openMenu || openFilters ? 'container menu-expanded' : 'container'
+      }
+    >
       <SideBar
         categories={categories}
         handleMenu={handleMenu}
@@ -232,6 +242,8 @@ export function App() {
         selectFilter={selectFilter}
         clearFilters={clearFilters}
         selectedFilters={selectedFilters}
+        handleFilters={handleFilters}
+        openFilters={openFilters}
       />
     </div>
   )

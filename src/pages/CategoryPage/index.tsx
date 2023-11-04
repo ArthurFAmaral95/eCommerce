@@ -12,7 +12,9 @@ import {
   ProductsInfoArrayProps,
   SelectFilter,
   ClearFilters,
-  SelectedFiltersArrayProps
+  SelectedFiltersArrayProps,
+  HandleFilters,
+  OpenFilters
 } from '../../types/types'
 
 import { DetailedProductBox } from '../../components/DetaliledProductBox'
@@ -30,7 +32,9 @@ type CategoryPageProps = SelectedCategoryProps &
   ProductsInfoArrayProps &
   SelectFilter &
   ClearFilters &
-  SelectedFiltersArrayProps
+  SelectedFiltersArrayProps &
+  HandleFilters &
+  OpenFilters
 
 export function CategoryPage(props: CategoryPageProps) {
   window.scrollTo(0, 0)
@@ -136,13 +140,19 @@ export function CategoryPage(props: CategoryPageProps) {
 
   return (
     <>
-      <FilterBar selectedFilters={props.selectedFilters} selectFilter={props.selectFilter}/>
+      <FilterBar
+        selectedFilters={props.selectedFilters}
+        selectFilter={props.selectFilter}
+        handleFilters={props.handleFilters}
+      />
       <FilterMenu
         selectedCategory={props.selectedCategory}
         productsInfo={props.productsInfo}
         selectFilter={props.selectFilter}
         clearFilters={props.clearFilters}
         selectedFilters={props.selectedFilters}
+        handleFilters={props.handleFilters}
+        openFilters={props.openFilters}
       />
       <main id="category-page">
         <h1 className="category-name">{props.selectedCategory}</h1>
