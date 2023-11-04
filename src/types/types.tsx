@@ -144,3 +144,7 @@ export type ChoosePage = {
 export type SelectFilter = {
   selectFilter: (field: string, value: string | number) => void
 }
+
+export type ClearFilters = {
+  clearFilters: () => void
+}

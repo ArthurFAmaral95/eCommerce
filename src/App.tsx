@@ -184,6 +184,10 @@ export function App() {
     setSelectedFilters(prevState => [...prevState, filter])
   }
 
+  function clearFilters() {
+    setSelectedFilters([])
+  }
+
   return (
     <div className={`container ${openMenu ? 'menu-expanded' : ''}`}>
       <SideBar
@@ -212,6 +216,7 @@ export function App() {
         nextPage={nextPage}
         choosePage={choosePage}
         selectFilter={selectFilter}
+        clearFilters={clearFilters}
       />
     </div>
   )

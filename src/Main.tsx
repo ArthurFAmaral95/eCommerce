@@ -14,7 +14,8 @@ import {
   NumberOfPages,
   PageNumber,
   ProductsInfoArrayProps,
-  SelectFilter
+  SelectFilter,
+  ClearFilters
 } from './types/types'
 
 type MainProps = MainArrayProps &
@@ -27,7 +28,8 @@ type MainProps = MainArrayProps &
   NumberOfPages &
   PageNumber &
   ProductsInfoArrayProps &
-  SelectFilter
+  SelectFilter &
+  ClearFilters
 
 export function Main(props: MainProps) {
   return (
@@ -55,6 +57,7 @@ export function Main(props: MainProps) {
             numberOfPages={props.numberOfPages}
             pageNumber={props.pageNumber}
             selectFilter={props.selectFilter}
+            clearFilters={props.clearFilters}
           />
         }
       />
