@@ -207,7 +207,6 @@ export function App() {
     setSelectedFilters([])
   }
 
-  console.log('teste')
   return (
     <div
       className={

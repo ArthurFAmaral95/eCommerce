@@ -39,6 +39,8 @@
   margin-left: 1rem;
 
   width: 2.5rem;
+
+  cursor: pointer;
 }
 
 .content {
