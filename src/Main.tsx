@@ -55,7 +55,6 @@ export function Main(props: MainProps) {
         element={
           <CategoryPage
             selectedCategory={props.selectedCategory}
-            products={props.products}
             productsOfPage={props.productsOfPage}
             productsInfo={props.productsInfo}
             previousPage={props.previousPage}

@@ -129,6 +129,11 @@ export type SelectedFiltersArrayProps = {
   selectedFilters: SelectedFiltersProps[]
 }
 
+export type CondensededFilters = {
+  field: string
+  values: string | number[]
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }

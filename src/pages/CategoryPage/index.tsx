@@ -3,7 +3,6 @@ import './styles.css'
 import {
   SelectedCategoryProps,
   ProductsProps,
-  ProductsArrayProps,
   ProductsOfPageArrayProps,
   PreviousPage,
   NextPage,
@@ -35,13 +34,7 @@ type CategoryPageProps = SelectedCategoryProps &
   ClearFilters &
   SelectedFiltersArrayProps &
   HandleFilters &
-  OpenFilters &
-  ProductsArrayProps
-
-type CondensededFilters = {
-  field: string
-  values: string | number[]
-}
+  OpenFilters
 
 export function CategoryPage(props: CategoryPageProps) {
   window.scrollTo(0, 0)
@@ -49,160 +42,42 @@ export function CategoryPage(props: CategoryPageProps) {
   const renderProducts: any = []
   const allPageBtns: any = []
 
-  const uniqueFilterFields: string[] = []
-  const condensededFilters: CondensededFilters[] = []
+  props.productsOfPage.map((product: ProductsProps) => {
+    const productInfo = [
+      {
+        item_id: 0,
+        brand: '',
+        type: '',
+        gender: '',
+        author: '',
+        best_sellet: 0,
+        publisher: '',
+        seller: '',
+        new: 0,
+        size: '',
+        color: '',
+        department: '',
+        in_stock: 0,
+        storage: 0,
+        age: ''
+      }
+    ]
 
-  props.selectedFilters.map(filter => {
-    if (!uniqueFilterFields.includes(filter.field)) {
-      uniqueFilterFields.push(filter.field)
+    for (const item of props.productsInfo) {
+      if (item.item_id === product.product_id) {
+        productInfo.push(item)
+      }
     }
+
+    renderProducts.push(
+      <DetailedProductBox
+        product={product}
+        key={product.product_id}
+        productInfo={productInfo[productInfo.length - 1]}
+        selectedCategory={props.selectedCategory}
+      />
+    )
   })
-
-  uniqueFilterFields.map(field => {
-    const filterValues: string | number[] = []
-
-    props.selectedFilters.map(filter => {
-      if (filter.field === field) {
-        filterValues.push(filter.value)
-      }
-    })
-
-    const newFilter = {
-      field: field,
-      values: filterValues
-    }
-
-    condensededFilters.push(newFilter)
-  })
-
-  const arrayOfFilteredProducts = []
-
-  for (const filter of condensededFilters) {
-    const filteredProducts: number[] = []
-    for (const value of filter.values) {
-      for (const item of props.productsInfo) {
-        for (const info in item) {
-          if (
-            info === filter.field &&
-            item[info] === value &&
-            !filteredProducts.includes(item.item_id)
-          ) {
-            filteredProducts.push(item.item_id)
-          }
-        }
-      }
-    }
-    arrayOfFilteredProducts.push(filteredProducts)
-  }
-
-  const finalFilteredProductsIds: number[] = []
-
-  if (arrayOfFilteredProducts.length === 0) {
-  } else {
-    for (const base_id of arrayOfFilteredProducts[0]) {
-      let isInAllFilters = true
-      let countOfMatches = 1
-      for (let i = 1; i < arrayOfFilteredProducts.length; i++) {
-        for (const id of arrayOfFilteredProducts[i]) {
-          if (base_id === id) {
-            countOfMatches++
-          }
-        }
-      }
-
-      if (countOfMatches !== arrayOfFilteredProducts.length) {
-        isInAllFilters = false
-      }
-
-      if (isInAllFilters) {
-        finalFilteredProductsIds.push(base_id)
-      }
-    }
-  }
-
-  const filteredProducts: ProductsArrayProps[] = []
-
-  props.products.map((product: ProductsProps | any) => {
-    if (finalFilteredProductsIds.includes(product.product_id)) {
-      filteredProducts.push(product)
-    }
-  })
-
-  if (props.selectedFilters.length === 0) {
-    props.productsOfPage.map((product: ProductsProps) => {
-      const productInfo = [
-        {
-          item_id: 0,
-          brand: '',
-          type: '',
-          gender: '',
-          author: '',
-          best_sellet: 0,
-          publisher: '',
-          seller: '',
-          new: 0,
-          size: '',
-          color: '',
-          department: '',
-          in_stock: 0,
-          storage: 0,
-          age: ''
-        }
-      ]
-
-      for (const item of props.productsInfo) {
-        if (item.item_id === product.product_id) {
-          productInfo.push(item)
-        }
-      }
-
-      renderProducts.push(
-        <DetailedProductBox
-          product={product}
-          key={product.product_id}
-          productInfo={productInfo[productInfo.length - 1]}
-          selectedCategory={props.selectedCategory}
-        />
-      )
-    })
-  } else {
-    filteredProducts.map((product: ProductsProps | any) => {
-      const productInfo = [
-        {
-          item_id: 0,
-          brand: '',
-          type: '',
-          gender: '',
-          author: '',
-          best_sellet: 0,
-          publisher: '',
-          seller: '',
-          new: 0,
-          size: '',
-          color: '',
-          department: '',
-          in_stock: 0,
-          storage: 0,
-          age: ''
-        }
-      ]
-
-      for (const item of props.productsInfo) {
-        if (item.item_id === product.product_id) {
-          productInfo.push(item)
-        }
-      }
-
-      renderProducts.push(
-        <DetailedProductBox
-          product={product}
-          key={product.product_id}
-          productInfo={productInfo[productInfo.length - 1]}
-          selectedCategory={props.selectedCategory}
-        />
-      )
-    })
-  }
 
   for (
     let buttonNumber = 1;
