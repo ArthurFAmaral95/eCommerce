@@ -42,3 +42,25 @@ header {
 #logo img {
   width: 5rem;
 }
+
+#search-list {
+  position: absolute;
+  top: 10.5rem;
+  z-index: 3;
+
+  margin-inline: 1rem;
+
+  width: calc(100vw - 2rem);
+  max-width: 74.8rem;
+
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #fff;
+
+  border-radius: 0.8rem;
+  border: none;
+  box-shadow: 0 0.3rem 1rem #bababa;
+}

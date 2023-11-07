@@ -47,7 +47,7 @@ export function Header(props: HeaderProps) {
             </div>
           </div>
           <Search handleSearchInput={props.handleSearchInput} />
-          <ul>{renderListItens}</ul>
+          <ul id="search-list">{renderListItens}</ul>
           <Categories
             categories={props.categories}
             handleMenu={props.handleMenu}
