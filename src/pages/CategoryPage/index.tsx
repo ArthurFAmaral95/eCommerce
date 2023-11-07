@@ -9,11 +9,18 @@ import {
   ChoosePage,
   NumberOfPages,
   PageNumber,
-  ProductsInfoArrayProps
+  ProductsInfoArrayProps,
+  SelectFilter,
+  ClearFilters,
+  SelectedFiltersArrayProps,
+  HandleFilters,
+  OpenFilters
 } from '../../types/types'
 
 import { DetailedProductBox } from '../../components/DetaliledProductBox'
 import { PageBtn } from '../../components/PageBtn'
+import { FilterBar } from '../../components/FilterBar'
+import { FilterMenu } from '../../components/FilterMenu'
 
 type CategoryPageProps = SelectedCategoryProps &
   ProductsOfPageArrayProps &
@@ -22,7 +29,12 @@ type CategoryPageProps = SelectedCategoryProps &
   ChoosePage &
   NumberOfPages &
   PageNumber &
-  ProductsInfoArrayProps
+  ProductsInfoArrayProps &
+  SelectFilter &
+  ClearFilters &
+  SelectedFiltersArrayProps &
+  HandleFilters &
+  OpenFilters
 
 export function CategoryPage(props: CategoryPageProps) {
   window.scrollTo(0, 0)
@@ -127,18 +139,34 @@ export function CategoryPage(props: CategoryPageProps) {
   }
 
   return (
-    <main id="category-page">
-      <h1 className="category-name">{props.selectedCategory}</h1>
-      <div className="products">{renderProducts}</div>
-      <div className="page-buttons">
-        <button id="previous-btn" onClick={props.previousPage}>
-          ← Previous page
-        </button>
-        {renderPageBtns}
-        <button id="next-btn" onClick={props.nextPage}>
-          Next page →
-        </button>
-      </div>
-    </main>
+    <>
+      <FilterBar
+        selectedFilters={props.selectedFilters}
+        selectFilter={props.selectFilter}
+        handleFilters={props.handleFilters}
+      />
+      <FilterMenu
+        selectedCategory={props.selectedCategory}
+        productsInfo={props.productsInfo}
+        selectFilter={props.selectFilter}
+        clearFilters={props.clearFilters}
+        selectedFilters={props.selectedFilters}
+        handleFilters={props.handleFilters}
+        openFilters={props.openFilters}
+      />
+      <main id="category-page">
+        <h1 className="category-name">{props.selectedCategory}</h1>
+        <div className="products">{renderProducts}</div>
+        <div className="page-buttons">
+          <button id="previous-btn" onClick={props.previousPage}>
+            ← Previous page
+          </button>
+          {renderPageBtns}
+          <button id="next-btn" onClick={props.nextPage}>
+            Next page →
+          </button>
+        </div>
+      </main>
+    </>
   )
 }

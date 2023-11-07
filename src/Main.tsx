@@ -13,7 +13,12 @@ import {
   ChoosePage,
   NumberOfPages,
   PageNumber,
-  ProductsInfoArrayProps
+  ProductsInfoArrayProps,
+  SelectFilter,
+  ClearFilters,
+  SelectedFiltersArrayProps,
+  HandleFilters,
+  OpenFilters
 } from './types/types'
 
 type MainProps = MainArrayProps &
@@ -25,7 +30,12 @@ type MainProps = MainArrayProps &
   ChoosePage &
   NumberOfPages &
   PageNumber &
-  ProductsInfoArrayProps
+  ProductsInfoArrayProps &
+  SelectFilter &
+  ClearFilters &
+  SelectedFiltersArrayProps &
+  HandleFilters &
+  OpenFilters
 
 export function Main(props: MainProps) {
   return (
@@ -52,6 +62,11 @@ export function Main(props: MainProps) {
             choosePage={props.choosePage}
             numberOfPages={props.numberOfPages}
             pageNumber={props.pageNumber}
+            selectFilter={props.selectFilter}
+            clearFilters={props.clearFilters}
+            selectedFilters={props.selectedFilters}
+            handleFilters={props.handleFilters}
+            openFilters={props.openFilters}
           />
         }
       />

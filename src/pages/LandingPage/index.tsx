@@ -8,8 +8,6 @@ import { MainArrayProps, SelectCategory } from '../../types/types'
 type LandingPageProps = MainArrayProps & SelectCategory
 
 export function LandingPage(props: LandingPageProps) {
-  props.selectCategory('')
-
   window.scrollTo(0, 0)
 
   const renderLandingPage = []
@@ -33,7 +31,7 @@ export function LandingPage(props: LandingPageProps) {
         <div className="category-name-row">
           <CategoryName
             category={category.category}
-            key={category.id}
+            key={category.category}
             selectCategory={props.selectCategory}
           />
         </div>

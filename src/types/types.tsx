@@ -49,6 +49,8 @@ export type ProductsInfoProps = {
   age: string
 }
 
+export type Item = { [item: string]: string | number }
+
 export type ProductsInfoArrayProps = {
   productsInfo: ProductsInfoProps[]
 }
@@ -96,6 +98,10 @@ export type OpenMenu = {
   openMenu: boolean
 }
 
+export type OpenFilters = {
+  openFilters: boolean
+}
+
 export type NumberOfPages = {
   numberOfPages: number
 }
@@ -108,8 +114,34 @@ export type ButtonNumber = {
   buttonNumber: number
 }
 
+export type FieldProps = {
+  field: string
+}
+
+export type ValueProps = {
+  value: any
+}
+
+export type SelectedFiltersProps = {
+  field: string
+  value: number | string | any
+}
+
+export type SelectedFiltersArrayProps = {
+  selectedFilters: SelectedFiltersProps[]
+}
+
+export type CondensededFilters = {
+  field: string
+  values: string | number[]
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
+}
+
+export type HandleFilters = {
+  handleFilters: (boolean: boolean) => void
 }
 
 export type SelectCategory = {
@@ -126,4 +158,12 @@ export type NextPage = {
 
 export type ChoosePage = {
   choosePage: (number: number) => void
+}
+
+export type SelectFilter = {
+  selectFilter: (field: string, value: string | number) => void
+}
+
+export type ClearFilters = {
+  clearFilters: () => void
 }
