@@ -49,6 +49,8 @@ export type ProductsInfoProps = {
   age: string
 }
 
+export type Item = { [item: string]: string | number }
+
 export type ProductsInfoArrayProps = {
   productsInfo: ProductsInfoProps[]
 }
@@ -122,7 +124,7 @@ export type ValueProps = {
 
 export type SelectedFiltersProps = {
   field: string
-  value: string | number
+  value: number | string | any
 }
 
 export type SelectedFiltersArrayProps = {

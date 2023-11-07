@@ -10,7 +10,8 @@ import {
   SelectedFiltersProps,
   ProductsArrayProps,
   ProductsProps,
-  CondensededFilters
+  CondensededFilters,
+  Item
 } from './types/types'
 
 export const productsPerPage = 5
@@ -289,7 +290,7 @@ export function App() {
           for (const info in item) {
             if (
               info === filter.field &&
-              item[info] === value &&
+              (item as Item)[info] === value &&
               !filteredProductsIds.includes(item.item_id)
             ) {
               filteredProductsIds.push(item.item_id)

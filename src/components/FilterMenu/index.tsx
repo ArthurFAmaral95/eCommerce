@@ -9,7 +9,8 @@ import {
   ClearFilters,
   SelectedFiltersArrayProps,
   HandleFilters,
-  OpenFilters
+  OpenFilters,
+  Item
 } from '../../types/types'
 import { FilterField } from '../FilterField'
 import { FilterBtn } from '../FilterBtn'
@@ -40,10 +41,13 @@ export function FilterMenu(props: FilterMenuProps) {
 
     for (const item of props.productsInfo) {
       for (const fieldValue in item) {
-        if (fieldValues.includes(item[fieldValue]) || fieldValue !== unique) {
+        if (
+          fieldValues.includes((item as Item)[fieldValue]) ||
+          fieldValue !== unique
+        ) {
           continue
         }
-        fieldValues.push(item[fieldValue])
+        fieldValues.push((item as Item)[fieldValue])
       }
     }
 
