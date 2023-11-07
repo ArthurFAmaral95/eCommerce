@@ -72,6 +72,10 @@ export function App() {
 
   const [searchedTerm, setSearchedTerm] = useState('')
 
+  const [listOfSearchMatches, setListOfSearchMatches] = useState<
+    ProductsProps[]
+  >([])
+
   useEffect(() => {
     fetchCategories()
     fetchProducts()
@@ -92,6 +96,10 @@ export function App() {
     setPages()
     setPageNumber(1)
   }, [filteredProducts])
+
+  useEffect(() => {
+    performSearch(searchedTerm)
+  }, [searchedTerm])
 
   const fetchCategories = async () => {
     axios
@@ -343,6 +351,21 @@ export function App() {
     setSearchedTerm(string)
   }
 
+  function performSearch(searchTerm: string) {
+    const productsToAdd: ProductsProps[] = []
+    if (searchedTerm.length === 0) {
+    } else {
+      products.map(product => {
+        if (
+          product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+        ) {
+          productsToAdd.push(product)
+        }
+      })
+    }
+    setListOfSearchMatches(productsToAdd)
+  }
+
   return (
     <div
       className={
@@ -361,6 +384,7 @@ export function App() {
         handleMenu={handleMenu}
         selectCategory={selectCategory}
         handleSearchInput={handleSearchInput}
+        listOfSearchMatches={listOfSearchMatches}
       />
 
       <Main

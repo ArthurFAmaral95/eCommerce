@@ -27,6 +27,10 @@ export type ProductsArrayProps = {
   products: ProductsProps[]
 }
 
+export type ListOfSearchMatchesProps = {
+  listOfSearchMatches: ProductsProps[]
+}
+
 export type ProductsOfPageArrayProps = {
   productsOfPage: ProductsProps[]
 }
@@ -134,6 +138,10 @@ export type SelectedFiltersArrayProps = {
 export type CondensededFilters = {
   field: string
   values: string | number[]
+}
+
+export type ListItemProps = {
+  value: string
 }
 
 export type HandleMenu = {

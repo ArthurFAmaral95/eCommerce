@@ -11,15 +11,24 @@ import {
   CategoriesArrayProps,
   HandleMenu,
   SelectCategory,
-  HandleSearchInput
+  HandleSearchInput,
+  ListOfSearchMatchesProps
 } from '../../types/types'
+import { ListItem } from './ListItem'
 
 type HeaderProps = CategoriesArrayProps &
   HandleMenu &
   SelectCategory &
-  HandleSearchInput
+  HandleSearchInput &
+  ListOfSearchMatchesProps
 
 export function Header(props: HeaderProps) {
+  const renderListItens: any = []
+
+  props.listOfSearchMatches.map(product => {
+    renderListItens.push(<ListItem value={product.product_name} />)
+  })
+
   return (
     <header>
       <nav>
@@ -37,7 +46,8 @@ export function Header(props: HeaderProps) {
               <ShoppingCart />
             </div>
           </div>
-          <Search handleSearchInput={props.handleSearchInput}/>
+          <Search handleSearchInput={props.handleSearchInput} />
+          <ul>{renderListItens}</ul>
           <Categories
             categories={props.categories}
             handleMenu={props.handleMenu}
