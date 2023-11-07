@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
-//teste commit
-
 import {
   SelectedFiltersProps,
   ProductsArrayProps,
@@ -71,6 +69,8 @@ export function App() {
   const [selectedFilters, setSelectedFilters] = useState<
     SelectedFiltersProps[]
   >([])
+
+  const [searchedTerm, setSearchedTerm] = useState('')
 
   useEffect(() => {
     fetchCategories()
@@ -339,6 +339,10 @@ export function App() {
     setFilteredProducts(filteredProductsToAdd)
   }
 
+  function handleSearchInput(string: string) {
+    setSearchedTerm(string)
+  }
+
   return (
     <div
       className={
@@ -356,6 +360,7 @@ export function App() {
         categories={categories}
         handleMenu={handleMenu}
         selectCategory={selectCategory}
+        handleSearchInput={handleSearchInput}
       />
 
       <Main
