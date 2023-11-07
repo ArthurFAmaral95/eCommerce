@@ -167,3 +167,7 @@ export type SelectFilter = {
 export type ClearFilters = {
   clearFilters: () => void
 }
+
+export type HandleSearchInput = {
+  handleSearchInput: (string: string) => void
+}

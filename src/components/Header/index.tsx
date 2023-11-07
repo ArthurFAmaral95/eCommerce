@@ -10,10 +10,14 @@ import { ShoppingCart } from './ShoppingCart'
 import {
   CategoriesArrayProps,
   HandleMenu,
-  SelectCategory
+  SelectCategory,
+  HandleSearchInput
 } from '../../types/types'
 
-type HeaderProps = CategoriesArrayProps & HandleMenu & SelectCategory
+type HeaderProps = CategoriesArrayProps &
+  HandleMenu &
+  SelectCategory &
+  HandleSearchInput
 
 export function Header(props: HeaderProps) {
   return (
@@ -33,7 +37,7 @@ export function Header(props: HeaderProps) {
               <ShoppingCart />
             </div>
           </div>
-          <Search />
+          <Search handleSearchInput={props.handleSearchInput}/>
           <Categories
             categories={props.categories}
             handleMenu={props.handleMenu}

@@ -1,6 +1,8 @@
 import './styles.css'
 
-export function Search() {
+import { HandleSearchInput } from '../../../types/types'
+
+export function Search(props: HandleSearchInput) {
   return (
     <div className="search">
       <form action="" method="get">
@@ -9,6 +11,9 @@ export function Search() {
           id="search-product"
           name="search-product"
           placeholder="Search product"
+          onChange={e => {
+            props.handleSearchInput(e.target.value)
+          }}
         />
         <button>
           <img src="./search.svg" alt="Search" />
