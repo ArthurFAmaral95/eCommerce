@@ -25,3 +25,15 @@ body {
 
   height: 100vh;
 }
+
+main {
+  position: relative;
+  top: 18.7rem;
+
+  padding-inline: 1rem;
+  padding-bottom: 2rem;
+}
+
+hr {
+  margin-top: 1rem;
+}

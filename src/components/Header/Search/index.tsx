@@ -7,7 +7,7 @@ type SearchProps = HandleSearchInput & SelectedCategoryProps
 export function Search(props: SearchProps) {
   return (
     <div className="search">
-      <form action="" method="get">
+      <form action="/search" method="get">
         <input
           type="text"
           id="search-product"
@@ -22,7 +22,7 @@ export function Search(props: SearchProps) {
           }}
         />
         <button>
-          <img src="./search.svg" alt="Search" />
+          <img src="./search.svg" alt="Search" typeof="submit" />
         </button>
       </form>
     </div>

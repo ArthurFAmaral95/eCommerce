@@ -20,6 +20,7 @@ import {
   HandleFilters,
   OpenFilters
 } from './types/types'
+import { SearchResultPage } from './pages/SearchResultPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -70,6 +71,7 @@ export function Main(props: MainProps) {
           />
         }
       />
+      <Route path={`/search`} element={<SearchResultPage />} />
     </Routes>
   )
 }

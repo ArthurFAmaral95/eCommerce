@@ -1,5 +1,3 @@
-import './styles.css'
-
 import { CategoryName } from '../../components/Gallery/CategoryName'
 import { Gallery } from '../../components/Gallery'
 
@@ -41,5 +39,5 @@ export function LandingPage(props: LandingPageProps) {
     )
   }
 
-  return <main>{renderLandingPage}</main>
+  return <main id="landing-page">{renderLandingPage}</main>
 }
