@@ -385,6 +385,7 @@ export function App() {
         selectCategory={selectCategory}
         handleSearchInput={handleSearchInput}
         listOfSearchMatches={listOfSearchMatches}
+        selectedCategory={selectedCategory}
       />
 
       <Main

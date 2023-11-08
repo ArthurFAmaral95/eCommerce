@@ -12,7 +12,8 @@ import {
   HandleMenu,
   SelectCategory,
   HandleSearchInput,
-  ListOfSearchMatchesProps
+  ListOfSearchMatchesProps,
+  SelectedCategoryProps
 } from '../../types/types'
 import { ListItem } from './ListItem'
 
@@ -20,7 +21,8 @@ type HeaderProps = CategoriesArrayProps &
   HandleMenu &
   SelectCategory &
   HandleSearchInput &
-  ListOfSearchMatchesProps
+  ListOfSearchMatchesProps &
+  SelectedCategoryProps
 
 export function Header(props: HeaderProps) {
   const renderListItens: any = []
@@ -38,7 +40,7 @@ export function Header(props: HeaderProps) {
               <Menu handleMenu={props.handleMenu} />
               <a href="/" id="logo">
                 <img src="./logo.svg" alt="logo" />
-                E-Commerce
+                e-Commerce
               </a>
             </div>
             <div className="right-top-nav">
@@ -46,7 +48,10 @@ export function Header(props: HeaderProps) {
               <ShoppingCart />
             </div>
           </div>
-          <Search handleSearchInput={props.handleSearchInput} />
+          <Search
+            handleSearchInput={props.handleSearchInput}
+            selectedCategory={props.selectedCategory}
+          />
           <ul id="search-list">{renderListItens}</ul>
           <Categories
             categories={props.categories}

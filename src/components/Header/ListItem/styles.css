@@ -13,3 +13,13 @@
 #search-list li:hover {
   background-color: #e7e7e7;
 }
+
+#search-list li:first-child:hover {
+  border-top-right-radius: 0.8rem;
+  border-top-left-radius: 0.8rem;
+}
+
+#search-list li:last-child:hover {
+  border-bottom-right-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+}

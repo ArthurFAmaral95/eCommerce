@@ -1,8 +1,10 @@
 import './styles.css'
 
-import { HandleSearchInput } from '../../../types/types'
+import { HandleSearchInput, SelectedCategoryProps } from '../../../types/types'
 
-export function Search(props: HandleSearchInput) {
+type SearchProps = HandleSearchInput & SelectedCategoryProps
+
+export function Search(props: SearchProps) {
   return (
     <div className="search">
       <form action="" method="get">
@@ -10,7 +12,11 @@ export function Search(props: HandleSearchInput) {
           type="text"
           id="search-product"
           name="search-product"
-          placeholder="Search product"
+          placeholder={
+            props.selectedCategory
+              ? `Search in ${props.selectedCategory}`
+              : 'Search in e-Commerce'
+          }
           onChange={e => {
             props.handleSearchInput(e.target.value)
           }}

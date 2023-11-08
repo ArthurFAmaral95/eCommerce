@@ -31,7 +31,7 @@ export function SideBar(props: SideBarProps) {
           <Login />
           <p>Explore</p>
           <a href="/" id="logo">
-            E-Commerce
+            e-Commerce
           </a>
         </div>
         <div className="white-bg">
