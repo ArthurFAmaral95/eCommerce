@@ -1,13 +1,8 @@
 import './styles.css'
 
-// import { useState, useEffect } from 'react'
-
-// import axios from 'axios'
-
 import { DetailedProductBox } from '../../components/DetaliledProductBox'
 
 import {
-  ListOfSearchMatchesProps,
   ProductsProps,
   ProductsInfoArrayProps,
   PreviousPage,
@@ -15,24 +10,27 @@ import {
   ChoosePage,
   NumberOfPages,
   PageNumber,
-  SelectedCategoryProps
+  SelectedCategoryProps,
+  ProductsOfPageArrayProps
 } from '../../types/types'
 import { PageBtn } from '../../components/PageBtn'
 
-type SearchResultPageProps = ListOfSearchMatchesProps &
-  ProductsInfoArrayProps &
+type SearchResultPageProps = ProductsInfoArrayProps &
   PreviousPage &
   NextPage &
   ChoosePage &
   NumberOfPages &
   PageNumber &
-  SelectedCategoryProps
+  SelectedCategoryProps &
+  ProductsOfPageArrayProps
 
 export function SearchResultPage(props: SearchResultPageProps) {
+  window.scroll(0, 0)
+
   const renderProducts: any = []
   const allPageBtns: any = []
 
-  props.listOfSearchMatches.map((product: ProductsProps) => {
+  props.productsOfPage.map((product: ProductsProps) => {
     const productInfo = [
       {
         item_id: 0,

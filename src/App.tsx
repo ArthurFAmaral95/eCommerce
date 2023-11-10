@@ -102,6 +102,7 @@ export function App() {
   }, [searchedTerm])
 
   useEffect(() => {
+    updateProductsOfPage()
     setPages()
     setPageNumber(1)
   }, [listOfSearchMatches])
@@ -173,7 +174,24 @@ export function App() {
   }
 
   function updateProductsOfPage() {
-    if (selectedFilters.length === 0) {
+    if (searchedTerm !== '') {
+      const arraysOfProductsOfPages: any = []
+      arraysOfProductsOfPages.push(new Array())
+      let pageIndex = 0
+      listOfSearchMatches.map(product => {
+        if (
+          (listOfSearchMatches.indexOf(product) + 1) % productsPerPage ===
+          0
+        ) {
+          arraysOfProductsOfPages[pageIndex].push(product)
+          pageIndex++
+          arraysOfProductsOfPages.push(new Array())
+        } else {
+          arraysOfProductsOfPages[pageIndex].push(product)
+        }
+      })
+      setProductsOfPage(arraysOfProductsOfPages)
+    } else if (selectedFilters.length === 0) {
       const arraysOfProductsOfPages: any = []
       arraysOfProductsOfPages.push(new Array())
       let pageIndex = 0
@@ -233,7 +251,7 @@ export function App() {
   }
 
   function previousPage() {
-    if (filteredProducts.length === 0 && selectedFilters.length > 0) {
+    if ((productsOfPage[0] as any)?.length === 0) {
     } else if (pageNumber === 1) {
       return
     } else {
@@ -242,7 +260,7 @@ export function App() {
   }
 
   function nextPage() {
-    if (filteredProducts.length === 0 && selectedFilters.length > 0) {
+    if ((productsOfPage[0] as any)?.length === 0) {
     } else if (pageNumber === numberOfPages) {
       return
     } else {
@@ -435,7 +453,6 @@ export function App() {
         selectedFilters={selectedFilters}
         handleFilters={handleFilters}
         openFilters={openFilters}
-        listOfSearchMatches={listOfSearchMatches}
       />
     </div>
   )

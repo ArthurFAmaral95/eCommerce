@@ -18,8 +18,7 @@ import {
   ClearFilters,
   SelectedFiltersArrayProps,
   HandleFilters,
-  OpenFilters,
-  ListOfSearchMatchesProps
+  OpenFilters
 } from './types/types'
 import { SearchResultPage } from './pages/SearchResultPage'
 
@@ -37,8 +36,7 @@ type MainProps = MainArrayProps &
   ClearFilters &
   SelectedFiltersArrayProps &
   HandleFilters &
-  OpenFilters &
-  ListOfSearchMatchesProps
+  OpenFilters
 
 export function Main(props: MainProps) {
   return (
@@ -78,7 +76,7 @@ export function Main(props: MainProps) {
         element={
           <SearchResultPage
             selectedCategory={props.selectedCategory}
-            listOfSearchMatches={props.listOfSearchMatches}
+            productsOfPage={props.productsOfPage}
             productsInfo={props.productsInfo}
             previousPage={props.previousPage}
             nextPage={props.nextPage}
