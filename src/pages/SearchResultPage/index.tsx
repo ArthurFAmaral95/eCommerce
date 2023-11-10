@@ -30,7 +30,7 @@ export function SearchResultPage(props: SearchResultPageProps) {
   const renderProducts: any = []
   const allPageBtns: any = []
 
-  props.productsOfPage.map((product: ProductsProps) => {
+  props.productsOfPage?.map((product: ProductsProps) => {
     const productInfo = [
       {
         item_id: 0,

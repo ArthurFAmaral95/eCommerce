@@ -222,8 +222,6 @@ export function App() {
     }
   }
 
-  console.log(Math.floor(listOfSearchMatches.length / productsPerPage) + 1)
-
   function setPages() {
     if (searchedTerm !== '') {
       if (listOfSearchMatches.length % productsPerPage !== 0) {

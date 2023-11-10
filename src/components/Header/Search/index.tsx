@@ -40,8 +40,20 @@ export function Search(props: SearchProps) {
         />
         <button>
           <Link
-            to={`${props.selectedCategory}/search?search_product=${props.searchedTerm}`}
+            to={
+              props.searchedTerm
+                ? `${props.selectedCategory}/search?search_product=${props.searchedTerm}`
+                : ''
+            }
             id="search-form-btn"
+            onClick={() => {
+              const searchList = document.querySelector('#search-list')
+              const form = document.querySelector('#search-form')
+
+              ;(form as HTMLFormElement)?.reset()
+
+              searchList?.classList.add('hidden')
+            }}
           >
             <img src="./search.svg" alt="Search" typeof="submit" />
           </Link>
