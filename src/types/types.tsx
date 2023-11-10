@@ -144,6 +144,10 @@ export type ListItemProps = {
   value: string
 }
 
+export type SearchedTermProps = {
+  searchedTerm: string
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
@@ -178,4 +182,8 @@ export type ClearFilters = {
 
 export type HandleSearchInput = {
   handleSearchInput: (string: string) => void
+}
+
+export type HandleFormSubmit = {
+  handleFormSubmit: () => void
 }

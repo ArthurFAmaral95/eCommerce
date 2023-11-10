@@ -39,3 +39,11 @@
 .search button img {
   width: 2.7rem;
 }
+
+#search-category {
+  display: none;
+}
+
+#search-list.hidden {
+  display: none;
+}

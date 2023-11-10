@@ -18,7 +18,8 @@ import {
   ClearFilters,
   SelectedFiltersArrayProps,
   HandleFilters,
-  OpenFilters
+  OpenFilters,
+  ListOfSearchMatchesProps
 } from './types/types'
 import { SearchResultPage } from './pages/SearchResultPage'
 
@@ -36,7 +37,8 @@ type MainProps = MainArrayProps &
   ClearFilters &
   SelectedFiltersArrayProps &
   HandleFilters &
-  OpenFilters
+  OpenFilters &
+  ListOfSearchMatchesProps
 
 export function Main(props: MainProps) {
   return (
@@ -71,7 +73,21 @@ export function Main(props: MainProps) {
           />
         }
       />
-      <Route path={`/search`} element={<SearchResultPage />} />
+      <Route
+        path={`/${props.selectedCategory}/search`}
+        element={
+          <SearchResultPage
+            selectedCategory={props.selectedCategory}
+            listOfSearchMatches={props.listOfSearchMatches}
+            productsInfo={props.productsInfo}
+            previousPage={props.previousPage}
+            nextPage={props.nextPage}
+            choosePage={props.choosePage}
+            numberOfPages={props.numberOfPages}
+            pageNumber={props.pageNumber}
+          />
+        }
+      />
     </Routes>
   )
 }

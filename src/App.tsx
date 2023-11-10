@@ -101,6 +101,11 @@ export function App() {
     performSearch(searchedTerm)
   }, [searchedTerm])
 
+  useEffect(() => {
+    setPages()
+    setPageNumber(1)
+  }, [listOfSearchMatches])
+
   const fetchCategories = async () => {
     axios
       .get('http://localhost:4001/categories')
@@ -199,8 +204,18 @@ export function App() {
     }
   }
 
+  console.log(Math.floor(listOfSearchMatches.length / productsPerPage) + 1)
+
   function setPages() {
-    if (selectedFilters.length === 0) {
+    if (searchedTerm !== '') {
+      if (listOfSearchMatches.length % productsPerPage !== 0) {
+        setNumberOfPages(
+          Math.floor(listOfSearchMatches.length / productsPerPage) + 1
+        )
+      } else {
+        setNumberOfPages(listOfSearchMatches.length / productsPerPage)
+      }
+    } else if (selectedFilters.length === 0) {
       if (products.length % productsPerPage !== 0) {
         setNumberOfPages(Math.floor(products.length / productsPerPage) + 1)
       } else {
@@ -347,8 +362,11 @@ export function App() {
     setFilteredProducts(filteredProductsToAdd)
   }
 
+  const searchList = document.querySelector('#search-list')
+
   function handleSearchInput(string: string) {
     setSearchedTerm(string)
+    searchList?.classList.remove('hidden')
   }
 
   function performSearch(searchTerm: string) {
@@ -364,6 +382,16 @@ export function App() {
       })
     }
     setListOfSearchMatches(productsToAdd)
+  }
+
+  function handleFormSubmit() {
+    const formBtn: HTMLElement | null =
+      document.querySelector('#search-form-btn')
+    const form = document.querySelector('#search-form')
+
+    formBtn?.click()
+    ;(form as HTMLFormElement)?.reset()
+    searchList?.classList.add('hidden')
   }
 
   return (
@@ -386,6 +414,8 @@ export function App() {
         handleSearchInput={handleSearchInput}
         listOfSearchMatches={listOfSearchMatches}
         selectedCategory={selectedCategory}
+        handleFormSubmit={handleFormSubmit}
+        searchedTerm={searchedTerm}
       />
 
       <Main
@@ -405,6 +435,7 @@ export function App() {
         selectedFilters={selectedFilters}
         handleFilters={handleFilters}
         openFilters={openFilters}
+        listOfSearchMatches={listOfSearchMatches}
       />
     </div>
   )
