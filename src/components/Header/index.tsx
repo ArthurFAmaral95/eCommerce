@@ -42,7 +42,7 @@ export function Header(props: HeaderProps) {
   })
 
   return (
-    <header>
+    <header id='header'>
       <nav>
         <div className="top-nav">
           <div className="flex-line">

@@ -1,0 +1,36 @@
+footer {
+  margin-top: 18.7rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#back-to-top,
+footer #logo,
+#corp {
+  width: 100%;
+  padding-block: 1.5rem;
+  text-align: center;
+  justify-content: center;
+}
+
+#back-to-top {
+  background-color: #37475a;
+
+  color: #fff;
+  font-size: 1.3rem;
+  text-decoration: none;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+footer #logo {
+  background-color: #232f3e;
+}
+
+#corp {
+  color: #fff;
+
+  background-color: #131a22;
+}

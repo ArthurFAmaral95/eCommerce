@@ -15,6 +15,7 @@ import {
   CondensededFilters,
   Item
 } from './types/types'
+import { Footer } from './components/Footer'
 
 export const productsPerPage = 5
 
@@ -461,6 +462,7 @@ export function App() {
         handleFilters={handleFilters}
         openFilters={openFilters}
       />
+      <Footer />
     </div>
   )
 }
