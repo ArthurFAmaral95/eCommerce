@@ -101,12 +101,6 @@ export function App() {
     performSearch(searchedTerm)
   }, [searchedTerm])
 
-  useEffect(() => {
-    updateProductsOfPage()
-    setPages()
-    setPageNumber(1)
-  }, [listOfSearchMatches])
-
   const fetchCategories = async () => {
     axios
       .get('http://localhost:4001/categories')
@@ -405,6 +399,10 @@ export function App() {
       document.querySelector('#search-form-btn')
     const form = document.querySelector('#search-form')
 
+    updateProductsOfPage()
+    setPages()
+    setPageNumber(1)
+
     formBtn?.click()
     ;(form as HTMLFormElement)?.reset()
     searchList?.classList.add('hidden')
@@ -432,6 +430,9 @@ export function App() {
         selectedCategory={selectedCategory}
         handleFormSubmit={handleFormSubmit}
         searchedTerm={searchedTerm}
+        updateProductsOfPage={updateProductsOfPage}
+        setPages={setPages}
+        setPageNumber={setPageNumber}
       />
 
       <Main

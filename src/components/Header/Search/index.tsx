@@ -4,14 +4,20 @@ import {
   HandleSearchInput,
   SelectedCategoryProps,
   HandleFormSubmit,
-  SearchedTermProps
+  SearchedTermProps,
+  UpdateProductsOfPage,
+  SetPages,
+  SetPageNumber
 } from '../../../types/types'
 import { Link } from 'react-router-dom'
 
 type SearchProps = HandleSearchInput &
   SelectedCategoryProps &
   HandleFormSubmit &
-  SearchedTermProps
+  SearchedTermProps &
+  UpdateProductsOfPage &
+  SetPages &
+  SetPageNumber
 
 export function Search(props: SearchProps) {
   return (
@@ -43,6 +49,8 @@ export function Search(props: SearchProps) {
             to={
               props.searchedTerm
                 ? `${props.selectedCategory}/search?search_product=${props.searchedTerm}`
+                : props.selectedCategory
+                ? `/${props.selectedCategory}`
                 : ''
             }
             id="search-form-btn"
@@ -50,13 +58,15 @@ export function Search(props: SearchProps) {
               const searchList = document.querySelector('#search-list')
               const form = document.querySelector('#search-form')
 
+              props.updateProductsOfPage()
+              props.setPages()
+              props.setPageNumber(1)
               ;(form as HTMLFormElement)?.reset()
 
               searchList?.classList.add('hidden')
             }}
-          >
-            <img src="./search.svg" alt="Search" typeof="submit" />
-          </Link>
+          ></Link>
+          <img src="./search.svg" alt="Search" typeof="submit" />
         </button>
       </form>
     </div>

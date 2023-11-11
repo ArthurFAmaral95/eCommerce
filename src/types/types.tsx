@@ -187,3 +187,15 @@ export type HandleSearchInput = {
 export type HandleFormSubmit = {
   handleFormSubmit: () => void
 }
+
+export type UpdateProductsOfPage = {
+  updateProductsOfPage: () => void
+}
+
+export type SetPages = {
+  setPages: () => void
+}
+
+export type SetPageNumber = {
+  setPageNumber: (number: number) => void
+}

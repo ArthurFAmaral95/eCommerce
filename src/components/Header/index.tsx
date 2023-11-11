@@ -15,7 +15,10 @@ import {
   ListOfSearchMatchesProps,
   SelectedCategoryProps,
   HandleFormSubmit,
-  SearchedTermProps
+  SearchedTermProps,
+  UpdateProductsOfPage,
+  SetPages,
+  SetPageNumber
 } from '../../types/types'
 import { ListItem } from './ListItem'
 
@@ -26,7 +29,10 @@ type HeaderProps = CategoriesArrayProps &
   ListOfSearchMatchesProps &
   SelectedCategoryProps &
   HandleFormSubmit &
-  SearchedTermProps
+  SearchedTermProps &
+  UpdateProductsOfPage &
+  SetPages &
+  SetPageNumber
 
 export function Header(props: HeaderProps) {
   const renderListItens: any = []
@@ -57,6 +63,9 @@ export function Header(props: HeaderProps) {
             selectedCategory={props.selectedCategory}
             handleFormSubmit={props.handleFormSubmit}
             searchedTerm={props.searchedTerm}
+            updateProductsOfPage={props.updateProductsOfPage}
+            setPages={props.setPages}
+            setPageNumber={props.setPageNumber}
           />
           <ul id="search-list">{renderListItens}</ul>
           <Categories
