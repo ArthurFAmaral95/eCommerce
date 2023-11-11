@@ -25,7 +25,7 @@ export function LandingPage(props: LandingPageProps) {
     }
 
     renderLandingPage.push(
-      <div className="category">
+      <section className="category">
         <div className="category-name-row">
           <CategoryName
             category={category.category}
@@ -35,7 +35,7 @@ export function LandingPage(props: LandingPageProps) {
         </div>
         <Gallery products={productsForGallery} key={category.id} />
         <hr />
-      </div>
+      </section>
     )
   }
 

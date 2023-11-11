@@ -17,7 +17,7 @@ type SideBarProps = OpenMenu &
 
 export function SideBar(props: SideBarProps) {
   return (
-    <div className={`side-bar ${props.openMenu ? '' : 'hidden'}`}>
+    <aside className={`side-bar ${props.openMenu ? '' : 'hidden'}`}>
       <div className="close">
         <img
           src="./close-menu.svg"
@@ -49,6 +49,6 @@ export function SideBar(props: SideBarProps) {
           <hr />
         </div>
       </div>
-    </div>
+    </aside>
   )
 }

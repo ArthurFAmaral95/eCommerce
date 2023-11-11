@@ -156,7 +156,7 @@ export function CategoryPage(props: CategoryPageProps) {
       />
       <main id="category-page">
         <h1 className="category-name">{props.selectedCategory}</h1>
-        <div className="products">{renderProducts}</div>
+        <section className="products">{renderProducts}</section>
         <div className="page-buttons">
           <button id="previous-btn" onClick={props.previousPage}>
             ← Previous page

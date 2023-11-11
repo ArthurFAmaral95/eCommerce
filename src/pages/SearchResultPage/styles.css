@@ -1,3 +1,7 @@
+#search-result-page h1 {
+  padding-top: 2rem;
+}
+
 #search-result-page .products {
   display: flex;
   flex-direction: column;

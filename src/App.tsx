@@ -162,9 +162,15 @@ export function App() {
     setOpenFilters(boolean)
   }
 
+  const searchProductInput: HTMLElement | null = document.querySelector(
+    'input#search-product'
+  )
+
   function selectCategory(category: string) {
     setSelectedCategory(category)
     setSelectedFilters([])
+    setSearchedTerm('')
+    ;(searchProductInput as HTMLInputElement).value = ''
   }
 
   function updateProductsOfPage() {

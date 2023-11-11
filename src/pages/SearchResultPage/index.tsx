@@ -126,11 +126,20 @@ export function SearchResultPage(props: SearchResultPageProps) {
     renderPageBtns.push(allPageBtns[allPageBtns.length - 1])
   }
 
+  const searchedTerm = window.location.search.split('=')[1]
+
   return (
     <main id="search-result-page">
-      {/* <h1>{pageTitle}</h1>
-      <section>{renderSearchPage}</section> */}
-      <div className="products">{renderProducts}</div>
+      <h1>
+        {props.numberOfPages !== 0 && props.selectedCategory
+          ? `Results for "${searchedTerm}" in ${props.selectedCategory}`
+          : props.numberOfPages !== 0
+          ? `Results for "${searchedTerm}"`
+          : props.numberOfPages === 0 && !props.selectedCategory
+          ? `No results found for "${searchedTerm}"`
+          : `No results found for "${searchedTerm}" in ${props.selectedCategory}`}
+      </h1>
+      <section className="products">{renderProducts}</section>
       <div className="page-buttons">
         <button id="previous-btn" onClick={props.previousPage}>
           ← Previous page
