@@ -27,6 +27,10 @@ export type ProductsArrayProps = {
   products: ProductsProps[]
 }
 
+export type ListOfSearchMatchesProps = {
+  listOfSearchMatches: ProductsProps[]
+}
+
 export type ProductsOfPageArrayProps = {
   productsOfPage: ProductsProps[]
 }
@@ -136,6 +140,14 @@ export type CondensededFilters = {
   values: string | number[]
 }
 
+export type ListItemProps = {
+  value: string
+}
+
+export type SearchedTermProps = {
+  searchedTerm: string
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
@@ -166,4 +178,24 @@ export type SelectFilter = {
 
 export type ClearFilters = {
   clearFilters: () => void
+}
+
+export type HandleSearchInput = {
+  handleSearchInput: (string: string) => void
+}
+
+export type HandleFormSubmit = {
+  handleFormSubmit: () => void
+}
+
+export type UpdateProductsOfPage = {
+  updateProductsOfPage: () => void
+}
+
+export type SetPages = {
+  setPages: () => void
+}
+
+export type SetPageNumber = {
+  setPageNumber: (number: number) => void
 }

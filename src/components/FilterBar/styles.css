@@ -21,6 +21,22 @@
   overflow: scroll;
 }
 
+.filter .selected-filters .filter-container {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+}
+
+.filter .selected-filters .filter-container .field-name {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+
+  font-weight: 500;
+
+  font-family: 'Roboto', sans-serif;
+}
+
 .filter .filters {
   display: flex;
   justify-content: center;

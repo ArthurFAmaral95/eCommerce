@@ -1,48 +1,36 @@
 import './styles.css'
 
+import { DetailedProductBox } from '../../components/DetaliledProductBox'
+
 import {
-  SelectedCategoryProps,
   ProductsProps,
-  ProductsOfPageArrayProps,
+  ProductsInfoArrayProps,
   PreviousPage,
   NextPage,
   ChoosePage,
   NumberOfPages,
   PageNumber,
-  ProductsInfoArrayProps,
-  SelectFilter,
-  ClearFilters,
-  SelectedFiltersArrayProps,
-  HandleFilters,
-  OpenFilters
+  SelectedCategoryProps,
+  ProductsOfPageArrayProps
 } from '../../types/types'
-
-import { DetailedProductBox } from '../../components/DetaliledProductBox'
 import { PageBtn } from '../../components/PageBtn'
-import { FilterBar } from '../../components/FilterBar'
-import { FilterMenu } from '../../components/FilterMenu'
 
-type CategoryPageProps = SelectedCategoryProps &
-  ProductsOfPageArrayProps &
+type SearchResultPageProps = ProductsInfoArrayProps &
   PreviousPage &
   NextPage &
   ChoosePage &
   NumberOfPages &
   PageNumber &
-  ProductsInfoArrayProps &
-  SelectFilter &
-  ClearFilters &
-  SelectedFiltersArrayProps &
-  HandleFilters &
-  OpenFilters
+  SelectedCategoryProps &
+  ProductsOfPageArrayProps
 
-export function CategoryPage(props: CategoryPageProps) {
-  window.scrollTo(0, 0)
+export function SearchResultPage(props: SearchResultPageProps) {
+  window.scroll(0, 0)
 
   const renderProducts: any = []
   const allPageBtns: any = []
 
-  props.productsOfPage.map((product: ProductsProps) => {
+  props.productsOfPage?.map((product: ProductsProps) => {
     const productInfo = [
       {
         item_id: 0,
@@ -138,35 +126,29 @@ export function CategoryPage(props: CategoryPageProps) {
     renderPageBtns.push(allPageBtns[allPageBtns.length - 1])
   }
 
+  const searchedTerm = window.location.search.split('=')[1]
+
   return (
-    <>
-      <FilterBar
-        selectedFilters={props.selectedFilters}
-        selectFilter={props.selectFilter}
-        handleFilters={props.handleFilters}
-      />
-      <FilterMenu
-        selectedCategory={props.selectedCategory}
-        productsInfo={props.productsInfo}
-        selectFilter={props.selectFilter}
-        clearFilters={props.clearFilters}
-        selectedFilters={props.selectedFilters}
-        handleFilters={props.handleFilters}
-        openFilters={props.openFilters}
-      />
-      <main id="category-page">
-        <h1 className="category-name">{props.selectedCategory}</h1>
-        <section className="products">{renderProducts}</section>
-        <div className="page-buttons">
-          <button id="previous-btn" onClick={props.previousPage}>
-            ← Previous page
-          </button>
-          {renderPageBtns}
-          <button id="next-btn" onClick={props.nextPage}>
-            Next page →
-          </button>
-        </div>
-      </main>
-    </>
+    <main id="search-result-page">
+      <h1>
+        {props.numberOfPages !== 0 && props.selectedCategory
+          ? `Results for "${searchedTerm}" in ${props.selectedCategory}`
+          : props.numberOfPages !== 0
+          ? `Results for "${searchedTerm}"`
+          : props.numberOfPages === 0 && !props.selectedCategory
+          ? `No results found for "${searchedTerm}"`
+          : `No results found for "${searchedTerm}" in ${props.selectedCategory}`}
+      </h1>
+      <section className="products">{renderProducts}</section>
+      <div className="page-buttons">
+        <button id="previous-btn" onClick={props.previousPage}>
+          ← Previous page
+        </button>
+        {renderPageBtns}
+        <button id="next-btn" onClick={props.nextPage}>
+          Next page →
+        </button>
+      </div>
+    </main>
   )
 }

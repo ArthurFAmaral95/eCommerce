@@ -20,6 +20,7 @@ import {
   HandleFilters,
   OpenFilters
 } from './types/types'
+import { SearchResultPage } from './pages/SearchResultPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -67,6 +68,21 @@ export function Main(props: MainProps) {
             selectedFilters={props.selectedFilters}
             handleFilters={props.handleFilters}
             openFilters={props.openFilters}
+          />
+        }
+      />
+      <Route
+        path={`/${props.selectedCategory}/search`}
+        element={
+          <SearchResultPage
+            selectedCategory={props.selectedCategory}
+            productsOfPage={props.productsOfPage}
+            productsInfo={props.productsInfo}
+            previousPage={props.previousPage}
+            nextPage={props.nextPage}
+            choosePage={props.choosePage}
+            numberOfPages={props.numberOfPages}
+            pageNumber={props.pageNumber}
           />
         }
       />

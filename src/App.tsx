@@ -72,6 +72,12 @@ export function App() {
     SelectedFiltersProps[]
   >([])
 
+  const [searchedTerm, setSearchedTerm] = useState('')
+
+  const [listOfSearchMatches, setListOfSearchMatches] = useState<
+    ProductsProps[]
+  >([])
+
   useEffect(() => {
     fetchCategories()
     fetchProducts()
@@ -92,6 +98,10 @@ export function App() {
     setPages()
     setPageNumber(1)
   }, [filteredProducts])
+
+  useEffect(() => {
+    performSearch(searchedTerm)
+  }, [searchedTerm])
 
   const fetchCategories = async () => {
     axios
@@ -154,13 +164,36 @@ export function App() {
     setOpenFilters(boolean)
   }
 
+  const searchProductInput: HTMLElement | null = document.querySelector(
+    'input#search-product'
+  )
+
   function selectCategory(category: string) {
     setSelectedCategory(category)
     setSelectedFilters([])
+    setSearchedTerm('')
+    ;(searchProductInput as HTMLInputElement).value = ''
   }
 
   function updateProductsOfPage() {
-    if (selectedFilters.length === 0) {
+    if (searchedTerm !== '') {
+      const arraysOfProductsOfPages: any = []
+      arraysOfProductsOfPages.push(new Array())
+      let pageIndex = 0
+      listOfSearchMatches.map(product => {
+        if (
+          (listOfSearchMatches.indexOf(product) + 1) % productsPerPage ===
+          0
+        ) {
+          arraysOfProductsOfPages[pageIndex].push(product)
+          pageIndex++
+          arraysOfProductsOfPages.push(new Array())
+        } else {
+          arraysOfProductsOfPages[pageIndex].push(product)
+        }
+      })
+      setProductsOfPage(arraysOfProductsOfPages)
+    } else if (selectedFilters.length === 0) {
       const arraysOfProductsOfPages: any = []
       arraysOfProductsOfPages.push(new Array())
       let pageIndex = 0
@@ -192,7 +225,15 @@ export function App() {
   }
 
   function setPages() {
-    if (selectedFilters.length === 0) {
+    if (searchedTerm !== '') {
+      if (listOfSearchMatches.length % productsPerPage !== 0) {
+        setNumberOfPages(
+          Math.floor(listOfSearchMatches.length / productsPerPage) + 1
+        )
+      } else {
+        setNumberOfPages(listOfSearchMatches.length / productsPerPage)
+      }
+    } else if (selectedFilters.length === 0) {
       if (products.length % productsPerPage !== 0) {
         setNumberOfPages(Math.floor(products.length / productsPerPage) + 1)
       } else {
@@ -210,7 +251,7 @@ export function App() {
   }
 
   function previousPage() {
-    if (filteredProducts.length === 0 && selectedFilters.length > 0) {
+    if ((productsOfPage[0] as any)?.length === 0) {
     } else if (pageNumber === 1) {
       return
     } else {
@@ -219,7 +260,7 @@ export function App() {
   }
 
   function nextPage() {
-    if (filteredProducts.length === 0 && selectedFilters.length > 0) {
+    if ((productsOfPage[0] as any)?.length === 0) {
     } else if (pageNumber === numberOfPages) {
       return
     } else {
@@ -339,6 +380,42 @@ export function App() {
     setFilteredProducts(filteredProductsToAdd)
   }
 
+  const searchList = document.querySelector('#search-list')
+
+  function handleSearchInput(string: string) {
+    setSearchedTerm(string)
+    searchList?.classList.remove('hidden')
+  }
+
+  function performSearch(searchTerm: string) {
+    const productsToAdd: ProductsProps[] = []
+    if (searchedTerm.length === 0) {
+    } else {
+      products.map(product => {
+        if (
+          product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+        ) {
+          productsToAdd.push(product)
+        }
+      })
+    }
+    setListOfSearchMatches(productsToAdd)
+  }
+
+  function handleFormSubmit() {
+    const formBtn: HTMLElement | null =
+      document.querySelector('#search-form-btn')
+    const form = document.querySelector('#search-form')
+
+    updateProductsOfPage()
+    setPages()
+    setPageNumber(1)
+
+    formBtn?.click()
+    ;(form as HTMLFormElement)?.reset()
+    searchList?.classList.add('hidden')
+  }
+
   return (
     <div
       className={
@@ -356,6 +433,14 @@ export function App() {
         categories={categories}
         handleMenu={handleMenu}
         selectCategory={selectCategory}
+        handleSearchInput={handleSearchInput}
+        listOfSearchMatches={listOfSearchMatches}
+        selectedCategory={selectedCategory}
+        handleFormSubmit={handleFormSubmit}
+        searchedTerm={searchedTerm}
+        updateProductsOfPage={updateProductsOfPage}
+        setPages={setPages}
+        setPageNumber={setPageNumber}
       />
 
       <Main

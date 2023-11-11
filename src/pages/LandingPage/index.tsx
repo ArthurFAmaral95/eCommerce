@@ -1,5 +1,3 @@
-import './styles.css'
-
 import { CategoryName } from '../../components/Gallery/CategoryName'
 import { Gallery } from '../../components/Gallery'
 
@@ -27,7 +25,7 @@ export function LandingPage(props: LandingPageProps) {
     }
 
     renderLandingPage.push(
-      <div className="category">
+      <section className="category">
         <div className="category-name-row">
           <CategoryName
             category={category.category}
@@ -37,9 +35,9 @@ export function LandingPage(props: LandingPageProps) {
         </div>
         <Gallery products={productsForGallery} key={category.id} />
         <hr />
-      </div>
+      </section>
     )
   }
 
-  return <main>{renderLandingPage}</main>
+  return <main id="landing-page">{renderLandingPage}</main>
 }

@@ -1,0 +1,25 @@
+#search-list li {
+  color: #000;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;
+
+  padding: 0.5rem 1rem;
+
+  cursor: pointer;
+
+  border-bottom: 0.01px solid #e7e7e7;
+}
+
+#search-list li:hover {
+  background-color: #e7e7e7;
+}
+
+#search-list li:first-child:hover {
+  border-top-right-radius: 0.8rem;
+  border-top-left-radius: 0.8rem;
+}
+
+#search-list li:last-child:hover {
+  border-bottom-right-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+}

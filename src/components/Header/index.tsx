@@ -10,12 +10,37 @@ import { ShoppingCart } from './ShoppingCart'
 import {
   CategoriesArrayProps,
   HandleMenu,
-  SelectCategory
+  SelectCategory,
+  HandleSearchInput,
+  ListOfSearchMatchesProps,
+  SelectedCategoryProps,
+  HandleFormSubmit,
+  SearchedTermProps,
+  UpdateProductsOfPage,
+  SetPages,
+  SetPageNumber
 } from '../../types/types'
+import { ListItem } from './ListItem'
 
-type HeaderProps = CategoriesArrayProps & HandleMenu & SelectCategory
+type HeaderProps = CategoriesArrayProps &
+  HandleMenu &
+  SelectCategory &
+  HandleSearchInput &
+  ListOfSearchMatchesProps &
+  SelectedCategoryProps &
+  HandleFormSubmit &
+  SearchedTermProps &
+  UpdateProductsOfPage &
+  SetPages &
+  SetPageNumber
 
 export function Header(props: HeaderProps) {
+  const renderListItens: any = []
+
+  props.listOfSearchMatches.map(product => {
+    renderListItens.push(<ListItem value={product.product_name} />)
+  })
+
   return (
     <header>
       <nav>
@@ -25,7 +50,7 @@ export function Header(props: HeaderProps) {
               <Menu handleMenu={props.handleMenu} />
               <a href="/" id="logo">
                 <img src="./logo.svg" alt="logo" />
-                E-Commerce
+                e-Commerce
               </a>
             </div>
             <div className="right-top-nav">
@@ -33,7 +58,16 @@ export function Header(props: HeaderProps) {
               <ShoppingCart />
             </div>
           </div>
-          <Search />
+          <Search
+            handleSearchInput={props.handleSearchInput}
+            selectedCategory={props.selectedCategory}
+            handleFormSubmit={props.handleFormSubmit}
+            searchedTerm={props.searchedTerm}
+            updateProductsOfPage={props.updateProductsOfPage}
+            setPages={props.setPages}
+            setPageNumber={props.setPageNumber}
+          />
+          <ul id="search-list">{renderListItens}</ul>
           <Categories
             categories={props.categories}
             handleMenu={props.handleMenu}
