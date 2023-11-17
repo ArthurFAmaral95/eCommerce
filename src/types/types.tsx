@@ -199,3 +199,7 @@ export type SetPages = {
 export type SetPageNumber = {
   setPageNumber: (number: number) => void
 }
+
+export type SelectProduct = {
+  selectProduct: (productID: number, category: string) => void
+}

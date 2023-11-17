@@ -18,9 +18,11 @@ import {
   ClearFilters,
   SelectedFiltersArrayProps,
   HandleFilters,
-  OpenFilters
+  OpenFilters,
+  SelectProduct
 } from './types/types'
 import { SearchResultPage } from './pages/SearchResultPage'
+import { ProductPage } from './pages/ProductPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -36,7 +38,8 @@ type MainProps = MainArrayProps &
   ClearFilters &
   SelectedFiltersArrayProps &
   HandleFilters &
-  OpenFilters
+  OpenFilters &
+  SelectProduct
 
 export function Main(props: MainProps) {
   return (
@@ -48,6 +51,7 @@ export function Main(props: MainProps) {
             categories={props.categories}
             products={props.products}
             selectCategory={props.selectCategory}
+            selectProduct={props.selectProduct}
           />
         }
       />
@@ -85,6 +89,10 @@ export function Main(props: MainProps) {
             pageNumber={props.pageNumber}
           />
         }
+      />
+      <Route
+        path={`/product/${props.products[0].product_id}`}
+        element={<ProductPage />}
       />
     </Routes>
   )

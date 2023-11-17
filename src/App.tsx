@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
-//test
-
 import {
   SelectedFiltersProps,
   ProductsArrayProps,
@@ -417,6 +415,26 @@ export function App() {
     searchList?.classList.add('hidden')
   }
 
+  function selectProduct(productID: number, category: string) {
+    axios
+      .get(`http://localhost:4001/productId/${productID}`)
+      .then(response => {
+        setProducts(response.data)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+
+    axios
+      .get(`http://localhost:4001/${category}/product-info/${productID}`)
+      .then(response => {
+        setProductsInfo(response.data)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+
   return (
     <div
       className={
@@ -461,6 +479,7 @@ export function App() {
         selectedFilters={selectedFilters}
         handleFilters={handleFilters}
         openFilters={openFilters}
+        selectProduct={selectProduct}
       />
       <Footer />
     </div>
