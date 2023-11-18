@@ -92,7 +92,12 @@ export function Main(props: MainProps) {
       />
       <Route
         path={`/product/${props.products[0].product_id}`}
-        element={<ProductPage />}
+        element={
+          <ProductPage
+            product={props.products[0]}
+            productInfo={props.productsInfo}
+          />
+        }
       />
     </Routes>
   )

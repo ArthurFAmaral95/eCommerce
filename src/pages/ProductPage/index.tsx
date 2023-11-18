@@ -1,7 +1,12 @@
-export function ProductPage() {
+import { Product } from '../../components/Product'
+import { ProductProps, ProductInfoArrayProps } from '../../types/types'
+
+type ProductPageProps = ProductInfoArrayProps & ProductProps
+
+export function ProductPage(props: ProductPageProps) {
   return (
     <main id="product-page">
-      <h1>helloo</h1>
+      <Product product={props.product} productInfo={props.productInfo} />
     </main>
   )
 }

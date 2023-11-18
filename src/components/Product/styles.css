@@ -1,0 +1,125 @@
+.product {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+  padding: 1rem;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+.product .product-name {
+  font-size: 1.3rem;
+  line-height: 1.4rem;
+
+  font-weight: 300;
+
+  color: #565959;
+
+  margin-top: 2rem;
+}
+
+.product img {
+  max-width: 36rem;
+
+  align-self: center;
+
+  margin-bottom: 3rem;
+}
+
+.product .info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.5rem;
+}
+
+.product .info .price {
+  font-size: 1.5rem;
+  color: #0f1111;
+
+  display: flex;
+}
+
+.product .info .unit {
+  font-size: 3.8rem;
+}
+
+.product .info .price .over-line {
+  align-self: baseline;
+  margin-top: 1rem;
+}
+
+.product .info .delivery {
+  color: #007185;
+  font-size: 1.5rem;
+  line-height: 1.35rem;
+}
+
+.product .info .place {
+  position: initial;
+
+  background-color: #fff;
+  color: #007185;
+
+  font-size: 1.5rem;
+  line-height: 1.35rem;
+
+  padding: 0;
+
+  height: fit-content;
+}
+
+.product .info .place img {
+  margin: 0;
+}
+
+.product .info .select-qtd {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.product .info .select-qtd span,
+.product .info .sender-seller {
+  font-size: 1.3rem;
+  line-height: 1.4rem;
+}
+
+.product .info .btns {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.2rem;
+}
+
+.product .info .btns button {
+  border-radius: 10rem;
+
+  font-size: 1.6rem;
+  line-height: 1.35rem;
+
+  padding: 1.2rem 1.6rem 1.2rem 1.7rem;
+
+  cursor: pointer;
+}
+
+.product .info .btns button:nth-child(1) {
+  background-color: #ffd814;
+  border: #fcd200;
+}
+
+.product .info .btns button:nth-child(2) {
+  background-color: #ffa41c;
+  border: #ff8f00;
+}
+
+.product .info .sender-seller {
+  display: flex;
+  gap: 1rem;
+}
+
+.product .info .sender-seller span:nth-child(2) {
+  color: #007185;
+}

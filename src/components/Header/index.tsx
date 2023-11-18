@@ -42,7 +42,7 @@ export function Header(props: HeaderProps) {
   })
 
   return (
-    <header id='header'>
+    <header id="header">
       <nav>
         <div className="top-nav">
           <div className="flex-line">
@@ -75,7 +75,7 @@ export function Header(props: HeaderProps) {
           />
         </div>
         <div className="botton-nav">
-          <Place />
+          <Place imgPath="./location.svg" />
         </div>
       </nav>
     </header>

@@ -23,6 +23,10 @@ export type ProductsProps = {
   product_id: number
 }
 
+export type ProductProps = {
+  product: ProductsProps
+}
+
 export type ProductsArrayProps = {
   products: ProductsProps[]
 }
@@ -57,6 +61,10 @@ export type Item = { [item: string]: string | number }
 
 export type ProductsInfoArrayProps = {
   productsInfo: ProductsInfoProps[]
+}
+
+export type ProductInfoArrayProps = {
+  productInfo: ProductsInfoProps[]
 }
 
 export type ProductInfoObjectProps = {
