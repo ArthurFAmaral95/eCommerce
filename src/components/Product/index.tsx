@@ -1,9 +1,13 @@
 import './styles.css'
 
-import { ProductProps, ProductInfoArrayProps } from '../../types/types'
+import {
+  ProductProps,
+  ProductInfoArrayProps,
+  UpdateQtd
+} from '../../types/types'
 import { Place } from '../Header/Place'
 
-type ProductPageProps = ProductInfoArrayProps & ProductProps
+type ProductPageProps = ProductInfoArrayProps & ProductProps & UpdateQtd
 
 export function Product(props: ProductPageProps) {
   const textPrice = String(props.product.price)
@@ -26,7 +30,13 @@ export function Product(props: ProductPageProps) {
         <Place imgPath="../location-colored.svg" />
         <div className="select-qtd">
           <span>Qtd.</span>
-          <select name="qtd" id="qtd">
+          <select
+            name="qtd"
+            id="qtd"
+            onChange={e => {
+              props.updateQtd(e.target.value)
+            }}
+          >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -49,7 +59,11 @@ export function Product(props: ProductPageProps) {
         </div>
         <div className="sender-seller">
           <span>Sold by</span>
-          <span>{props.productInfo[0].seller}</span>
+          <span>
+            {props.productInfo[0].seller
+              ? props.productInfo[0].seller
+              : 'e-Commerce'}
+          </span>
         </div>
       </div>
     </div>

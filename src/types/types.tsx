@@ -211,3 +211,7 @@ export type SetPageNumber = {
 export type SelectProduct = {
   selectProduct: (productID: number, category: string) => void
 }
+
+export type UpdateQtd = {
+  updateQtd: (qtd: string) => void
+}
