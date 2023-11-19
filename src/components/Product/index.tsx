@@ -7,8 +7,6 @@ import { SelectInput } from '../SelectInput'
 type ProductPageProps = ProductInfoArrayProps & ProductProps
 
 export function Product(props: ProductPageProps) {
-  const selectInputs = document.querySelectorAll('select')
-
   const textPrice = String(props.product.price)
   const splitPrice = textPrice.split('.')
   const priceUnit = splitPrice[0]
@@ -46,6 +44,7 @@ export function Product(props: ProductPageProps) {
   setFields()
 
   function addToCart() {
+    const selectInputs = document.querySelectorAll('select')
     selectInputs.forEach(selectInput => {
       console.log(selectInput.id, selectInput.value)
     })

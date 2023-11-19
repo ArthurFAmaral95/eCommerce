@@ -3,13 +3,16 @@ import './styles.css'
 import {
   ProductObjectProps,
   ProductInfoObjectProps,
-  SelectedCategoryProps
+  SelectedCategoryProps,
+  SelectProduct
 } from '../../types/types'
 import { ProductInfo } from '../ProductInfo'
+import { Link } from 'react-router-dom'
 
 type DetailedProductBoxProps = ProductObjectProps &
   ProductInfoObjectProps &
-  SelectedCategoryProps
+  SelectedCategoryProps &
+  SelectProduct
 
 export function DetailedProductBox(props: DetailedProductBoxProps) {
   const textPrice = String(props.product.price)
@@ -50,30 +53,38 @@ export function DetailedProductBox(props: DetailedProductBoxProps) {
   }
 
   return (
-    <div className="detailed-product-box" title={props.product.product_name}>
-      <div className="image">
-        <img src={`${props.product.img_path}`} alt="Product image" />
+    <Link to={`/product/${props.product.product_id}`}>
+      <div
+        className="detailed-product-box"
+        title={props.product.product_name}
+        onClick={() => {
+          props.selectProduct(props.product.product_id, props.product.category)
+        }}
+      >
+        <div className="image">
+          <img src={`${props.product.img_path}`} alt="Product image" />
+        </div>
+        <span className="image-bg"></span>
+        <div className="details">
+          <p id="product-name" title={props.product.product_name}>
+            {productName.length === 100 ? productName + '...' : productName}
+          </p>
+          <ProductInfo info={highlightedProductInfo} />
+          <p id="rating">5 ⭐️⭐️⭐️⭐️⭐️</p>
+          <p id="price">
+            <sup>$</sup>&nbsp;
+            <span id="unit">{priceUnit}</span>
+            <sup>{priceCents}</sup>
+          </p>
+          <p id="delivery-date">
+            Delivery&nbsp;
+            <span>
+              friday, december 31<sup>st</sup>
+            </span>
+          </p>
+          <p id="shipping">FREE Shipping</p>
+        </div>
       </div>
-      <span className="image-bg"></span>
-      <div className="details">
-        <p id="product-name" title={props.product.product_name}>
-          {productName.length === 100 ? productName + '...' : productName}
-        </p>
-        <ProductInfo info={highlightedProductInfo} />
-        <p id="rating">5 ⭐️⭐️⭐️⭐️⭐️</p>
-        <p id="price">
-          <sup>$</sup>&nbsp;
-          <span id="unit">{priceUnit}</span>
-          <sup>{priceCents}</sup>
-        </p>
-        <p id="delivery-date">
-          Delivery&nbsp;
-          <span>
-            friday, december 31<sup>st</sup>
-          </span>
-        </p>
-        <p id="shipping">FREE Shipping</p>
-      </div>
-    </div>
+    </Link>
   )
 }

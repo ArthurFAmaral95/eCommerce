@@ -19,7 +19,9 @@ import {
   SelectedFiltersArrayProps,
   HandleFilters,
   OpenFilters,
-  SelectProduct
+  SelectProduct,
+  ProductProps,
+  ProductInfoArrayProps
 } from './types/types'
 import { SearchResultPage } from './pages/SearchResultPage'
 import { ProductPage } from './pages/ProductPage'
@@ -39,7 +41,9 @@ type MainProps = MainArrayProps &
   SelectedFiltersArrayProps &
   HandleFilters &
   OpenFilters &
-  SelectProduct
+  SelectProduct &
+  ProductProps &
+  ProductInfoArrayProps
 
 export function Main(props: MainProps) {
   return (
@@ -72,6 +76,7 @@ export function Main(props: MainProps) {
             selectedFilters={props.selectedFilters}
             handleFilters={props.handleFilters}
             openFilters={props.openFilters}
+            selectProduct={props.selectProduct}
           />
         }
       />
@@ -87,15 +92,16 @@ export function Main(props: MainProps) {
             choosePage={props.choosePage}
             numberOfPages={props.numberOfPages}
             pageNumber={props.pageNumber}
+            selectProduct={props.selectProduct}
           />
         }
       />
       <Route
-        path={`/product/${props.products[0].product_id}`}
+        path={`/product/${props.product.product_id}`}
         element={
           <ProductPage
-            product={props.products[0]}
-            productInfo={props.productsInfo}
+            product={props.product}
+            productInfo={props.productInfo}
           />
         }
       />
