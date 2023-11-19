@@ -75,13 +75,7 @@
   margin: 0;
 }
 
-.product .info .select-qtd {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.product .info .select-qtd span,
+.product .info .select-inputs label,
 .product .info .sender-seller {
   font-size: 1.3rem;
   line-height: 1.4rem;

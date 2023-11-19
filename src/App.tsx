@@ -425,14 +425,25 @@ export function App() {
         console.error(error)
       })
 
-    axios
-      .get(`http://localhost:4001/${category}/product-info/${productID}`)
-      .then(response => {
-        setProductsInfo(response.data)
-      })
-      .catch(error => {
-        console.error(error)
-      })
+    if (category === 'TV & Audio') {
+      axios
+        .get(`http://localhost:4001/tv_audio/product-info/${productID}`)
+        .then(response => {
+          setProductsInfo(response.data)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    } else {
+      axios
+        .get(`http://localhost:4001/${category}/product-info/${productID}`)
+        .then(response => {
+          setProductsInfo(response.data)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    }
   }
 
   return (

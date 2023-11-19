@@ -156,6 +156,16 @@ export type SearchedTermProps = {
   searchedTerm: string
 }
 
+export type SelectInputAndOptionsProps = {
+  selectId: string
+  values: string[]
+}
+
+export type OrderConfiguration = {
+  field: string
+  value: string
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
@@ -210,8 +220,4 @@ export type SetPageNumber = {
 
 export type SelectProduct = {
   selectProduct: (productID: number, category: string) => void
-}
-
-export type UpdateQtd = {
-  updateQtd: (qtd: string) => void
 }

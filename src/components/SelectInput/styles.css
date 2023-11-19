@@ -1,0 +1,9 @@
+.product .info .select-inputs {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.product .info .select-inputs label {
+  text-transform: capitalize;
+}
