@@ -18,7 +18,8 @@ import {
   SearchedTermProps,
   UpdateProductsOfPage,
   SetPages,
-  SetPageNumber
+  SetPageNumber,
+  SelectProduct
 } from '../../types/types'
 import { ListItem } from './ListItem'
 
@@ -32,17 +33,24 @@ type HeaderProps = CategoriesArrayProps &
   SearchedTermProps &
   UpdateProductsOfPage &
   SetPages &
-  SetPageNumber
+  SetPageNumber &
+  SelectProduct
 
 export function Header(props: HeaderProps) {
   const renderListItens: any = []
 
   props.listOfSearchMatches.map(product => {
-    renderListItens.push(<ListItem value={product.product_name} />)
+    renderListItens.push(
+      <ListItem
+        value={product.product_name}
+        product={product}
+        selectProduct={props.selectProduct}
+      />
+    )
   })
 
   return (
-    <header id='header'>
+    <header id="header">
       <nav>
         <div className="top-nav">
           <div className="flex-line">
@@ -75,7 +83,7 @@ export function Header(props: HeaderProps) {
           />
         </div>
         <div className="botton-nav">
-          <Place />
+          <Place imgPath="./location.svg" />
         </div>
       </nav>
     </header>

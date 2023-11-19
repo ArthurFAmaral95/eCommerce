@@ -1,13 +1,15 @@
 import { CategoryName } from '../../components/Gallery/CategoryName'
 import { Gallery } from '../../components/Gallery'
 
-import { MainArrayProps, SelectCategory } from '../../types/types'
+import {
+  MainArrayProps,
+  SelectCategory,
+  SelectProduct
+} from '../../types/types'
 
-type LandingPageProps = MainArrayProps & SelectCategory
+type LandingPageProps = MainArrayProps & SelectCategory & SelectProduct
 
 export function LandingPage(props: LandingPageProps) {
-  window.scrollTo(0, 0)
-
   const renderLandingPage = []
 
   for (const category of props.categories) {
@@ -33,7 +35,11 @@ export function LandingPage(props: LandingPageProps) {
             selectCategory={props.selectCategory}
           />
         </div>
-        <Gallery products={productsForGallery} key={category.id} />
+        <Gallery
+          products={productsForGallery}
+          key={category.id}
+          selectProduct={props.selectProduct}
+        />
         <hr />
       </section>
     )

@@ -14,7 +14,8 @@ import {
   ClearFilters,
   SelectedFiltersArrayProps,
   HandleFilters,
-  OpenFilters
+  OpenFilters,
+  SelectProduct
 } from '../../types/types'
 
 import { DetailedProductBox } from '../../components/DetaliledProductBox'
@@ -34,7 +35,8 @@ type CategoryPageProps = SelectedCategoryProps &
   ClearFilters &
   SelectedFiltersArrayProps &
   HandleFilters &
-  OpenFilters
+  OpenFilters &
+  SelectProduct
 
 export function CategoryPage(props: CategoryPageProps) {
   window.scrollTo(0, 0)
@@ -75,6 +77,7 @@ export function CategoryPage(props: CategoryPageProps) {
         key={product.product_id}
         productInfo={productInfo[productInfo.length - 1]}
         selectedCategory={props.selectedCategory}
+        selectProduct={props.selectProduct}
       />
     )
   })

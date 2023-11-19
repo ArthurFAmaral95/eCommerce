@@ -6,14 +6,13 @@ import { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
-//test
-
 import {
   SelectedFiltersProps,
   ProductsArrayProps,
   ProductsProps,
   CondensededFilters,
-  Item
+  Item,
+  ProductsInfoProps
 } from './types/types'
 import { Footer } from './components/Footer'
 
@@ -37,9 +36,40 @@ export function App() {
       product_id: 0
     }
   ])
+
+  const [individualProduct, setIndividualProduct] = useState<ProductsProps>({
+    category: '',
+    product_name: '',
+    price: 0,
+    img_path: '',
+    product_id: 0
+  })
+
   const [productsOfPage, setProductsOfPage] = useState([])
 
   const [productsInfo, setProductsInfo] = useState([
+    {
+      item_id: 0,
+      brand: '',
+      type: '',
+      gender: '',
+      author: '',
+      best_sellet: 0,
+      publisher: '',
+      seller: '',
+      new: 0,
+      size: '',
+      color: '',
+      department: '',
+      in_stock: 0,
+      storage: 0,
+      age: ''
+    }
+  ])
+
+  const [individualProductInfo, setIndividualProductInfo] = useState<
+    ProductsInfoProps[]
+  >([
     {
       item_id: 0,
       brand: '',
@@ -417,6 +447,39 @@ export function App() {
     searchList?.classList.add('hidden')
   }
 
+  function selectProduct(productID: number, category: string) {
+    axios
+      .get(`http://localhost:4001/productId/${productID}`)
+      .then(response => {
+        setIndividualProduct(response.data[0])
+      })
+      .catch(error => {
+        console.error(error)
+      })
+
+    if (category === 'TV & Audio') {
+      axios
+        .get(`http://localhost:4001/tv_audio/product-info/${productID}`)
+        .then(response => {
+          setIndividualProductInfo(response.data)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    } else {
+      axios
+        .get(`http://localhost:4001/${category}/product-info/${productID}`)
+        .then(response => {
+          setIndividualProductInfo(response.data)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    }
+
+    setSearchedTerm('')
+  }
+
   return (
     <div
       className={
@@ -442,6 +505,7 @@ export function App() {
         updateProductsOfPage={updateProductsOfPage}
         setPages={setPages}
         setPageNumber={setPageNumber}
+        selectProduct={selectProduct}
       />
 
       <Main
@@ -461,6 +525,9 @@ export function App() {
         selectedFilters={selectedFilters}
         handleFilters={handleFilters}
         openFilters={openFilters}
+        selectProduct={selectProduct}
+        product={individualProduct}
+        productInfo={individualProductInfo}
       />
       <Footer />
     </div>

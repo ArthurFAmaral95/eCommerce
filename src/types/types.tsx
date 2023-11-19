@@ -23,6 +23,10 @@ export type ProductsProps = {
   product_id: number
 }
 
+export type ProductProps = {
+  product: ProductsProps
+}
+
 export type ProductsArrayProps = {
   products: ProductsProps[]
 }
@@ -57,6 +61,10 @@ export type Item = { [item: string]: string | number }
 
 export type ProductsInfoArrayProps = {
   productsInfo: ProductsInfoProps[]
+}
+
+export type ProductInfoArrayProps = {
+  productInfo: ProductsInfoProps[]
 }
 
 export type ProductInfoObjectProps = {
@@ -148,6 +156,16 @@ export type SearchedTermProps = {
   searchedTerm: string
 }
 
+export type SelectInputAndOptionsProps = {
+  selectId: string
+  values: string[]
+}
+
+export type OrderConfiguration = {
+  field: string
+  value: string
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
@@ -198,4 +216,8 @@ export type SetPages = {
 
 export type SetPageNumber = {
   setPageNumber: (number: number) => void
+}
+
+export type SelectProduct = {
+  selectProduct: (productID: number, category: string) => void
 }

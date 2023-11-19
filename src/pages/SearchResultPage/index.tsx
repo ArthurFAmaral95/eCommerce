@@ -11,7 +11,8 @@ import {
   NumberOfPages,
   PageNumber,
   SelectedCategoryProps,
-  ProductsOfPageArrayProps
+  ProductsOfPageArrayProps,
+  SelectProduct
 } from '../../types/types'
 import { PageBtn } from '../../components/PageBtn'
 
@@ -22,7 +23,8 @@ type SearchResultPageProps = ProductsInfoArrayProps &
   NumberOfPages &
   PageNumber &
   SelectedCategoryProps &
-  ProductsOfPageArrayProps
+  ProductsOfPageArrayProps &
+  SelectProduct
 
 export function SearchResultPage(props: SearchResultPageProps) {
   window.scroll(0, 0)
@@ -63,6 +65,7 @@ export function SearchResultPage(props: SearchResultPageProps) {
         key={product.product_id}
         productInfo={productInfo[productInfo.length - 1]}
         selectedCategory={props.selectedCategory}
+        selectProduct={props.selectProduct}
       />
     )
   })
