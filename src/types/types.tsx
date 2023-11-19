@@ -106,6 +106,15 @@ export type MainArrayProps = {
   categories: CategoriesProps[]
 }
 
+export type ConfigProps = {
+  id: string
+  value: string
+}
+
+// export type OrderConfigurationProps = {
+//   config: ConfigProps[]
+// }
+
 export type OpenMenu = {
   openMenu: boolean
 }

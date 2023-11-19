@@ -1,6 +1,10 @@
 import './styles.css'
 
-import { ProductProps, ProductInfoArrayProps } from '../../types/types'
+import {
+  ProductProps,
+  ProductInfoArrayProps,
+  ConfigProps
+} from '../../types/types'
 import { Place } from '../Header/Place'
 import { SelectInput } from '../SelectInput'
 
@@ -43,11 +47,30 @@ export function Product(props: ProductPageProps) {
   }
   setFields()
 
+  const cart = JSON.parse(localStorage.getItem('order') || 'false') || []
+
+  function populateCart(cart: any) {
+    localStorage.setItem('order', JSON.stringify(cart))
+  }
+
   function addToCart() {
     const selectInputs = document.querySelectorAll('select')
+    const orderConfiguration: ConfigProps[] = []
     selectInputs.forEach(selectInput => {
-      console.log(selectInput.id, selectInput.value)
+      const config = {
+        id: selectInput.id,
+        value: selectInput.value
+      }
+      orderConfiguration.push(config)
     })
+
+    const order = {
+      product_id: props.product.product_id,
+      configs: orderConfiguration
+    }
+
+    cart.push(order)
+    populateCart(cart)
   }
 
   const renderSelectInputs: any = []
