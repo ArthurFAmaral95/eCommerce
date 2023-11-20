@@ -19,6 +19,8 @@
 
   position: absolute;
   right: 1rem;
+
+  color: #fff;
 }
 
 .shopping-cart .cart-count.hidden {

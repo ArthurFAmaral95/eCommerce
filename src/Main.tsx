@@ -25,6 +25,7 @@ import {
 } from './types/types'
 import { SearchResultPage } from './pages/SearchResultPage'
 import { ProductPage } from './pages/ProductPage'
+import { CartPage } from './pages/CartPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -105,6 +106,7 @@ export function Main(props: MainProps) {
           />
         }
       />
+      <Route path={`/cart`} element={<CartPage />} />
     </Routes>
   )
 }
