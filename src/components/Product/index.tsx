@@ -3,12 +3,15 @@ import './styles.css'
 import {
   ProductProps,
   ProductInfoArrayProps,
-  ConfigProps
+  ConfigProps,
+  ShowAddToCartpopUp
 } from '../../types/types'
 import { Place } from '../Header/Place'
 import { SelectInput } from '../SelectInput'
 
-type ProductPageProps = ProductInfoArrayProps & ProductProps
+type ProductPageProps = ProductInfoArrayProps &
+  ProductProps &
+  ShowAddToCartpopUp
 
 export function Product(props: ProductPageProps) {
   const textPrice = String(props.product.price)
@@ -107,7 +110,11 @@ export function Product(props: ProductPageProps) {
   return (
     <div className="product">
       <h2 className="product-name">{props.product.product_name}</h2>
-      <img src={props.product.img_path} alt="Product image" />
+      <img
+        src={props.product.img_path}
+        alt={props.product.product_name}
+        title={props.product.product_name}
+      />
       <hr />
       <div className="info">
         <p className="price">
@@ -130,6 +137,7 @@ export function Product(props: ProductPageProps) {
             className="add-to-cart"
             onClick={() => {
               addToCart()
+              props.showAddToCartpopUp()
             }}
           >
             Add to cart

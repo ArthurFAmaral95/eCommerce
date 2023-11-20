@@ -111,10 +111,6 @@ export type ConfigProps = {
   value: string
 }
 
-// export type OrderConfigurationProps = {
-//   config: ConfigProps[]
-// }
-
 export type OpenMenu = {
   openMenu: boolean
 }
@@ -229,4 +225,8 @@ export type SetPageNumber = {
 
 export type SelectProduct = {
   selectProduct: (productID: number, category: string) => void
+}
+
+export type ShowAddToCartpopUp = {
+  showAddToCartpopUp: () => void
 }
