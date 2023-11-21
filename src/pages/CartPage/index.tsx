@@ -14,6 +14,12 @@ export function CartPage() {
   return (
     <main id="cart-page">
       {renderCartProducts}
+      <hr />
+      <div className="order-total">
+        <span className="total">Total: </span>
+        <span className="value">$1234</span>
+      </div>
+      <button className="checkout">Checkout</button>
     </main>
   )
 }

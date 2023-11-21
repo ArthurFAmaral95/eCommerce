@@ -8,7 +8,9 @@ export function CartProductBox(props: CartProductProps) {
   props.product.configs.map(config => {
     renderOrderConfigListItems.push(
       <li key={config.id}>
-        <span className="config-id">{config.id}: </span>
+        <span className="config-id">
+          {config.id === 'new' ? 'condition' : config.id}:{' '}
+        </span>
         <span className="config-value">{config.value}</span>
       </li>
     )

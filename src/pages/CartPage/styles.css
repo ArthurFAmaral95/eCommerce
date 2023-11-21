@@ -7,3 +7,22 @@
 
   align-items: center;
 }
+
+#cart-page .order-total {
+  align-self: baseline;
+
+  font-size: 2.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+#cart-page .order-total .total {
+  font-weight: 400;
+}
+
+#cart-page .order-total .value {
+  font-weight: 700;
+}
+
+#cart-page .checkout {
+  width: 100%;
+}
