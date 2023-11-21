@@ -1,8 +1,8 @@
 import './styles.css'
 
-import { CartProductProps } from '../../types/types'
+import { CartProductObjectProps } from '../../types/types'
 
-export function CartProductBox(props: CartProductProps) {
+export function CartProductBox(props: CartProductObjectProps) {
   const renderOrderConfigListItems: any = []
 
   props.product.configs.map(config => {
