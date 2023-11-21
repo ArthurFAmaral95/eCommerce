@@ -171,6 +171,13 @@ export type OrderConfiguration = {
   value: string
 }
 
+export type CartProductProps = {
+  product: {
+    configs: ConfigProps[]
+    product: ProductsProps
+  }
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }

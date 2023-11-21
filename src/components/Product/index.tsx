@@ -68,7 +68,7 @@ export function Product(props: ProductPageProps) {
     })
 
     const order = {
-      product_id: props.product.product_id,
+      product: props.product,
       configs: orderConfiguration
     }
 
