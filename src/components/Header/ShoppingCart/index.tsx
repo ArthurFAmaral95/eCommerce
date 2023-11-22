@@ -10,7 +10,9 @@ export function ShoppingCart() {
       <div className="shopping-cart">
         <span
           className={
-            cartCount === undefined ? 'cart-count hidden' : 'cart-count'
+            cartCount === undefined || cartCount === 0
+              ? 'cart-count hidden'
+              : 'cart-count'
           }
         >
           {cartCount}

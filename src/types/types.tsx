@@ -242,3 +242,7 @@ export type SelectProduct = {
 export type ShowAddToCartpopUp = {
   showAddToCartpopUp: () => void
 }
+
+export type RemoveCartItem = {
+  removeCartItem: (ide: number) => void
+}

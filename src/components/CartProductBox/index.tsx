@@ -1,8 +1,10 @@
 import './styles.css'
 
-import { CartProductObjectProps } from '../../types/types'
+import { CartProductObjectProps, RemoveCartItem } from '../../types/types'
 
-export function CartProductBox(props: CartProductObjectProps) {
+type CartProductBoxProps = CartProductObjectProps & RemoveCartItem
+
+export function CartProductBox(props: CartProductBoxProps) {
   const renderOrderConfigListItems: any = []
 
   props.product.configs.map(config => {
@@ -30,7 +32,14 @@ export function CartProductBox(props: CartProductObjectProps) {
           <span className="price">{`$${props.product.product.price}`}</span>
           <ul className="order-config">{renderOrderConfigListItems}</ul>
         </div>
-        <button className="delete-cart-product">Remove</button>
+        <button
+          className="delete-cart-product"
+          onClick={() => {
+            props.removeCartItem(props.product.product.product_id)
+          }}
+        >
+          Remove
+        </button>
       </div>
     </div>
   )

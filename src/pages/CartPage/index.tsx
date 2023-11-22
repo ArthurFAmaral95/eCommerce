@@ -31,7 +31,11 @@ export function CartPage() {
 
   for (const product of cartProducts) {
     renderCartProducts.push(
-      <CartProductBox product={product} key={product.product.product_id} />
+      <CartProductBox
+        product={product}
+        key={product.product.product_id}
+        removeCartItem={removeCartItem}
+      />
     )
   }
 
@@ -48,6 +52,19 @@ export function CartPage() {
       total += productTotal
     }
     setTotal(Number(total.toFixed(2)))
+  }
+
+  function removeCartItem(id: number) {
+    const updatedCart: CartProductProps[] = []
+
+    cartProducts.map(product => {
+      if (product.product.product_id !== id) {
+        updatedCart.push(product)
+      }
+    })
+
+    localStorage.setItem('order', JSON.stringify(updatedCart))
+    populateCartProducts()
   }
 
   return (
