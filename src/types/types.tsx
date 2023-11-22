@@ -176,11 +176,19 @@ export type CartProductProps = {
   product: ProductsProps
 }
 
+export type CartProductArrayProps = {
+  cartProducts: CartProductProps[]
+}
+
 export type CartProductObjectProps = {
   product: {
     configs: ConfigProps[]
     product: ProductsProps
   }
+}
+
+export type Total = {
+  total: number
 }
 
 export type HandleMenu = {

@@ -12,7 +12,8 @@ import {
   ProductsProps,
   CondensededFilters,
   Item,
-  ProductsInfoProps
+  ProductsInfoProps,
+  CartProductProps
 } from './types/types'
 import { Footer } from './components/Footer'
 
@@ -109,6 +110,20 @@ export function App() {
     ProductsProps[]
   >([])
 
+  const [cartProducts, setCartProducts] = useState<CartProductProps[]>([
+    {
+      configs: [{ id: '', value: '' }],
+      product: {
+        category: '',
+        product_name: '',
+        price: 0,
+        img_path: '',
+        product_id: 0
+      }
+    }
+  ])
+  const [total, setTotal] = useState(0)
+
   useEffect(() => {
     fetchCategories()
     fetchProducts()
@@ -133,6 +148,14 @@ export function App() {
   useEffect(() => {
     performSearch(searchedTerm)
   }, [searchedTerm])
+
+  useEffect(() => {
+    populateCartProducts()
+  }, [])
+
+  useEffect(() => {
+    sumCartTotal()
+  }, [cartProducts])
 
   const fetchCategories = async () => {
     axios
@@ -480,6 +503,34 @@ export function App() {
     setSearchedTerm('')
   }
 
+  function populateCartProducts() {
+    setCartProducts(JSON.parse(localStorage.getItem('order') || 'false'))
+  }
+
+  function sumCartTotal() {
+    let total = 0
+    for (const product of cartProducts) {
+      let productTotal =
+        Number(product.product.price) * Number(product.configs[0].value)
+
+      total += productTotal
+    }
+    setTotal(Number(total.toFixed(2)))
+  }
+
+  function removeCartItem(id: number) {
+    const updatedCart: CartProductProps[] = []
+
+    cartProducts.map(product => {
+      if (product.product.product_id !== id) {
+        updatedCart.push(product)
+      }
+    })
+
+    localStorage.setItem('order', JSON.stringify(updatedCart))
+    populateCartProducts()
+  }
+
   return (
     <div
       className={
@@ -528,6 +579,9 @@ export function App() {
         selectProduct={selectProduct}
         product={individualProduct}
         productInfo={individualProductInfo}
+        cartProducts={cartProducts}
+        removeCartItem={removeCartItem}
+        total={total}
       />
       <Footer />
     </div>
