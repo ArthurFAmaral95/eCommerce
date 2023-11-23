@@ -254,3 +254,7 @@ export type ShowAddToCartpopUp = {
 export type RemoveCartItem = {
   removeCartItem: (ide: number) => void
 }
+
+export type AddToCart = {
+  addToCart: (product: ProductsProps) => void
+}

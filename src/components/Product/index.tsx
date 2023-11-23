@@ -3,15 +3,16 @@ import './styles.css'
 import {
   ProductProps,
   ProductInfoArrayProps,
-  ConfigProps,
-  ShowAddToCartpopUp
+  ShowAddToCartpopUp,
+  AddToCart
 } from '../../types/types'
 import { Place } from '../Header/Place'
 import { SelectInput } from '../SelectInput'
 
 type ProductPageProps = ProductInfoArrayProps &
   ProductProps &
-  ShowAddToCartpopUp
+  ShowAddToCartpopUp &
+  AddToCart
 
 export function Product(props: ProductPageProps) {
   const textPrice = String(props.product.price)
@@ -49,32 +50,6 @@ export function Product(props: ProductPageProps) {
     }
   }
   setFields()
-
-  const cart = JSON.parse(localStorage.getItem('order') || 'false') || []
-
-  function populateCart(cart: any) {
-    localStorage.setItem('order', JSON.stringify(cart))
-  }
-
-  function addToCart() {
-    const selectInputs = document.querySelectorAll('select')
-    const orderConfiguration: ConfigProps[] = []
-    selectInputs.forEach(selectInput => {
-      const config = {
-        id: selectInput.id,
-        value: selectInput.value
-      }
-      orderConfiguration.push(config)
-    })
-
-    const order = {
-      product: props.product,
-      configs: orderConfiguration
-    }
-
-    cart.push(order)
-    populateCart(cart)
-  }
 
   const renderSelectInputs: any = []
 
@@ -136,7 +111,7 @@ export function Product(props: ProductPageProps) {
           <button
             className="add-to-cart"
             onClick={() => {
-              addToCart()
+              props.addToCart(props.product)
               props.showAddToCartpopUp()
             }}
           >

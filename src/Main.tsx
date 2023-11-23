@@ -23,6 +23,7 @@ import {
   ProductProps,
   ProductInfoArrayProps,
   CartProductArrayProps,
+  AddToCart,
   RemoveCartItem,
   Total
 } from './types/types'
@@ -50,7 +51,8 @@ type MainProps = MainArrayProps &
   ProductInfoArrayProps &
   CartProductArrayProps &
   RemoveCartItem &
-  Total
+  Total &
+  AddToCart
 
 export function Main(props: MainProps) {
   return (
@@ -109,6 +111,7 @@ export function Main(props: MainProps) {
           <ProductPage
             product={props.product}
             productInfo={props.productInfo}
+            addToCart={props.addToCart}
           />
         }
       />

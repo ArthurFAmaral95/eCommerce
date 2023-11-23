@@ -13,7 +13,8 @@ import {
   CondensededFilters,
   Item,
   ProductsInfoProps,
-  CartProductProps
+  CartProductProps,
+  ConfigProps
 } from './types/types'
 import { Footer } from './components/Footer'
 
@@ -507,15 +508,26 @@ export function App() {
     setCartProducts(JSON.parse(localStorage.getItem('order') || 'false'))
   }
 
-  function sumCartTotal() {
-    let total = 0
-    for (const product of cartProducts) {
-      let productTotal =
-        Number(product.product.price) * Number(product.configs[0].value)
+  function addToCart(product: ProductsProps) {
+    const cart = JSON.parse(localStorage.getItem('order') || 'false') || []
+    const selectInputs = document.querySelectorAll('select')
+    const orderConfiguration: ConfigProps[] = []
+    selectInputs.forEach(selectInput => {
+      const config = {
+        id: selectInput.id,
+        value: selectInput.value
+      }
+      orderConfiguration.push(config)
+    })
 
-      total += productTotal
+    const order = {
+      product: product,
+      configs: orderConfiguration
     }
-    setTotal(Number(total.toFixed(2)))
+
+    cart.push(order)
+    localStorage.setItem('order', JSON.stringify(cart))
+    populateCartProducts()
   }
 
   function removeCartItem(id: number) {
@@ -529,6 +541,17 @@ export function App() {
 
     localStorage.setItem('order', JSON.stringify(updatedCart))
     populateCartProducts()
+  }
+
+  function sumCartTotal() {
+    let total = 0
+    for (const product of cartProducts) {
+      let productTotal =
+        Number(product.product.price) * Number(product.configs[0].value)
+
+      total += productTotal
+    }
+    setTotal(Number(total.toFixed(2)))
   }
 
   return (
@@ -580,6 +603,7 @@ export function App() {
         product={individualProduct}
         productInfo={individualProductInfo}
         cartProducts={cartProducts}
+        addToCart={addToCart}
         removeCartItem={removeCartItem}
         total={total}
       />
