@@ -20,7 +20,10 @@ export function CartPage(props: CartPageProps) {
 
   return (
     <main id="cart-page">
-      {renderCartProducts}
+      {props.cartProducts.length === 0 ||
+      props.cartProducts.length === undefined
+        ? 'Your cart is empty :('
+        : renderCartProducts}
       <hr />
       <div className="order-total">
         <span className="total">Total: </span>

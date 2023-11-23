@@ -6,6 +6,8 @@
   gap: 2rem;
 
   align-items: center;
+
+  font-size: 3rem;
 }
 
 #cart-page .order-total {
