@@ -1,6 +1,7 @@
 import './styles.css'
 
 import { ProductProps } from '../../types/types'
+import { Link } from 'react-router-dom'
 
 export function AddToCartPopUp(props: ProductProps) {
   return (
@@ -15,6 +16,9 @@ export function AddToCartPopUp(props: ProductProps) {
         <a href="/">
           <button>Continue shopping</button>
         </a>
+        <Link to={`/cart`}>
+          <button>Go to cart</button>
+        </Link>
         <button>Procede to checkout</button>
       </div>
     </div>
