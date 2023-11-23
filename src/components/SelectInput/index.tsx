@@ -17,7 +17,9 @@ export function SelectInput(props: SelectInputProps) {
 
   return (
     <>
-      <label htmlFor={props.selectId}>{props.selectId}</label>
+      <label htmlFor={props.selectId}>
+        {props.selectId === 'new' ? 'Condition' : props.selectId}
+      </label>
       <select name={props.selectId} id={props.selectId}>
         {renderOptions}
       </select>
