@@ -106,6 +106,11 @@ export type MainArrayProps = {
   categories: CategoriesProps[]
 }
 
+export type ConfigProps = {
+  id: string
+  value: string
+}
+
 export type OpenMenu = {
   openMenu: boolean
 }
@@ -166,6 +171,28 @@ export type OrderConfiguration = {
   value: string
 }
 
+export type CartProductProps = {
+  configs: ConfigProps[]
+  product: ProductsProps
+  orderId: number
+}
+
+export type CartProductArrayProps = {
+  cartProducts: CartProductProps[]
+}
+
+export type CartProductObjectProps = {
+  product: {
+    configs: ConfigProps[]
+    product: ProductsProps
+    orderId: number
+  }
+}
+
+export type Total = {
+  total: number
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
@@ -220,4 +247,16 @@ export type SetPageNumber = {
 
 export type SelectProduct = {
   selectProduct: (productID: number, category: string) => void
+}
+
+export type ShowAddToCartpopUp = {
+  showAddToCartpopUp: () => void
+}
+
+export type RemoveCartItem = {
+  removeCartItem: (ide: number) => void
+}
+
+export type AddToCart = {
+  addToCart: (product: ProductsProps) => void
 }

@@ -12,7 +12,9 @@ import {
   ProductsProps,
   CondensededFilters,
   Item,
-  ProductsInfoProps
+  ProductsInfoProps,
+  CartProductProps,
+  ConfigProps
 } from './types/types'
 import { Footer } from './components/Footer'
 
@@ -109,6 +111,9 @@ export function App() {
     ProductsProps[]
   >([])
 
+  const [cartProducts, setCartProducts] = useState<CartProductProps[]>([])
+  const [total, setTotal] = useState(0)
+
   useEffect(() => {
     fetchCategories()
     fetchProducts()
@@ -133,6 +138,19 @@ export function App() {
   useEffect(() => {
     performSearch(searchedTerm)
   }, [searchedTerm])
+
+  useEffect(() => {
+    sumCartTotal()
+  }, [cartProducts])
+
+  useEffect(() => {
+    if (localStorage.getItem('order')) {
+      populateCartProducts()
+    } else {
+      const mockCart: any = []
+      localStorage.setItem('order', mockCart)
+    }
+  }, [])
 
   const fetchCategories = async () => {
     axios
@@ -480,6 +498,58 @@ export function App() {
     setSearchedTerm('')
   }
 
+  function populateCartProducts() {
+    setCartProducts(JSON.parse(localStorage.getItem('order') || 'false'))
+  }
+
+  function addToCart(product: ProductsProps) {
+    const cart = JSON.parse(localStorage.getItem('order') || 'false') || []
+    const selectInputs = document.querySelectorAll('select')
+    const orderConfiguration: ConfigProps[] = []
+
+    selectInputs.forEach(selectInput => {
+      const config = {
+        id: selectInput.id,
+        value: selectInput.value
+      }
+      orderConfiguration.push(config)
+    })
+
+    const order = {
+      product: product,
+      configs: orderConfiguration,
+      orderId: Number(Math.random().toFixed(5)) * 100000 + product.product_id
+    }
+
+    cart.push(order)
+    localStorage.setItem('order', JSON.stringify(cart))
+    populateCartProducts()
+  }
+
+  function removeCartItem(id: number) {
+    const updatedCart: CartProductProps[] = []
+
+    cartProducts.map(product => {
+      if (product.orderId !== id) {
+        updatedCart.push(product)
+      }
+    })
+
+    localStorage.setItem('order', JSON.stringify(updatedCart))
+    populateCartProducts()
+  }
+
+  function sumCartTotal() {
+    let total = 0
+    for (const product of cartProducts) {
+      let productTotal =
+        Number(product.product.price) * Number(product.configs[0].value)
+
+      total += productTotal
+    }
+    setTotal(Number(total.toFixed(2)))
+  }
+
   return (
     <div
       className={
@@ -528,6 +598,10 @@ export function App() {
         selectProduct={selectProduct}
         product={individualProduct}
         productInfo={individualProductInfo}
+        cartProducts={cartProducts}
+        addToCart={addToCart}
+        removeCartItem={removeCartItem}
+        total={total}
       />
       <Footer />
     </div>

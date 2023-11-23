@@ -21,10 +21,15 @@ import {
   OpenFilters,
   SelectProduct,
   ProductProps,
-  ProductInfoArrayProps
+  ProductInfoArrayProps,
+  CartProductArrayProps,
+  AddToCart,
+  RemoveCartItem,
+  Total
 } from './types/types'
 import { SearchResultPage } from './pages/SearchResultPage'
 import { ProductPage } from './pages/ProductPage'
+import { CartPage } from './pages/CartPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -43,7 +48,11 @@ type MainProps = MainArrayProps &
   OpenFilters &
   SelectProduct &
   ProductProps &
-  ProductInfoArrayProps
+  ProductInfoArrayProps &
+  CartProductArrayProps &
+  RemoveCartItem &
+  Total &
+  AddToCart
 
 export function Main(props: MainProps) {
   return (
@@ -102,6 +111,17 @@ export function Main(props: MainProps) {
           <ProductPage
             product={props.product}
             productInfo={props.productInfo}
+            addToCart={props.addToCart}
+          />
+        }
+      />
+      <Route
+        path={`/cart`}
+        element={
+          <CartPage
+            cartProducts={props.cartProducts}
+            removeCartItem={props.removeCartItem}
+            total={props.total}
           />
         }
       />

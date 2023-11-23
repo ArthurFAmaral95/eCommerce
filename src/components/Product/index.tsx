@@ -1,10 +1,18 @@
 import './styles.css'
 
-import { ProductProps, ProductInfoArrayProps } from '../../types/types'
+import {
+  ProductProps,
+  ProductInfoArrayProps,
+  ShowAddToCartpopUp,
+  AddToCart
+} from '../../types/types'
 import { Place } from '../Header/Place'
 import { SelectInput } from '../SelectInput'
 
-type ProductPageProps = ProductInfoArrayProps & ProductProps
+type ProductPageProps = ProductInfoArrayProps &
+  ProductProps &
+  ShowAddToCartpopUp &
+  AddToCart
 
 export function Product(props: ProductPageProps) {
   const textPrice = String(props.product.price)
@@ -43,13 +51,6 @@ export function Product(props: ProductPageProps) {
   }
   setFields()
 
-  function addToCart() {
-    const selectInputs = document.querySelectorAll('select')
-    selectInputs.forEach(selectInput => {
-      console.log(selectInput.id, selectInput.value)
-    })
-  }
-
   const renderSelectInputs: any = []
 
   productInfoFields.map(field => {
@@ -84,7 +85,11 @@ export function Product(props: ProductPageProps) {
   return (
     <div className="product">
       <h2 className="product-name">{props.product.product_name}</h2>
-      <img src={props.product.img_path} alt="Product image" />
+      <img
+        src={props.product.img_path}
+        alt={props.product.product_name}
+        title={props.product.product_name}
+      />
       <hr />
       <div className="info">
         <p className="price">
@@ -106,7 +111,8 @@ export function Product(props: ProductPageProps) {
           <button
             className="add-to-cart"
             onClick={() => {
-              addToCart()
+              props.addToCart(props.product)
+              props.showAddToCartpopUp()
             }}
           >
             Add to cart
