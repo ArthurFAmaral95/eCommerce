@@ -35,7 +35,7 @@ export function CartProductBox(props: CartProductBoxProps) {
         <button
           className="delete-cart-product"
           onClick={() => {
-            props.removeCartItem(props.product.product.product_id)
+            props.removeCartItem(props.product.orderId)
           }}
         >
           Remove

@@ -174,6 +174,7 @@ export type OrderConfiguration = {
 export type CartProductProps = {
   configs: ConfigProps[]
   product: ProductsProps
+  orderId: number
 }
 
 export type CartProductArrayProps = {
@@ -184,6 +185,7 @@ export type CartProductObjectProps = {
   product: {
     configs: ConfigProps[]
     product: ProductsProps
+    orderId: number
   }
 }
 

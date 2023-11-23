@@ -8,20 +8,25 @@ type CartPageProps = CartProductArrayProps & RemoveCartItem & Total
 export function CartPage(props: CartPageProps) {
   const renderCartProducts: any = []
 
-  for (const product of props.cartProducts) {
-    renderCartProducts.push(
-      <CartProductBox
-        product={product}
-        key={product.product.product_id}
-        removeCartItem={props.removeCartItem}
-      />
-    )
+  if (props.cartProducts.length === 0) {
+  } else if (props.cartProducts[0].product.product_id === 0) {
+  } else {
+    for (const product of props.cartProducts) {
+      renderCartProducts.push(
+        <CartProductBox
+          product={product}
+          key={product.orderId}
+          removeCartItem={props.removeCartItem}
+        />
+      )
+    }
   }
 
   return (
     <main id="cart-page">
       {props.cartProducts.length === 0 ||
-      props.cartProducts.length === undefined
+      props.cartProducts.length === undefined ||
+      props.cartProducts[0].product.product_id === 0
         ? 'Your cart is empty :('
         : renderCartProducts}
       <hr />

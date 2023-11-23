@@ -111,18 +111,7 @@ export function App() {
     ProductsProps[]
   >([])
 
-  const [cartProducts, setCartProducts] = useState<CartProductProps[]>([
-    {
-      configs: [{ id: '', value: '' }],
-      product: {
-        category: '',
-        product_name: '',
-        price: 0,
-        img_path: '',
-        product_id: 0
-      }
-    }
-  ])
+  const [cartProducts, setCartProducts] = useState<CartProductProps[]>([])
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
@@ -151,12 +140,17 @@ export function App() {
   }, [searchedTerm])
 
   useEffect(() => {
-    populateCartProducts()
-  }, [])
-
-  useEffect(() => {
     sumCartTotal()
   }, [cartProducts])
+
+  useEffect(() => {
+    if (localStorage.getItem('order')) {
+      populateCartProducts()
+    } else {
+      const mockCart: any = []
+      localStorage.setItem('order', mockCart)
+    }
+  }, [])
 
   const fetchCategories = async () => {
     axios
@@ -512,6 +506,7 @@ export function App() {
     const cart = JSON.parse(localStorage.getItem('order') || 'false') || []
     const selectInputs = document.querySelectorAll('select')
     const orderConfiguration: ConfigProps[] = []
+
     selectInputs.forEach(selectInput => {
       const config = {
         id: selectInput.id,
@@ -522,7 +517,8 @@ export function App() {
 
     const order = {
       product: product,
-      configs: orderConfiguration
+      configs: orderConfiguration,
+      orderId: Number(Math.random().toFixed(5)) * 100000 + product.product_id
     }
 
     cart.push(order)
@@ -534,7 +530,7 @@ export function App() {
     const updatedCart: CartProductProps[] = []
 
     cartProducts.map(product => {
-      if (product.product.product_id !== id) {
+      if (product.orderId !== id) {
         updatedCart.push(product)
       }
     })
