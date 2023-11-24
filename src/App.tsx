@@ -95,6 +95,8 @@ export function App() {
     ProductsArrayProps[]
   >([])
 
+  const [loginPopUpStatus, setLoginPopUpStatus] = useState(false)
+
   const [openMenu, setOpenMenu] = useState(false)
   const [openFilters, setOpenFilters] = useState(false)
 
@@ -550,6 +552,10 @@ export function App() {
     setTotal(Number(total.toFixed(2)))
   }
 
+  function handleLoginPopUp() {
+    setLoginPopUpStatus(!loginPopUpStatus)
+  }
+
   return (
     <div
       className={
@@ -576,6 +582,8 @@ export function App() {
         setPages={setPages}
         setPageNumber={setPageNumber}
         selectProduct={selectProduct}
+        loginPopUpStatus={loginPopUpStatus}
+        handleLoginPopUp={handleLoginPopUp}
       />
 
       <Main

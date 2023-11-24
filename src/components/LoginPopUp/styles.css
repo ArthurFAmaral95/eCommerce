@@ -11,12 +11,17 @@
 
   width: 20rem;
 
-  background-color: #dfdfdf;
+  background-color: #f8f3f3;
 
   padding: 2.5rem 1rem;
 
   border-radius: 1rem;
   box-shadow: #fff 0 0 0.5rem 0.1rem;
+
+  visibility: visible;
+  opacity: 1;
+
+  transition: all 0.4s;
 }
 
 .login-pop-up::after {
@@ -24,10 +29,18 @@
   width: 3rem;
   height: 3rem;
   content: '';
-  background-color: #dfdfdf;
+  background-color: #f8f3f3;
 
   right: 3.5rem;
   top: -1.5rem;
 
   transform: rotate(45deg);
+}
+
+.login-pop-up.hidden {
+  visibility: hidden;
+  opacity: 0;
+
+  right: -2rem;
+  transform: scaleX(0);
 }

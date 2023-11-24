@@ -19,7 +19,9 @@ import {
   UpdateProductsOfPage,
   SetPages,
   SetPageNumber,
-  SelectProduct
+  SelectProduct,
+  LoginPopUpStatus,
+  HandleLoginPopUp
 } from '../../types/types'
 import { ListItem } from './ListItem'
 
@@ -34,7 +36,9 @@ type HeaderProps = CategoriesArrayProps &
   UpdateProductsOfPage &
   SetPages &
   SetPageNumber &
-  SelectProduct
+  SelectProduct &
+  LoginPopUpStatus &
+  HandleLoginPopUp
 
 export function Header(props: HeaderProps) {
   const renderListItens: any = []
@@ -62,7 +66,10 @@ export function Header(props: HeaderProps) {
               </a>
             </div>
             <div className="right-top-nav">
-              <Login />
+              <Login
+                handleLoginPopUp={props.handleLoginPopUp}
+                loginPopUpStatus={props.loginPopUpStatus}
+              />
               <ShoppingCart />
             </div>
           </div>

@@ -193,6 +193,10 @@ export type Total = {
   total: number
 }
 
+export type LoginPopUpStatus = {
+  loginPopUpStatus: boolean
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
@@ -259,4 +263,8 @@ export type RemoveCartItem = {
 
 export type AddToCart = {
   addToCart: (product: ProductsProps) => void
+}
+
+export type HandleLoginPopUp = {
+  handleLoginPopUp: () => void
 }
