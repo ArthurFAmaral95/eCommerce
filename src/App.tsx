@@ -165,6 +165,17 @@ export function App() {
       })
   }
 
+  function fetchAllProducts() {
+    axios
+      .get('http://localhost:4001/products')
+      .then(response => {
+        setProducts(response.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
   const fetchProducts = async () => {
     if (selectedCategory === '') {
       axios
@@ -587,6 +598,7 @@ export function App() {
       />
 
       <Main
+        fetchAllProducts={fetchAllProducts}
         products={products}
         categories={categories}
         productsOfPage={productsOfPage[pageNumber - 1]}

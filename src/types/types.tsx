@@ -197,6 +197,10 @@ export type LoginPopUpStatus = {
   loginPopUpStatus: boolean
 }
 
+export type FetchAllProducts = {
+  fetchAllProducts: () => void
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
