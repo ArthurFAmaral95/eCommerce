@@ -31,6 +31,7 @@ import {
 import { SearchResultPage } from './pages/SearchResultPage'
 import { ProductPage } from './pages/ProductPage'
 import { CartPage } from './pages/CartPage'
+import { LoginPage } from './pages/LoginPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -128,6 +129,7 @@ export function Main(props: MainProps) {
           />
         }
       />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   )
 }
