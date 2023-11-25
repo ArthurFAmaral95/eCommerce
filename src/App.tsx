@@ -563,14 +563,21 @@ export function App() {
 
   function updatePageOnNavigation() {
     const begginningOfURL = window.location.href.split('5173/')[1]
+    const vercelBegginningOfURL = window.location.href.split('.app/')[1]
 
-    if (begginningOfURL === '') {
+    if (begginningOfURL === '' || vercelBegginningOfURL === '') {
       setSelectedCategory('')
     } else {
       categories.forEach(category => {
-        if (begginningOfURL === 'TV%20&%20Audio') {
+        if (
+          begginningOfURL === 'TV%20&%20Audio' ||
+          vercelBegginningOfURL === 'TV%20&%20Audio'
+        ) {
           setSelectedCategory('TV & Audio')
-        } else if (category.category.includes(begginningOfURL)) {
+        } else if (
+          category.category.includes(begginningOfURL) ||
+          category.category.includes(vercelBegginningOfURL)
+        ) {
           setSelectedCategory(category.category)
         }
       })
