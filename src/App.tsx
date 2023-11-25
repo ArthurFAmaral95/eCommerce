@@ -588,6 +588,8 @@ export function App() {
         handleMenu={handleMenu}
         openMenu={openMenu}
         selectCategory={selectCategory}
+        loginPopUpStatus={loginPopUpStatus}
+        handleLoginPopUp={handleLoginPopUp}
       />
 
       <Header
