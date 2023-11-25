@@ -116,6 +116,8 @@ export function App() {
   const [cartProducts, setCartProducts] = useState<CartProductProps[]>([])
   const [total, setTotal] = useState(0)
 
+  window.addEventListener('popstate', updatePageOnNavigation)
+
   useEffect(() => {
     fetchCategories()
     fetchProducts()
@@ -178,14 +180,6 @@ export function App() {
 
   const fetchProducts = async () => {
     if (selectedCategory === '') {
-      axios
-        .get('http://localhost:4001/products')
-        .then(response => {
-          setProducts(response.data)
-        })
-        .catch(err => {
-          console.error(err)
-        })
     } else {
       axios
         .get(`http://localhost:4001/${selectedCategory}`)
@@ -565,6 +559,22 @@ export function App() {
 
   function handleLoginPopUp() {
     setLoginPopUpStatus(!loginPopUpStatus)
+  }
+
+  function updatePageOnNavigation() {
+    const begginningOfURL = window.location.href.split('5173/')[1]
+
+    if (begginningOfURL === '') {
+      setSelectedCategory('')
+    } else {
+      categories.forEach(category => {
+        if (begginningOfURL === 'TV%20&%20Audio') {
+          setSelectedCategory('TV & Audio')
+        } else if (category.category.includes(begginningOfURL)) {
+          setSelectedCategory(category.category)
+        }
+      })
+    }
   }
 
   return (
