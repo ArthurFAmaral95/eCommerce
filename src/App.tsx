@@ -116,6 +116,8 @@ export function App() {
   const [cartProducts, setCartProducts] = useState<CartProductProps[]>([])
   const [total, setTotal] = useState(0)
 
+  window.addEventListener('popstate', updatePageOnNavigation)
+
   useEffect(() => {
     fetchCategories()
     fetchProducts()
@@ -165,16 +167,19 @@ export function App() {
       })
   }
 
+  function fetchAllProducts() {
+    axios
+      .get('http://localhost:4001/products')
+      .then(response => {
+        setProducts(response.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
   const fetchProducts = async () => {
     if (selectedCategory === '') {
-      axios
-        .get('http://localhost:4001/products')
-        .then(response => {
-          setProducts(response.data)
-        })
-        .catch(err => {
-          console.error(err)
-        })
     } else {
       axios
         .get(`http://localhost:4001/${selectedCategory}`)
@@ -556,6 +561,29 @@ export function App() {
     setLoginPopUpStatus(!loginPopUpStatus)
   }
 
+  function updatePageOnNavigation() {
+    const begginningOfURL = window.location.href.split('5173/')[1]
+    const vercelBegginningOfURL = window.location.href.split('.app/')[1]
+
+    if (begginningOfURL === '' || vercelBegginningOfURL === '') {
+      setSelectedCategory('')
+    } else {
+      categories.forEach(category => {
+        if (
+          begginningOfURL === 'TV%20&%20Audio' ||
+          vercelBegginningOfURL === 'TV%20&%20Audio'
+        ) {
+          setSelectedCategory('TV & Audio')
+        } else if (
+          category.category.includes(begginningOfURL) ||
+          category.category.includes(vercelBegginningOfURL)
+        ) {
+          setSelectedCategory(category.category)
+        }
+      })
+    }
+  }
+
   return (
     <div
       className={
@@ -567,6 +595,8 @@ export function App() {
         handleMenu={handleMenu}
         openMenu={openMenu}
         selectCategory={selectCategory}
+        loginPopUpStatus={loginPopUpStatus}
+        handleLoginPopUp={handleLoginPopUp}
       />
 
       <Header
@@ -587,6 +617,7 @@ export function App() {
       />
 
       <Main
+        fetchAllProducts={fetchAllProducts}
         products={products}
         categories={categories}
         productsOfPage={productsOfPage[pageNumber - 1]}

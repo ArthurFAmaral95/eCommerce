@@ -25,7 +25,8 @@ import {
   CartProductArrayProps,
   AddToCart,
   RemoveCartItem,
-  Total
+  Total,
+  FetchAllProducts
 } from './types/types'
 import { SearchResultPage } from './pages/SearchResultPage'
 import { ProductPage } from './pages/ProductPage'
@@ -52,7 +53,8 @@ type MainProps = MainArrayProps &
   CartProductArrayProps &
   RemoveCartItem &
   Total &
-  AddToCart
+  AddToCart &
+  FetchAllProducts
 
 export function Main(props: MainProps) {
   return (
@@ -61,6 +63,7 @@ export function Main(props: MainProps) {
         path="/"
         element={
           <LandingPage
+            fetchAllProducts={props.fetchAllProducts}
             categories={props.categories}
             products={props.products}
             selectCategory={props.selectCategory}

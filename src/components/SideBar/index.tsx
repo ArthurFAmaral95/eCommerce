@@ -7,13 +7,17 @@ import {
   OpenMenu,
   CategoriesArrayProps,
   HandleMenu,
-  SelectCategory
+  SelectCategory,
+  HandleLoginPopUp,
+  LoginPopUpStatus
 } from '../../types/types'
 
 type SideBarProps = OpenMenu &
   CategoriesArrayProps &
   HandleMenu &
-  SelectCategory
+  SelectCategory &
+  HandleLoginPopUp &
+  LoginPopUpStatus
 
 export function SideBar(props: SideBarProps) {
   return (
@@ -28,7 +32,10 @@ export function SideBar(props: SideBarProps) {
       </div>
       <div className="content">
         <div className="blue-bg">
-          <Login />
+          <Login
+            handleLoginPopUp={props.handleLoginPopUp}
+            loginPopUpStatus={props.loginPopUpStatus}
+          />
           <p>Explore</p>
           <a href="/" id="logo">
             e-Commerce
