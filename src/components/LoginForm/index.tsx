@@ -2,7 +2,12 @@ export function LoginForm() {
   return (
     <form id="login-form">
       <label htmlFor="user">User</label>
-      <input type="text" name="user" id="user" />
+      <input
+        type="text"
+        name="user"
+        id="user"
+        placeholder="Type here your e-mail"
+      />
 
       <label htmlFor="password">Password</label>
       <input

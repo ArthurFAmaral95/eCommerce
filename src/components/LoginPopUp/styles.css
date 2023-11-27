@@ -24,6 +24,10 @@
   transition: all 0.4s;
 }
 
+.login-pop-up a button {
+  width: 100%;
+}
+
 .login-pop-up::after {
   position: absolute;
   width: 3rem;

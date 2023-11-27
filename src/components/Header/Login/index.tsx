@@ -18,7 +18,10 @@ export function Login(props: LoginProps) {
           }}
         />
       </div>
-      <LoginPopUp loginPopUpStatus={props.loginPopUpStatus} />
+      <LoginPopUp
+        loginPopUpStatus={props.loginPopUpStatus}
+        handleLoginPopUp={props.handleLoginPopUp}
+      />
     </>
   )
 }

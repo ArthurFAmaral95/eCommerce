@@ -1,16 +1,37 @@
 import './styles.css'
 
-import { LoginPopUpStatus } from '../../types/types'
+import { LoginPopUpStatus, HandleLoginPopUp } from '../../types/types'
+import { Link } from 'react-router-dom'
 
-export function LoginPopUp(props: LoginPopUpStatus) {
+type LoginPopUpProps = LoginPopUpStatus & HandleLoginPopUp
+
+export function LoginPopUp(props: LoginPopUpProps) {
   return (
     <div
       className={
         props.loginPopUpStatus ? 'login-pop-up' : 'login-pop-up hidden'
       }
     >
-      <button id="login">Login</button>
-      <button id="register">Register</button>
+      <Link to={`/login`}>
+        <button
+          id="login"
+          onClick={() => {
+            props.handleLoginPopUp()
+          }}
+        >
+          Login
+        </button>
+      </Link>
+      <Link to={`/register`}>
+        <button
+          id="register"
+          onClick={() => {
+            props.handleLoginPopUp()
+          }}
+        >
+          Register
+        </button>
+      </Link>
     </div>
   )
 }

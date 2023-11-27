@@ -1,6 +1,6 @@
 export function RegisterForm() {
   return (
-    <form id="register-form" method="post">
+    <form id="register-form">
       <label htmlFor="first-name">First name:</label>
       <input type="text" name="first-name" id="first-name" required />
 
