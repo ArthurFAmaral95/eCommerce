@@ -91,7 +91,8 @@
 .product .info .btns button,
 .pop-up .btns button,
 #cart-page .checkout,
-.login-pop-up button {
+.login-pop-up button,
+#login-form button {
   border-radius: 10rem;
 
   font-size: 1.6rem;
@@ -109,7 +110,8 @@
 
 .product .info .btns button:nth-child(1),
 .pop-up .btns a:nth-child(2) button,
-.login-pop-up #login {
+.login-pop-up #login,
+#login-form button {
   background-color: #ffd814;
   border: #fcd200;
 }
