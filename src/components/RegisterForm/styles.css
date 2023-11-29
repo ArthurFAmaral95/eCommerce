@@ -1,0 +1,77 @@
+#register-form,
+#register-form fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+#register-form {
+  gap: 2rem;
+
+  padding-bottom: 10rem;
+
+  width: 100%;
+}
+
+#register-form fieldset {
+  gap: 1rem;
+
+  border: none;
+}
+
+#register-form fieldset div {
+  display: grid;
+}
+
+#register-form label,
+#register-form input {
+  font-size: 1.5rem;
+}
+
+#register-form input {
+  padding: 0.5rem;
+
+  border-radius: 1rem;
+
+  width: 100%;
+}
+
+#register-form input:focus-visible {
+  outline: #fcd200 1px solid;
+  border: 1px solid transparent;
+}
+
+#register-form fieldset:nth-child(2) {
+  margin-bottom: 15rem;
+}
+
+#register-form fieldset:nth-child(3) {
+  position: absolute;
+
+  top: 31rem;
+  width: calc(100% - 2rem);
+}
+
+#register-form img {
+  height: 3rem;
+  width: fit-content;
+
+  position: absolute;
+  right: 1rem;
+
+  cursor: pointer;
+
+  transition: all 0.5s;
+}
+
+#register-form fieldset:nth-child(3) div:nth-child(1) img {
+  top: 1.8rem;
+}
+
+#register-form fieldset:nth-child(3) div:nth-child(2) img {
+  top: 7.6rem;
+}
+
+#register-form img.hidden {
+  visibility: hidden;
+  opacity: 0;
+}

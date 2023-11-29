@@ -11,7 +11,7 @@ export function LoginForm() {
     <form id="login-form">
       <div>
         <label htmlFor="e-mail">E-mail</label>
-        <input type="text" name="e-mail" id="e-mail" required />
+        <input type="email" name="e-mail" id="e-mail" required />
       </div>
       <div>
         <label htmlFor="password">Password</label>
