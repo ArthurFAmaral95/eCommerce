@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import axios from 'axios'
+
 import './styles.css'
 
 type RegisterFormProps = z.infer<typeof createUserFormSchema>
@@ -83,8 +85,16 @@ export function RegisterForm() {
     setShowConfirmPassword(!showConfirmPassword)
   }
 
-  function createUser(data: any) {
-    console.log(data)
+  function createUser(data: RegisterFormProps) {
+    axios
+      .post('http://localhost:4001/registerUser', {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        password: data.password
+      })
+      .then(response => console.log(response.data))
+      .catch(err => console.log(err))
   }
 
   return (

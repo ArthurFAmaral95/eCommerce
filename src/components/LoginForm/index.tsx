@@ -40,7 +40,7 @@ export function LoginForm() {
         />
       </div>
 
-      <button>Log in</button>
+      <button>Login</button>
     </form>
   )
 }

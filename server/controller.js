@@ -81,11 +81,27 @@ const productInfo = async (req, res) => {
     .catch(err => res.json(err))
 }
 
+const registerNewUser = async (req, res) => {
+  knx
+    .insert([
+      {
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password
+      }
+    ])
+    .into('users')
+    .then(data => res.json('User registered successfully.'))
+    .catch(err => res.json('User already registered. Try logging in.'))
+}
+
 export {
   categories,
   products,
   categoryPage,
   productsInfo,
   product,
-  productInfo
+  productInfo,
+  registerNewUser
 }
