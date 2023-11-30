@@ -22,6 +22,18 @@
   display: grid;
 }
 
+#register-form fieldset div .errors {
+  display: flex;
+
+  gap: 0.5rem;
+
+  align-items: center;
+}
+
+#register-form fieldset div .errors span {
+  color: red;
+}
+
 #register-form label,
 #register-form input {
   font-size: 1.5rem;

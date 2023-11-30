@@ -1,9 +1,80 @@
 import { useState } from 'react'
+
+import { useForm } from 'react-hook-form'
+
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
 import './styles.css'
+
+type RegisterFormProps = z.infer<typeof createUserFormSchema>
+
+const createUserFormSchema = z
+  .object({
+    firstName: z
+      .string()
+      .min(1, 'Please fill this field.')
+      .toLowerCase()
+      .transform(text =>
+        text
+          .trim()
+          .split(' ')
+          .map(word => word[0].toLocaleUpperCase().concat(word.substring(1)))
+          .join(' ')
+      ),
+    lastName: z
+      .string()
+      .min(1, 'Please fill this field.')
+      .toLowerCase()
+      .transform(text =>
+        text
+          .trim()
+          .split(' ')
+          .map(word => word[0].toLocaleUpperCase().concat(word.substring(1)))
+          .join(' ')
+      ),
+    email: z
+      .string()
+      .min(1, 'Please fill this field.')
+      .email('This field should be an email address.'),
+    confirmEmail: z
+      .string()
+      .min(1, 'Please fill this field.')
+      .email('This field should be an email address.'),
+    password: z.string().min(8, 'Password must be at least 8 characters.'),
+    confirmPassword: z
+      .string()
+      .min(8, 'Password must be at least 8 characters.')
+  })
+  .superRefine((values, context) => {
+    if (values.confirmEmail !== values.email) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['confirmEmail'],
+        message: 'E-mail does not match'
+      })
+    }
+
+    if (values.confirmPassword !== values.password) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['confirmPassword'],
+        message: 'Password does not match'
+      })
+    }
+  })
 
 export function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<RegisterFormProps>({
+    resolver: zodResolver(createUserFormSchema)
+  })
 
   function changePasswordVisibility() {
     setShowPassword(!showPassword)
@@ -12,42 +83,54 @@ export function RegisterForm() {
     setShowConfirmPassword(!showConfirmPassword)
   }
 
+  function createUser(data: any) {
+    console.log(data)
+  }
+
   return (
-    <form id="register-form">
+    <form id="register-form" onSubmit={handleSubmit(createUser)}>
       <fieldset>
         <div>
-          <label htmlFor="first-name">First name:</label>
-          <input type="text" name="first-name" id="first-name" required />
+          <div className="errors">
+            <label htmlFor="firstName">First name:</label>
+            {errors.firstName && <span>{errors.firstName.message}</span>}
+          </div>
+          <input type="text" id="firstName" {...register('firstName')} />
         </div>
         <div>
-          <label htmlFor="last-name">Last name:</label>
-          <input type="text" name="last-name" id="last-name" required />
+          <div className="errors">
+            <label htmlFor="lastName">Last name:</label>
+            {errors.lastName && <span>{errors.lastName.message}</span>}
+          </div>
+          <input type="text" id="lastName" {...register('lastName')} />
         </div>
       </fieldset>
       <fieldset>
         <div>
-          <label htmlFor="email">E-mail:</label>
-          <input type="email" name="email" id="email" required />
+          <div className="errors">
+            <label htmlFor="email">E-mail:</label>
+            {errors.email && <span>{errors.email.message}</span>}
+          </div>
+          <input type="email" id="email" {...register('email')} />
         </div>
         <div>
-          <label htmlFor="confirm-email">Corfirm E-mail:</label>
-          <input
-            type="email"
-            name="confirm-email"
-            id="confirm-email"
-            required
-          />
+          <div className="errors">
+            <label htmlFor="confirmEmail">Corfirm E-mail:</label>
+            {errors.confirmEmail && <span>{errors.confirmEmail.message}</span>}
+          </div>
+          <input type="email" id="confirmEmail" {...register('confirmEmail')} />
         </div>
       </fieldset>
       <fieldset>
         <div>
-          <label htmlFor="password">Password:</label>
+          <div className="errors">
+            <label htmlFor="password">Password:</label>
+            {errors.password && <span>{errors.password.message}</span>}
+          </div>
           <input
             type={showPassword ? 'text' : 'password'}
-            name="password"
             id="password"
-            minLength={8}
-            required
+            {...register('password')}
           />
           <img
             src="./open-eye.svg"
@@ -67,13 +150,16 @@ export function RegisterForm() {
           />
         </div>
         <div>
-          <label htmlFor="confirm-password">Confirm password:</label>
+          <div className="errors">
+            <label htmlFor="confirmPassword">Confirm password:</label>
+            {errors.confirmPassword && (
+              <span>{errors.confirmPassword.message}</span>
+            )}
+          </div>
           <input
             type={showConfirmPassword ? 'text' : 'password'}
-            name="confirm-password"
-            id="confirm-password"
-            minLength={8}
-            required
+            id="confirmPassword"
+            {...register('confirmPassword')}
           />
           <img
             src="./open-eye.svg"
