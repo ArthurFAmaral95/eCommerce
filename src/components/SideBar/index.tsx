@@ -9,7 +9,9 @@ import {
   HandleMenu,
   SelectCategory,
   HandleLoginPopUp,
-  LoginPopUpStatus
+  LoginPopUpStatus,
+  UserLoggedInProps,
+  ChangeUserStatus
 } from '../../types/types'
 
 type SideBarProps = OpenMenu &
@@ -17,7 +19,9 @@ type SideBarProps = OpenMenu &
   HandleMenu &
   SelectCategory &
   HandleLoginPopUp &
-  LoginPopUpStatus
+  LoginPopUpStatus &
+  UserLoggedInProps &
+  ChangeUserStatus
 
 export function SideBar(props: SideBarProps) {
   return (
@@ -35,6 +39,8 @@ export function SideBar(props: SideBarProps) {
           <Login
             handleLoginPopUp={props.handleLoginPopUp}
             loginPopUpStatus={props.loginPopUpStatus}
+            changeUserStatus={props.changeUserStatus}
+            userLoggedIn={props.userLoggedIn}
           />
           <p>Explore</p>
           <a href="/" id="logo">

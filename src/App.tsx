@@ -615,6 +615,8 @@ export function App() {
         selectCategory={selectCategory}
         loginPopUpStatus={loginPopUpStatus}
         handleLoginPopUp={handleLoginPopUp}
+        userLoggedIn={userLoggedIn}
+        changeUserStatus={changeUserStatus}
       />
 
       <Header
