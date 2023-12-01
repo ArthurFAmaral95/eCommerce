@@ -9,6 +9,8 @@ import axios from 'axios'
 
 import './styles.css'
 
+import { ChangeUserStatus } from '../../types/types'
+
 type RegisterFormProps = z.infer<typeof createUserFormSchema>
 
 const createUserFormSchema = z
@@ -66,7 +68,7 @@ const createUserFormSchema = z
     }
   })
 
-export function RegisterForm() {
+export function RegisterForm(props: ChangeUserStatus) {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
@@ -93,7 +95,20 @@ export function RegisterForm() {
         email: data.email,
         password: data.password
       })
-      .then(response => console.log(response.data))
+      .then(response => {
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            userFirstName: response.data.user.firstName,
+            userLastName: response.data.user.lastName
+          })
+        )
+
+        console.log(response.data.message)
+      })
+      .then(() => {
+        props.changeUserStatus()
+      })
       .catch(err => console.log(err))
   }
 

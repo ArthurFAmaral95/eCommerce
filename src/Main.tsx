@@ -26,8 +26,10 @@ import {
   AddToCart,
   RemoveCartItem,
   Total,
-  FetchAllProducts
+  FetchAllProducts,
+  ChangeUserStatus
 } from './types/types'
+
 import { SearchResultPage } from './pages/SearchResultPage'
 import { ProductPage } from './pages/ProductPage'
 import { CartPage } from './pages/CartPage'
@@ -56,7 +58,8 @@ type MainProps = MainArrayProps &
   RemoveCartItem &
   Total &
   AddToCart &
-  FetchAllProducts
+  FetchAllProducts &
+  ChangeUserStatus
 
 export function Main(props: MainProps) {
   return (
@@ -131,7 +134,10 @@ export function Main(props: MainProps) {
         }
       />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+      <Route
+        path="/register"
+        element={<RegisterPage changeUserStatus={props.changeUserStatus} />}
+      />
     </Routes>
   )
 }

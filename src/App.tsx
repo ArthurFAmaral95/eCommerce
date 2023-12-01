@@ -116,6 +116,8 @@ export function App() {
   const [cartProducts, setCartProducts] = useState<CartProductProps[]>([])
   const [total, setTotal] = useState(0)
 
+  const [userLoggedIn, setUserLoggedIn] = useState(false)
+
   window.addEventListener('popstate', updatePageOnNavigation)
 
   useEffect(() => {
@@ -154,6 +156,8 @@ export function App() {
       const mockCart: any = []
       localStorage.setItem('order', mockCart)
     }
+
+    checkUser()
   }, [])
 
   const fetchCategories = async () => {
@@ -584,6 +588,20 @@ export function App() {
     }
   }
 
+  function checkUser() {
+    const user = JSON.parse(localStorage.getItem('user') || 'false') || []
+
+    if (user.length === 0) {
+      setUserLoggedIn(false)
+    } else {
+      setUserLoggedIn(true)
+    }
+  }
+
+  function changeUserStatus() {
+    setUserLoggedIn(!userLoggedIn)
+  }
+
   return (
     <div
       className={
@@ -614,6 +632,8 @@ export function App() {
         selectProduct={selectProduct}
         loginPopUpStatus={loginPopUpStatus}
         handleLoginPopUp={handleLoginPopUp}
+        userLoggedIn={userLoggedIn}
+        changeUserStatus={changeUserStatus}
       />
 
       <Main
@@ -641,6 +661,7 @@ export function App() {
         addToCart={addToCart}
         removeCartItem={removeCartItem}
         total={total}
+        changeUserStatus={changeUserStatus}
       />
       <Footer />
     </div>

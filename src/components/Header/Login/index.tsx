@@ -2,9 +2,17 @@ import './styles.css'
 
 import { LoginPopUp } from '../../LoginPopUp'
 
-import { HandleLoginPopUp, LoginPopUpStatus } from '../../../types/types'
+import {
+  HandleLoginPopUp,
+  LoginPopUpStatus,
+  UserLoggedInProps,
+  ChangeUserStatus
+} from '../../../types/types'
 
-type LoginProps = HandleLoginPopUp & LoginPopUpStatus
+type LoginProps = HandleLoginPopUp &
+  LoginPopUpStatus &
+  UserLoggedInProps &
+  ChangeUserStatus
 
 export function Login(props: LoginProps) {
   return (
@@ -21,6 +29,8 @@ export function Login(props: LoginProps) {
       <LoginPopUp
         loginPopUpStatus={props.loginPopUpStatus}
         handleLoginPopUp={props.handleLoginPopUp}
+        userLoggedIn={props.userLoggedIn}
+        changeUserStatus={props.changeUserStatus}
       />
     </>
   )

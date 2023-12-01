@@ -201,6 +201,10 @@ export type FetchAllProducts = {
   fetchAllProducts: () => void
 }
 
+export type UserLoggedInProps = {
+  userLoggedIn: boolean
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
@@ -271,4 +275,8 @@ export type AddToCart = {
 
 export type HandleLoginPopUp = {
   handleLoginPopUp: () => void
+}
+
+export type ChangeUserStatus = {
+  changeUserStatus: () => void
 }

@@ -92,7 +92,15 @@ const registerNewUser = async (req, res) => {
       }
     ])
     .into('users')
-    .then(data => res.json('User registered successfully.'))
+    .then(data =>
+      res.json({
+        message: 'User registered successfully.',
+        user: {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName
+        }
+      })
+    )
     .catch(err => res.json('User already registered. Try logging in.'))
 }
 
