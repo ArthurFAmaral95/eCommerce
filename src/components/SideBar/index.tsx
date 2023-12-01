@@ -41,6 +41,7 @@ export function SideBar(props: SideBarProps) {
             loginPopUpStatus={props.loginPopUpStatus}
             changeUserStatus={props.changeUserStatus}
             userLoggedIn={props.userLoggedIn}
+            handleMenu={props.handleMenu}
           />
           <p>Explore</p>
           <a href="/" id="logo">

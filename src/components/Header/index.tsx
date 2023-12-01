@@ -75,6 +75,7 @@ export function Header(props: HeaderProps) {
                 loginPopUpStatus={props.loginPopUpStatus}
                 userLoggedIn={props.userLoggedIn}
                 changeUserStatus={props.changeUserStatus}
+                handleMenu={props.handleMenu}
               />
               <ShoppingCart />
             </div>

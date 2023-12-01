@@ -6,13 +6,15 @@ import {
   HandleLoginPopUp,
   LoginPopUpStatus,
   UserLoggedInProps,
-  ChangeUserStatus
+  ChangeUserStatus,
+  HandleMenu
 } from '../../../types/types'
 
 type LoginProps = HandleLoginPopUp &
   LoginPopUpStatus &
   UserLoggedInProps &
-  ChangeUserStatus
+  ChangeUserStatus &
+  HandleMenu
 
 export function Login(props: LoginProps) {
   return (
@@ -31,6 +33,7 @@ export function Login(props: LoginProps) {
         handleLoginPopUp={props.handleLoginPopUp}
         userLoggedIn={props.userLoggedIn}
         changeUserStatus={props.changeUserStatus}
+        handleMenu={props.handleMenu}
       />
     </>
   )

@@ -4,14 +4,16 @@ import {
   LoginPopUpStatus,
   HandleLoginPopUp,
   UserLoggedInProps,
-  ChangeUserStatus
+  ChangeUserStatus,
+  HandleMenu
 } from '../../types/types'
 import { Link } from 'react-router-dom'
 
 type LoginPopUpProps = LoginPopUpStatus &
   HandleLoginPopUp &
   UserLoggedInProps &
-  ChangeUserStatus
+  ChangeUserStatus &
+  HandleMenu
 
 export function LoginPopUp(props: LoginPopUpProps) {
   const userInfo = JSON.parse(localStorage.getItem('user') || 'false') || []
@@ -30,6 +32,7 @@ export function LoginPopUp(props: LoginPopUpProps) {
           id="login"
           onClick={() => {
             props.handleLoginPopUp()
+            props.handleMenu(false)
           }}
         >
           Login
@@ -40,6 +43,7 @@ export function LoginPopUp(props: LoginPopUpProps) {
           id="register"
           onClick={() => {
             props.handleLoginPopUp()
+            props.handleMenu(false)
           }}
         >
           Register
