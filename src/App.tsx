@@ -664,6 +664,7 @@ export function App() {
         removeCartItem={removeCartItem}
         total={total}
         changeUserStatus={changeUserStatus}
+        userLoggedIn={userLoggedIn}
       />
       <Footer />
     </div>

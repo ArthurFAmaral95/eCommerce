@@ -94,7 +94,7 @@ const registerNewUser = async (req, res) => {
     .into('users')
     .then(data =>
       res.json({
-        message: 'User registered successfully.',
+        message: `Welcome to e-Commerce, ${req.body.firstName} ${req.body.lastName}`,
         user: {
           firstName: req.body.firstName,
           lastName: req.body.lastName

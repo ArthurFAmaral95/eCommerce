@@ -9,7 +9,9 @@ import axios from 'axios'
 
 import './styles.css'
 
-import { ChangeUserStatus } from '../../types/types'
+import { ChangeUserStatus, UserLoggedInProps } from '../../types/types'
+
+type FormProps = ChangeUserStatus & UserLoggedInProps
 
 type RegisterFormProps = z.infer<typeof createUserFormSchema>
 
@@ -68,9 +70,10 @@ const createUserFormSchema = z
     }
   })
 
-export function RegisterForm(props: ChangeUserStatus) {
+export function RegisterForm(props: FormProps) {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [message, setMessage] = useState('')
 
   const {
     register,
@@ -104,108 +107,121 @@ export function RegisterForm(props: ChangeUserStatus) {
           })
         )
 
-        console.log(response.data.message)
+        setMessage(response.data.message)
       })
       .then(() => {
         props.changeUserStatus()
       })
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
   }
 
   return (
-    <form id="register-form" onSubmit={handleSubmit(createUser)}>
-      <fieldset>
-        <div>
-          <div className="errors">
-            <label htmlFor="firstName">First name:</label>
-            {errors.firstName && <span>{errors.firstName.message}</span>}
+    <>
+      <form
+        id="register-form"
+        onSubmit={handleSubmit(createUser)}
+        className={props.userLoggedIn ? 'hidden' : ''}
+      >
+        <fieldset>
+          <div>
+            <div className="errors">
+              <label htmlFor="firstName">First name:</label>
+              {errors.firstName && <span>{errors.firstName.message}</span>}
+            </div>
+            <input type="text" id="firstName" {...register('firstName')} />
           </div>
-          <input type="text" id="firstName" {...register('firstName')} />
-        </div>
-        <div>
-          <div className="errors">
-            <label htmlFor="lastName">Last name:</label>
-            {errors.lastName && <span>{errors.lastName.message}</span>}
+          <div>
+            <div className="errors">
+              <label htmlFor="lastName">Last name:</label>
+              {errors.lastName && <span>{errors.lastName.message}</span>}
+            </div>
+            <input type="text" id="lastName" {...register('lastName')} />
           </div>
-          <input type="text" id="lastName" {...register('lastName')} />
-        </div>
-      </fieldset>
-      <fieldset>
-        <div>
-          <div className="errors">
-            <label htmlFor="email">E-mail:</label>
-            {errors.email && <span>{errors.email.message}</span>}
+        </fieldset>
+        <fieldset>
+          <div>
+            <div className="errors">
+              <label htmlFor="email">E-mail:</label>
+              {errors.email && <span>{errors.email.message}</span>}
+            </div>
+            <input type="email" id="email" {...register('email')} />
           </div>
-          <input type="email" id="email" {...register('email')} />
-        </div>
-        <div>
-          <div className="errors">
-            <label htmlFor="confirmEmail">Corfirm E-mail:</label>
-            {errors.confirmEmail && <span>{errors.confirmEmail.message}</span>}
+          <div>
+            <div className="errors">
+              <label htmlFor="confirmEmail">Corfirm E-mail:</label>
+              {errors.confirmEmail && (
+                <span>{errors.confirmEmail.message}</span>
+              )}
+            </div>
+            <input
+              type="email"
+              id="confirmEmail"
+              {...register('confirmEmail')}
+            />
           </div>
-          <input type="email" id="confirmEmail" {...register('confirmEmail')} />
-        </div>
-      </fieldset>
-      <fieldset>
-        <div>
-          <div className="errors">
-            <label htmlFor="password">Password:</label>
-            {errors.password && <span>{errors.password.message}</span>}
+        </fieldset>
+        <fieldset>
+          <div>
+            <div className="errors">
+              <label htmlFor="password">Password:</label>
+              {errors.password && <span>{errors.password.message}</span>}
+            </div>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              {...register('password')}
+            />
+            <img
+              src="./open-eye.svg"
+              alt="Open eye icon"
+              className={showPassword ? 'hidden' : ''}
+              onClick={() => {
+                changePasswordVisibility()
+              }}
+            />
+            <img
+              src="./close-eye.svg"
+              alt="Close eye icon"
+              className={showPassword ? '' : 'hidden'}
+              onClick={() => {
+                changePasswordVisibility()
+              }}
+            />
           </div>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            id="password"
-            {...register('password')}
-          />
-          <img
-            src="./open-eye.svg"
-            alt="Open eye icon"
-            className={showPassword ? 'hidden' : ''}
-            onClick={() => {
-              changePasswordVisibility()
-            }}
-          />
-          <img
-            src="./close-eye.svg"
-            alt="Close eye icon"
-            className={showPassword ? '' : 'hidden'}
-            onClick={() => {
-              changePasswordVisibility()
-            }}
-          />
-        </div>
-        <div>
-          <div className="errors">
-            <label htmlFor="confirmPassword">Confirm password:</label>
-            {errors.confirmPassword && (
-              <span>{errors.confirmPassword.message}</span>
-            )}
+          <div>
+            <div className="errors">
+              <label htmlFor="confirmPassword">Confirm password:</label>
+              {errors.confirmPassword && (
+                <span>{errors.confirmPassword.message}</span>
+              )}
+            </div>
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              id="confirmPassword"
+              {...register('confirmPassword')}
+            />
+            <img
+              src="./open-eye.svg"
+              alt="Open eye icon"
+              className={showConfirmPassword ? 'hidden' : ''}
+              onClick={() => {
+                changeConfirmPasswordVisibility()
+              }}
+            />
+            <img
+              src="./close-eye.svg"
+              alt="Close eye icon"
+              className={showConfirmPassword ? '' : 'hidden'}
+              onClick={() => {
+                changeConfirmPasswordVisibility()
+              }}
+            />
           </div>
-          <input
-            type={showConfirmPassword ? 'text' : 'password'}
-            id="confirmPassword"
-            {...register('confirmPassword')}
-          />
-          <img
-            src="./open-eye.svg"
-            alt="Open eye icon"
-            className={showConfirmPassword ? 'hidden' : ''}
-            onClick={() => {
-              changeConfirmPasswordVisibility()
-            }}
-          />
-          <img
-            src="./close-eye.svg"
-            alt="Close eye icon"
-            className={showConfirmPassword ? '' : 'hidden'}
-            onClick={() => {
-              changeConfirmPasswordVisibility()
-            }}
-          />
-        </div>
-      </fieldset>
+        </fieldset>
 
-      <button>Register</button>
-    </form>
+        <button>Register</button>
+      </form>
+      <p>{message}</p>
+    </>
   )
 }
