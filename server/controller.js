@@ -106,17 +106,6 @@ const registerNewUser = async (req, res) => {
     })
 }
 
-const test = async (req, res) => {
-  knx
-    .select()
-    .count('email', { as: 'userCount' })
-    .from('users')
-    .whereLike('email', req.body.email)
-    .then(data => {
-      res.json(data[0].userCount)
-    })
-}
-
 export {
   categories,
   products,
@@ -124,6 +113,5 @@ export {
   productsInfo,
   product,
   productInfo,
-  registerNewUser,
-  test
+  registerNewUser
 }

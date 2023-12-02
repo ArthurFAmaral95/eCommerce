@@ -15,9 +15,10 @@ type LoginPopUpProps = LoginPopUpStatus &
   ChangeUserStatus &
   HandleMenu
 
-export function LoginPopUp(props: LoginPopUpProps) {
-  const userInfo = JSON.parse(localStorage.getItem('user') || 'false') || []
+export const userInfo =
+  JSON.parse(localStorage.getItem('user') || 'false') || []
 
+export function LoginPopUp(props: LoginPopUpProps) {
   return (
     <div
       className={

@@ -27,6 +27,8 @@
 .login-pop-up h3 {
   color: #000;
   font-size: 2rem;
+
+  font-family: "Roboto", sans-serif;
 }
 
 .login-pop-up a.hidden {
