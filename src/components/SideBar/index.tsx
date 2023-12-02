@@ -2,8 +2,6 @@ import './styles.css'
 
 import { Categories } from '../Header/Categories'
 
-import { userInfo } from '../LoginPopUp'
-
 import {
   OpenMenu,
   CategoriesArrayProps,
@@ -11,7 +9,8 @@ import {
   SelectCategory,
   HandleLoginPopUp,
   LoginPopUpStatus,
-  UserLoggedInProps
+  UserLoggedInProps,
+  UserName
 } from '../../types/types'
 
 type SideBarProps = OpenMenu &
@@ -20,7 +19,8 @@ type SideBarProps = OpenMenu &
   SelectCategory &
   HandleLoginPopUp &
   LoginPopUpStatus &
-  UserLoggedInProps
+  UserLoggedInProps &
+  UserName
 
 export function SideBar(props: SideBarProps) {
   return (
@@ -38,7 +38,7 @@ export function SideBar(props: SideBarProps) {
           <div>
             <span>{props.userLoggedIn ? `Welcome,` : ''}</span>
             <br />
-            <span>{props.userLoggedIn ? `${userInfo.userFirstName}` : ''}</span>
+            <span>{props.userLoggedIn ? `${props.userName}` : ''}</span>
           </div>
           <div>
             <p>Explore</p>

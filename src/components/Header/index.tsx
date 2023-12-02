@@ -23,7 +23,9 @@ import {
   LoginPopUpStatus,
   HandleLoginPopUp,
   UserLoggedInProps,
-  ChangeUserStatus
+  ChangeUserStatus,
+  ChangeUserName,
+  UserName
 } from '../../types/types'
 import { ListItem } from './ListItem'
 
@@ -42,7 +44,9 @@ type HeaderProps = CategoriesArrayProps &
   LoginPopUpStatus &
   HandleLoginPopUp &
   UserLoggedInProps &
-  ChangeUserStatus
+  ChangeUserStatus &
+  ChangeUserName &
+  UserName
 
 export function Header(props: HeaderProps) {
   const renderListItens: any = []
@@ -75,7 +79,8 @@ export function Header(props: HeaderProps) {
                 loginPopUpStatus={props.loginPopUpStatus}
                 userLoggedIn={props.userLoggedIn}
                 changeUserStatus={props.changeUserStatus}
-                handleMenu={props.handleMenu}
+                changeUserName={props.changeUserName}
+                userName={props.userName}
               />
               <ShoppingCart />
             </div>

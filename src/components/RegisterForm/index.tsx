@@ -9,9 +9,13 @@ import axios from 'axios'
 
 import './styles.css'
 
-import { ChangeUserStatus, UserLoggedInProps } from '../../types/types'
+import {
+  ChangeUserStatus,
+  UserLoggedInProps,
+  ChangeUserName
+} from '../../types/types'
 
-type FormProps = ChangeUserStatus & UserLoggedInProps
+type FormProps = ChangeUserStatus & UserLoggedInProps & ChangeUserName
 
 type RegisterFormProps = z.infer<typeof createUserFormSchema>
 
@@ -99,7 +103,6 @@ export function RegisterForm(props: FormProps) {
         password: data.password
       })
       .then(response => {
-        console.log(response)
         localStorage.setItem(
           'user',
           JSON.stringify({
@@ -109,6 +112,7 @@ export function RegisterForm(props: FormProps) {
         )
 
         setMessage(response.data.message)
+        props.changeUserName(response.data.user.firstName)
       })
       .then(() => {
         props.changeUserStatus()

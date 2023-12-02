@@ -118,6 +118,10 @@ export function App() {
 
   const [userLoggedIn, setUserLoggedIn] = useState(false)
 
+  const [userName, setUserName] = useState(
+    JSON.parse(localStorage.getItem('user') || 'false').userFirstName || []
+  )
+
   window.addEventListener('popstate', updatePageOnNavigation)
 
   useEffect(() => {
@@ -602,6 +606,10 @@ export function App() {
     setUserLoggedIn(!userLoggedIn)
   }
 
+  function changeUserName(user: string) {
+    setUserName(user)
+  }
+
   return (
     <div
       className={
@@ -616,7 +624,7 @@ export function App() {
         loginPopUpStatus={loginPopUpStatus}
         handleLoginPopUp={handleLoginPopUp}
         userLoggedIn={userLoggedIn}
-        changeUserStatus={changeUserStatus}
+        userName={userName}
       />
 
       <Header
@@ -636,6 +644,8 @@ export function App() {
         handleLoginPopUp={handleLoginPopUp}
         userLoggedIn={userLoggedIn}
         changeUserStatus={changeUserStatus}
+        changeUserName={changeUserName}
+        userName={userName}
       />
 
       <Main
@@ -665,6 +675,7 @@ export function App() {
         total={total}
         changeUserStatus={changeUserStatus}
         userLoggedIn={userLoggedIn}
+        changeUserName={changeUserName}
       />
       <Footer />
     </div>

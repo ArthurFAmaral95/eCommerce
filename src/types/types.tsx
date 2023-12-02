@@ -197,6 +197,10 @@ export type LoginPopUpStatus = {
   loginPopUpStatus: boolean
 }
 
+export type UserName = {
+  userName: string
+}
+
 export type FetchAllProducts = {
   fetchAllProducts: () => void
 }
@@ -279,4 +283,8 @@ export type HandleLoginPopUp = {
 
 export type ChangeUserStatus = {
   changeUserStatus: () => void
+}
+
+export type ChangeUserName = {
+  changeUserName: (user: string) => void
 }

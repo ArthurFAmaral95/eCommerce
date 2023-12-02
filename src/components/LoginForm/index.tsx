@@ -4,6 +4,16 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import {
+  ChangeUserStatus,
+  UserLoggedInProps,
+  ChangeUserName
+} from '../../types/types'
+
+type FormProps = ChangeUserStatus & UserLoggedInProps & ChangeUserName
+
+import axios from 'axios'
+
 import './styles.css'
 
 type UserFormProps = z.infer<typeof userLoginFormSchema>
@@ -16,8 +26,10 @@ const userLoginFormSchema = z.object({
   password: z.string().min(8, 'Password must be at least 8 characters.')
 })
 
-export function LoginForm() {
+export function LoginForm(props: FormProps) {
   const [showPassword, setShowPassword] = useState(false)
+
+  const [message, setMessage] = useState('')
 
   const {
     register,
@@ -32,7 +44,29 @@ export function LoginForm() {
   }
 
   function handleUserLogin(data: UserFormProps) {
-    console.log(data)
+    axios
+      .post('http://localhost:4001/userLogin', {
+        email: data.email,
+        password: data.password
+      })
+      .then(response => {
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            userFirstName: response.data.user.firstName,
+            userLastName: response.data.user.lastName
+          })
+        )
+
+        setMessage(response.data.message)
+        props.changeUserName(response.data.user.firstName)
+      })
+      .then(() => {
+        props.changeUserStatus()
+      })
+      .catch(err => {
+        console.error(err.response.data)
+      })
   }
 
   return (
