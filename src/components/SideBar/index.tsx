@@ -1,19 +1,26 @@
 import './styles.css'
 
-import { Login } from '../Header/Login'
 import { Categories } from '../Header/Categories'
 
 import {
   OpenMenu,
   CategoriesArrayProps,
   HandleMenu,
-  SelectCategory
+  SelectCategory,
+  HandleLoginPopUp,
+  LoginPopUpStatus,
+  UserLoggedInProps,
+  UserName
 } from '../../types/types'
 
 type SideBarProps = OpenMenu &
   CategoriesArrayProps &
   HandleMenu &
-  SelectCategory
+  SelectCategory &
+  HandleLoginPopUp &
+  LoginPopUpStatus &
+  UserLoggedInProps &
+  UserName
 
 export function SideBar(props: SideBarProps) {
   return (
@@ -28,11 +35,17 @@ export function SideBar(props: SideBarProps) {
       </div>
       <div className="content">
         <div className="blue-bg">
-          <Login />
-          <p>Explore</p>
-          <a href="/" id="logo">
-            e-Commerce
-          </a>
+          <div>
+            <span>{props.userLoggedIn ? `Welcome,` : ''}</span>
+            <br />
+            <span>{props.userLoggedIn ? `${props.userName}` : ''}</span>
+          </div>
+          <div>
+            <p>Explore</p>
+            <a href="/" id="logo">
+              e-Commerce
+            </a>
+          </div>
         </div>
         <div className="white-bg">
           <a href="/" id="home">

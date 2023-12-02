@@ -1,0 +1,70 @@
+.login-pop-up {
+  position: absolute;
+  top: 7rem;
+  right: 3rem;
+
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  width: 20rem;
+
+  background-color: #f8f3f3;
+
+  padding: 2.5rem 1rem;
+
+  border-radius: 1rem;
+  box-shadow: #fff 0 0 0.5rem 0.1rem;
+
+  visibility: visible;
+  opacity: 1;
+
+  transition: all 0.4s;
+}
+
+.login-pop-up h3 {
+  color: #000;
+  font-size: 2rem;
+
+  font-family: "Roboto", sans-serif;
+}
+
+.login-pop-up a.hidden {
+  display: none;
+}
+
+.login-pop-up a button {
+  width: 100%;
+}
+
+.login-pop-up::after {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  content: '';
+  background-color: #f8f3f3;
+
+  right: 3.5rem;
+  top: -1.5rem;
+
+  transform: rotate(45deg);
+}
+
+.login-pop-up.hidden {
+  visibility: hidden;
+  opacity: 0;
+
+  right: -2rem;
+  transform: scaleX(0);
+}
+
+.login-pop-up button {
+  background-color: rgb(255, 59, 59);
+  border: rgb(255, 59, 59);
+}
+
+.login-pop-up button.hidden {
+  display: none;
+}

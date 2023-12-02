@@ -95,6 +95,8 @@ export function App() {
     ProductsArrayProps[]
   >([])
 
+  const [loginPopUpStatus, setLoginPopUpStatus] = useState(false)
+
   const [openMenu, setOpenMenu] = useState(false)
   const [openFilters, setOpenFilters] = useState(false)
 
@@ -113,6 +115,14 @@ export function App() {
 
   const [cartProducts, setCartProducts] = useState<CartProductProps[]>([])
   const [total, setTotal] = useState(0)
+
+  const [userLoggedIn, setUserLoggedIn] = useState(false)
+
+  const [userName, setUserName] = useState(
+    JSON.parse(localStorage.getItem('user') || 'false').userFirstName || []
+  )
+
+  window.addEventListener('popstate', updatePageOnNavigation)
 
   useEffect(() => {
     fetchCategories()
@@ -150,6 +160,8 @@ export function App() {
       const mockCart: any = []
       localStorage.setItem('order', mockCart)
     }
+
+    checkUser()
   }, [])
 
   const fetchCategories = async () => {
@@ -163,16 +175,19 @@ export function App() {
       })
   }
 
+  function fetchAllProducts() {
+    axios
+      .get('http://localhost:4001/products')
+      .then(response => {
+        setProducts(response.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
   const fetchProducts = async () => {
     if (selectedCategory === '') {
-      axios
-        .get('http://localhost:4001/products')
-        .then(response => {
-          setProducts(response.data)
-        })
-        .catch(err => {
-          console.error(err)
-        })
     } else {
       axios
         .get(`http://localhost:4001/${selectedCategory}`)
@@ -550,6 +565,51 @@ export function App() {
     setTotal(Number(total.toFixed(2)))
   }
 
+  function handleLoginPopUp() {
+    setLoginPopUpStatus(!loginPopUpStatus)
+  }
+
+  function updatePageOnNavigation() {
+    const begginningOfURL = window.location.href.split('5173/')[1]
+    const vercelBegginningOfURL = window.location.href.split('.app/')[1]
+
+    if (begginningOfURL === '' || vercelBegginningOfURL === '') {
+      setSelectedCategory('')
+    } else {
+      categories.forEach(category => {
+        if (
+          begginningOfURL === 'TV%20&%20Audio' ||
+          vercelBegginningOfURL === 'TV%20&%20Audio'
+        ) {
+          setSelectedCategory('TV & Audio')
+        } else if (
+          category.category.includes(begginningOfURL) ||
+          category.category.includes(vercelBegginningOfURL)
+        ) {
+          setSelectedCategory(category.category)
+        }
+      })
+    }
+  }
+
+  function checkUser() {
+    const user = JSON.parse(localStorage.getItem('user') || 'false') || []
+
+    if (user.length === 0) {
+      setUserLoggedIn(false)
+    } else {
+      setUserLoggedIn(true)
+    }
+  }
+
+  function changeUserStatus() {
+    setUserLoggedIn(!userLoggedIn)
+  }
+
+  function changeUserName(user: string) {
+    setUserName(user)
+  }
+
   return (
     <div
       className={
@@ -561,6 +621,10 @@ export function App() {
         handleMenu={handleMenu}
         openMenu={openMenu}
         selectCategory={selectCategory}
+        loginPopUpStatus={loginPopUpStatus}
+        handleLoginPopUp={handleLoginPopUp}
+        userLoggedIn={userLoggedIn}
+        userName={userName}
       />
 
       <Header
@@ -576,9 +640,16 @@ export function App() {
         setPages={setPages}
         setPageNumber={setPageNumber}
         selectProduct={selectProduct}
+        loginPopUpStatus={loginPopUpStatus}
+        handleLoginPopUp={handleLoginPopUp}
+        userLoggedIn={userLoggedIn}
+        changeUserStatus={changeUserStatus}
+        changeUserName={changeUserName}
+        userName={userName}
       />
 
       <Main
+        fetchAllProducts={fetchAllProducts}
         products={products}
         categories={categories}
         productsOfPage={productsOfPage[pageNumber - 1]}
@@ -602,6 +673,9 @@ export function App() {
         addToCart={addToCart}
         removeCartItem={removeCartItem}
         total={total}
+        changeUserStatus={changeUserStatus}
+        userLoggedIn={userLoggedIn}
+        changeUserName={changeUserName}
       />
       <Footer />
     </div>

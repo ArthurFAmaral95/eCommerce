@@ -1,0 +1,78 @@
+#login-form,
+#login-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+#login-form {
+  gap: 2rem;
+
+  padding-bottom: 10rem;
+
+  width: 100%;
+}
+
+#login-form.hidden{
+  display: none;
+}
+
+#login-form div {
+  gap: 0.2rem;
+}
+
+#login-form .errors {
+  flex-direction: row;
+
+  align-items: center;
+
+  gap: 0.5rem;
+}
+
+#login-form .errors span {
+  color: red;
+}
+
+#login-form label,
+#login-form input {
+  font-size: 1.5rem;
+}
+
+#login-form input {
+  padding: 1rem 0.5rem;
+
+  border-radius: 1rem;
+}
+
+#login-form input:focus-visible {
+  outline: #fcd200 1px solid;
+  border: 1px solid transparent;
+}
+
+#login-form .email {
+  margin-bottom: 10rem;
+}
+
+#login-form div:nth-child(2) {
+  position: absolute;
+
+  top: 14rem;
+  width: calc(100% - 2rem);
+}
+
+#login-form img {
+  height: 3rem;
+  width: fit-content;
+
+  position: absolute;
+  right: 1rem;
+  top: 2.5rem;
+
+  cursor: pointer;
+
+  transition: all 0.5s;
+}
+
+#login-form img.hidden {
+  visibility: hidden;
+  opacity: 0;
+}

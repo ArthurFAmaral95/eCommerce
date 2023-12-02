@@ -1,5 +1,7 @@
 import { knx } from './db.js'
 
+const crypto = await import('crypto')
+
 const categories = async (req, res) => {
   knx
     .select('*')
@@ -81,11 +83,73 @@ const productInfo = async (req, res) => {
     .catch(err => res.json(err))
 }
 
+const registerNewUser = async (req, res) => {
+  knx
+    .insert([
+      {
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
+        email: req.body.email,
+        password: crypto
+          .createHash('sha1')
+          .update(req.body.password)
+          .digest('hex')
+      }
+    ])
+    .into('users')
+    .then(() =>
+      res.json({
+        message: `Welcome to e-Commerce, ${req.body.firstName} ${req.body.lastName}`,
+        user: {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName
+        }
+      })
+    )
+    .catch(err => {
+      res.status(400).send(err)
+    })
+}
+
+const checkLogin = async (req, res) => {
+  knx
+    .select('*')
+    .from('users')
+    .whereLike('email', `${req.body.email}`)
+    .then(user => {
+      if (user.length === 0) {
+        return res
+          .status(400)
+          .send({ error: 'email', message: 'User not found.' })
+      } else if (
+        user[0].password !==
+        crypto.createHash('sha1').update(req.body.password).digest('hex')
+      ) {
+        return res
+          .status(400)
+          .send({ error: 'password', message: 'Wrong password.' })
+      } else {
+        res.json({
+          message: `Welcome to e-Commerce, ${user[0].first_name} ${user[0].last_name}`,
+          user: {
+            firstName: user[0].first_name,
+            lastName: user[0].last_name
+          }
+        })
+      }
+    })
+    .catch(err => {
+      res.json(err)
+    })
+}
+
 export {
   categories,
   products,
   categoryPage,
   productsInfo,
   product,
-  productInfo
+  productInfo,
+  registerNewUser,
+  checkLogin
 }

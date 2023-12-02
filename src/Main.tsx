@@ -25,11 +25,18 @@ import {
   CartProductArrayProps,
   AddToCart,
   RemoveCartItem,
-  Total
+  Total,
+  FetchAllProducts,
+  ChangeUserStatus,
+  UserLoggedInProps,
+  ChangeUserName
 } from './types/types'
+
 import { SearchResultPage } from './pages/SearchResultPage'
 import { ProductPage } from './pages/ProductPage'
 import { CartPage } from './pages/CartPage'
+import { LoginPage } from './pages/LoginPage'
+import { RegisterPage } from './pages/RegisterPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -52,7 +59,11 @@ type MainProps = MainArrayProps &
   CartProductArrayProps &
   RemoveCartItem &
   Total &
-  AddToCart
+  AddToCart &
+  FetchAllProducts &
+  ChangeUserStatus &
+  UserLoggedInProps &
+  ChangeUserName
 
 export function Main(props: MainProps) {
   return (
@@ -61,6 +72,7 @@ export function Main(props: MainProps) {
         path="/"
         element={
           <LandingPage
+            fetchAllProducts={props.fetchAllProducts}
             categories={props.categories}
             products={props.products}
             selectCategory={props.selectCategory}
@@ -122,6 +134,26 @@ export function Main(props: MainProps) {
             cartProducts={props.cartProducts}
             removeCartItem={props.removeCartItem}
             total={props.total}
+          />
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <LoginPage
+            changeUserStatus={props.changeUserStatus}
+            userLoggedIn={props.userLoggedIn}
+            changeUserName={props.changeUserName}
+          />
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <RegisterPage
+            changeUserStatus={props.changeUserStatus}
+            userLoggedIn={props.userLoggedIn}
+            changeUserName={props.changeUserName}
           />
         }
       />

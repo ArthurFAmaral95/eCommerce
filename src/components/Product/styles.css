@@ -88,42 +88,6 @@
   gap: 1.2rem;
 }
 
-.product .info .btns button,
-.pop-up .btns button,
-#cart-page .checkout {
-  border-radius: 10rem;
-
-  font-size: 1.6rem;
-  line-height: 1.35rem;
-
-  padding: 1.2rem 1.6rem 1.2rem 1.7rem;
-
-  cursor: pointer;
-}
-
-.pop-up .btns a:nth-child(1) button {
-  background-color: #b7a23b;
-  border: #fcd200;
-}
-
-.product .info .btns button:nth-child(1),
-.pop-up .btns a:nth-child(2) button {
-  background-color: #ffd814;
-  border: #fcd200;
-}
-
-.product .info .btns button:nth-child(2),
-.pop-up .btns button:nth-child(3),
-#cart-page .checkout {
-  background-color: #ffa41c;
-  border: #ff8f00;
-}
-
-.product .info .sender-seller {
-  display: flex;
-  gap: 1rem;
-}
-
 .product .info .sender-seller span:nth-child(2) {
   color: #007185;
 }

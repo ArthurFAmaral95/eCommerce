@@ -193,6 +193,22 @@ export type Total = {
   total: number
 }
 
+export type LoginPopUpStatus = {
+  loginPopUpStatus: boolean
+}
+
+export type UserName = {
+  userName: string
+}
+
+export type FetchAllProducts = {
+  fetchAllProducts: () => void
+}
+
+export type UserLoggedInProps = {
+  userLoggedIn: boolean
+}
+
 export type HandleMenu = {
   handleMenu: (boolean: boolean) => void
 }
@@ -259,4 +275,16 @@ export type RemoveCartItem = {
 
 export type AddToCart = {
   addToCart: (product: ProductsProps) => void
+}
+
+export type HandleLoginPopUp = {
+  handleLoginPopUp: () => void
+}
+
+export type ChangeUserStatus = {
+  changeUserStatus: () => void
+}
+
+export type ChangeUserName = {
+  changeUserName: (user: string) => void
 }

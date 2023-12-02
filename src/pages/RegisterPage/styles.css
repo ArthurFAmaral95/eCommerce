@@ -1,0 +1,19 @@
+#register-page {
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+#register-page p {
+  font-size: 2rem;
+  text-align: center;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+#register-page a.hidden {
+  display: none;
+}

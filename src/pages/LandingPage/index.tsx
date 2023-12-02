@@ -4,12 +4,21 @@ import { Gallery } from '../../components/Gallery'
 import {
   MainArrayProps,
   SelectCategory,
-  SelectProduct
+  SelectProduct,
+  FetchAllProducts
 } from '../../types/types'
+import { useEffect } from 'react'
 
-type LandingPageProps = MainArrayProps & SelectCategory & SelectProduct
+type LandingPageProps = MainArrayProps &
+  SelectCategory &
+  SelectProduct &
+  FetchAllProducts
 
 export function LandingPage(props: LandingPageProps) {
+  useEffect(() => {
+    props.fetchAllProducts()
+  }, [])
+
   const renderLandingPage = []
 
   for (const category of props.categories) {
