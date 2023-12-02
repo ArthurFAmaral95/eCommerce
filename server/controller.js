@@ -1,5 +1,7 @@
 import { knx } from './db.js'
 
+const crypto = await import('crypto')
+
 const categories = async (req, res) => {
   knx
     .select('*')
@@ -88,7 +90,10 @@ const registerNewUser = async (req, res) => {
         first_name: req.body.firstName,
         last_name: req.body.lastName,
         email: req.body.email,
-        password: req.body.password
+        password: crypto
+          .createHash('sha1')
+          .update(req.body.password)
+          .digest('hex')
       }
     ])
     .into('users')
@@ -116,7 +121,10 @@ const checkLogin = async (req, res) => {
         return res
           .status(400)
           .send({ error: 'email', message: 'User not found.' })
-      } else if (user[0].password !== req.body.password) {
+      } else if (
+        user[0].password !==
+        crypto.createHash('sha1').update(req.body.password).digest('hex')
+      ) {
         return res
           .status(400)
           .send({ error: 'password', message: 'Wrong password.' })
