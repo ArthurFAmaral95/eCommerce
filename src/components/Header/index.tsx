@@ -3,7 +3,7 @@ import './styles.css'
 import { Categories } from './Categories'
 import { Login } from './Login'
 import { Menu } from './Menu'
-import { Place } from './Place'
+
 import { Search } from './Search'
 import { ShoppingCart } from './ShoppingCart'
 
@@ -100,9 +100,6 @@ export function Header(props: HeaderProps) {
             handleMenu={props.handleMenu}
             selectCategory={props.selectCategory}
           />
-        </div>
-        <div className="botton-nav">
-          <Place imgPath="./location.svg" />
         </div>
       </nav>
     </header>

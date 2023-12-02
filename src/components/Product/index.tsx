@@ -6,7 +6,7 @@ import {
   ShowAddToCartpopUp,
   AddToCart
 } from '../../types/types'
-import { Place } from '../Header/Place'
+
 import { SelectInput } from '../SelectInput'
 
 type ProductPageProps = ProductInfoArrayProps &
@@ -98,7 +98,7 @@ export function Product(props: ProductPageProps) {
           <sup className="over-line">{priceCents}</sup>
         </p>
         <span className="delivery">FREE shipping</span>
-        <Place imgPath="../location-colored.svg" />
+
         <form className="select-inputs">
           <SelectInput
             selectId="qtd"
