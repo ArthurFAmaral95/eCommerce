@@ -16,6 +16,18 @@
   gap: 0.2rem;
 }
 
+#login-form .errors {
+  flex-direction: row;
+
+  align-items: center;
+
+  gap: 0.5rem;
+}
+
+#login-form .errors span {
+  color: red;
+}
+
 #login-form label,
 #login-form input {
   font-size: 1.5rem;
@@ -32,7 +44,7 @@
   border: 1px solid transparent;
 }
 
-#login-form div:nth-child(1) {
+#login-form .email {
   margin-bottom: 10rem;
 }
 
