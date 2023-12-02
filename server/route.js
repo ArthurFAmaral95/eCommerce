@@ -10,6 +10,8 @@ router.get('/products', routes.products)
 
 router.get('/productId/:id', routes.product)
 
+router.get('/userLogin', routes.checkLogin)
+
 router.get('/:category', routes.categoryPage)
 
 router.get('/:category/products-info', routes.productsInfo)

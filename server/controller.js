@@ -92,7 +92,7 @@ const registerNewUser = async (req, res) => {
       }
     ])
     .into('users')
-    .then(data =>
+    .then(() =>
       res.json({
         message: `Welcome to e-Commerce, ${req.body.firstName} ${req.body.lastName}`,
         user: {
@@ -106,6 +106,35 @@ const registerNewUser = async (req, res) => {
     })
 }
 
+const checkLogin = async (req, res) => {
+  knx
+    .select('*')
+    .from('users')
+    .whereLike('email', `${req.body.email}`)
+    .then(user => {
+      if (user.length === 0) {
+        return res
+          .status(400)
+          .send({ error: 'email', message: 'User not found.' })
+      } else if (user[0].password !== req.body.password) {
+        return res
+          .status(400)
+          .send({ error: 'password', message: 'Wrong password.' })
+      } else {
+        res.json({
+          message: `Welcome to e-Commerce, ${user[0].first_name} ${user[0].last_name}`,
+          user: {
+            firstName: user[0].first_name,
+            lastName: user[0].last_name
+          }
+        })
+      }
+    })
+    .catch(err => {
+      res.json(err)
+    })
+}
+
 export {
   categories,
   products,
@@ -113,5 +142,6 @@ export {
   productsInfo,
   product,
   productInfo,
-  registerNewUser
+  registerNewUser,
+  checkLogin
 }
