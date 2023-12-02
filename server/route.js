@@ -18,4 +18,6 @@ router.get('/:category/product-info/:id', routes.productInfo)
 
 router.post('/registerUser', routes.registerNewUser)
 
+router.post('/test', routes.test)
+
 export { router }

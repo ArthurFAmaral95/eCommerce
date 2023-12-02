@@ -101,7 +101,20 @@ const registerNewUser = async (req, res) => {
         }
       })
     )
-    .catch(err => res.json('User already registered. Try logging in.'))
+    .catch(err => {
+      res.status(400).send(err)
+    })
+}
+
+const test = async (req, res) => {
+  knx
+    .select()
+    .count('email', { as: 'userCount' })
+    .from('users')
+    .whereLike('email', req.body.email)
+    .then(data => {
+      res.json(data[0].userCount)
+    })
 }
 
 export {
@@ -111,5 +124,6 @@ export {
   productsInfo,
   product,
   productInfo,
-  registerNewUser
+  registerNewUser,
+  test
 }

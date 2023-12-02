@@ -99,6 +99,7 @@ export function RegisterForm(props: FormProps) {
         password: data.password
       })
       .then(response => {
+        console.log(response)
         localStorage.setItem(
           'user',
           JSON.stringify({
@@ -112,7 +113,15 @@ export function RegisterForm(props: FormProps) {
       .then(() => {
         props.changeUserStatus()
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        if (err.response.data.code === 'SQLITE_CONSTRAINT') {
+          setMessage(
+            'Email already registered. Try logging in or choose a different one.'
+          )
+        } else {
+          console.error(err.response)
+        }
+      })
   }
 
   return (
