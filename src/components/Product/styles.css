@@ -57,24 +57,6 @@
   line-height: 1.35rem;
 }
 
-.product .info .place {
-  position: initial;
-
-  background-color: #fff;
-  color: #007185;
-
-  font-size: 1.5rem;
-  line-height: 1.35rem;
-
-  padding: 0;
-
-  height: fit-content;
-}
-
-.product .info .place img {
-  margin: 0;
-}
-
 .product .info .select-inputs label,
 .product .info .sender-seller {
   font-size: 1.3rem;
