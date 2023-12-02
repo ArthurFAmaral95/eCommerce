@@ -6,3 +6,13 @@
   align-items: center;
   gap: 2rem;
 }
+
+#login-page p {
+  font-size: 2rem;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+#login-page a.hidden {
+  display: none;
+}

@@ -12,6 +12,11 @@ import {
 
 type FormProps = ChangeUserStatus & UserLoggedInProps & ChangeUserName
 
+type LoginErrorProps = {
+  error: string
+  message: string
+}
+
 import axios from 'axios'
 
 import './styles.css'
@@ -30,6 +35,8 @@ export function LoginForm(props: FormProps) {
   const [showPassword, setShowPassword] = useState(false)
 
   const [message, setMessage] = useState('')
+
+  const [loginError, setLoginError] = useState<LoginErrorProps>()
 
   const {
     register,
@@ -65,48 +72,62 @@ export function LoginForm(props: FormProps) {
         props.changeUserStatus()
       })
       .catch(err => {
-        console.error(err.response.data)
+        setLoginError(err.response.data)
       })
   }
 
   return (
-    <form id="login-form" onSubmit={handleSubmit(handleUserLogin)}>
-      <div className="email">
-        <div className="errors">
-          <label htmlFor="e-mail">E-mail</label>
-          {errors.email && <span>{errors.email.message}</span>}
+    <>
+      <form
+        id="login-form"
+        onSubmit={handleSubmit(handleUserLogin)}
+        className={props.userLoggedIn ? 'hidden' : ''}
+      >
+        <div className="email">
+          <div className="errors">
+            <label htmlFor="e-mail">E-mail</label>
+            {errors.email && <span>{errors.email.message}</span>}
+            <span>
+              {loginError?.error === 'email' ? loginError.message : ''}
+            </span>
+          </div>
+          <input type="email" id="e-mail" {...register('email')} />
         </div>
-        <input type="email" id="e-mail" {...register('email')} />
-      </div>
-      <div>
-        <div className="errors">
-          <label htmlFor="password">Password</label>
-          {errors.password && <span>{errors.password.message}</span>}
+        <div>
+          <div className="errors">
+            <label htmlFor="password">Password</label>
+            {errors.password && <span>{errors.password.message}</span>}
+            <span>
+              {loginError?.error === 'password' ? loginError.message : ''}
+            </span>
+          </div>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            {...register('password')}
+          />
+          <img
+            src="./open-eye.svg"
+            alt="Open eye icon"
+            className={showPassword ? 'hidden' : ''}
+            onClick={() => {
+              changePasswordVisibility()
+            }}
+          />
+          <img
+            src="./close-eye.svg"
+            alt="Close eye icon"
+            className={showPassword ? '' : 'hidden'}
+            onClick={() => {
+              changePasswordVisibility()
+            }}
+          />
         </div>
-        <input
-          type={showPassword ? 'text' : 'password'}
-          id="password"
-          {...register('password')}
-        />
-        <img
-          src="./open-eye.svg"
-          alt="Open eye icon"
-          className={showPassword ? 'hidden' : ''}
-          onClick={() => {
-            changePasswordVisibility()
-          }}
-        />
-        <img
-          src="./close-eye.svg"
-          alt="Close eye icon"
-          className={showPassword ? '' : 'hidden'}
-          onClick={() => {
-            changePasswordVisibility()
-          }}
-        />
-      </div>
 
-      <button>Login</button>
-    </form>
+        <button>Login</button>
+      </form>
+
+      <p>{message}</p>
+    </>
   )
 }

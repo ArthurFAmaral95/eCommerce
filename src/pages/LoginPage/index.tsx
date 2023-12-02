@@ -19,6 +19,10 @@ export function LoginPage(props: LoginFromProps) {
         userLoggedIn={props.userLoggedIn}
         changeUserName={props.changeUserName}
       />
+
+      <a href="/" className={props.userLoggedIn ? '' : 'hidden'}>
+        <button>Continue shopping</button>
+      </a>
     </main>
   )
 }
