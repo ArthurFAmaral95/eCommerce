@@ -13,6 +13,7 @@
 
 .cart-product img {
   max-width: 17rem;
+  max-height: 17rem;
 
   align-self: center;
 }
@@ -72,8 +73,13 @@
 
 @media (min-width: 425px) {
   .cart-product {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 18rem 1fr;
 
     max-width: 53rem;
+  }
+
+  .cart-product img {
+    justify-self: center;
   }
 }
