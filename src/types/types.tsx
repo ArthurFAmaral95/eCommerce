@@ -288,3 +288,7 @@ export type ChangeUserStatus = {
 export type ChangeUserName = {
   changeUserName: (user: string) => void
 }
+
+export type SubmitPurchase = {
+  submitPurchase: (data: any) => void
+}

@@ -5,6 +5,9 @@ import {
   Total,
   UserLoggedInProps
 } from '../../types/types'
+
+import { AddressFormProps } from '../../components/AddressForm'
+
 import { CheckoutOverviewListItem } from '../../components/CheckoutOverviewListItem'
 import { AddressForm } from '../../components/AddressForm'
 
@@ -19,6 +22,12 @@ export function CheckoutPage(props: CheckoutPageProps) {
     )
   })
 
+  function submitPurchase(data: AddressFormProps) {
+    const stringAddress = JSON.stringify(data)
+
+    console.log(stringAddress)
+  }
+
   return (
     <main id="checkout-page">
       <section id="purchase-overview">
@@ -30,7 +39,7 @@ export function CheckoutPage(props: CheckoutPageProps) {
       <hr />
       <section id="delivery-address">
         <h2>Address</h2>
-        <AddressForm />
+        <AddressForm submitPurchase={submitPurchase} />
       </section>
       <hr />
       <section id="payment-method">

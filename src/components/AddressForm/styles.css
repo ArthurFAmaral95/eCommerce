@@ -40,5 +40,9 @@
 }
 
 #address-form #zip-code {
-  width: 10rem;
+  width: 20rem;
+}
+
+#address-form span {
+  color: red;
 }
