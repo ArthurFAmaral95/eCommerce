@@ -61,7 +61,8 @@ export function LoginForm(props: FormProps) {
           'user',
           JSON.stringify({
             userFirstName: response.data.user.firstName,
-            userLastName: response.data.user.lastName
+            userLastName: response.data.user.lastName,
+            iserId: response.data.user.userId
           })
         )
 

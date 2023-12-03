@@ -97,12 +97,13 @@ const registerNewUser = async (req, res) => {
       }
     ])
     .into('users')
-    .then(() =>
+    .then(user =>
       res.json({
         message: `Welcome to e-Commerce, ${req.body.firstName} ${req.body.lastName}`,
         user: {
           firstName: req.body.firstName,
-          lastName: req.body.lastName
+          lastName: req.body.lastName,
+          userId: user[0]
         }
       })
     )
@@ -133,7 +134,8 @@ const checkLogin = async (req, res) => {
           message: `Welcome to e-Commerce, ${user[0].first_name} ${user[0].last_name}`,
           user: {
             firstName: user[0].first_name,
-            lastName: user[0].last_name
+            lastName: user[0].last_name,
+            userId: user[0].user_id
           }
         })
       }

@@ -2,6 +2,11 @@ import { Routes, Route } from 'react-router-dom'
 
 import { LandingPage } from './pages/LandingPage'
 import { CategoryPage } from './pages/CategoryPage'
+import { SearchResultPage } from './pages/SearchResultPage'
+import { ProductPage } from './pages/ProductPage'
+import { CartPage } from './pages/CartPage'
+import { LoginPage } from './pages/LoginPage'
+import { RegisterPage } from './pages/RegisterPage'
 
 import {
   MainArrayProps,
@@ -31,12 +36,6 @@ import {
   UserLoggedInProps,
   ChangeUserName
 } from './types/types'
-
-import { SearchResultPage } from './pages/SearchResultPage'
-import { ProductPage } from './pages/ProductPage'
-import { CartPage } from './pages/CartPage'
-import { LoginPage } from './pages/LoginPage'
-import { RegisterPage } from './pages/RegisterPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
