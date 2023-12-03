@@ -6,6 +6,7 @@ import {
   UserLoggedInProps
 } from '../../types/types'
 import { CheckoutOverviewListItem } from '../../components/CheckoutOverviewListItem'
+import { AddressForm } from '../../components/AddressForm'
 
 type CheckoutPageProps = CartProductArrayProps & Total & UserLoggedInProps
 
@@ -29,13 +30,16 @@ export function CheckoutPage(props: CheckoutPageProps) {
       <hr />
       <section id="delivery-address">
         <h2>Address</h2>
+        <AddressForm />
       </section>
       <hr />
       <section id="payment-method">
         <h2>Payment</h2>
       </section>
       <hr />
-      <button>Finish Purchase</button>
+      <button type="submit" form="address-form">
+        Finish Purchase
+      </button>
     </main>
   )
 }

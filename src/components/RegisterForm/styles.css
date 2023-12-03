@@ -14,7 +14,7 @@
   display: none;
 }
 
-#register-form fieldset {
+fieldset {
   gap: 1rem;
 
   border: none;
