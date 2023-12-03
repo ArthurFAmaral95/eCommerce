@@ -11,3 +11,8 @@
 
   font-size: 2rem;
 }
+
+button#address-form,
+button#payment-form {
+  display: none;
+}

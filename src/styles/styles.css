@@ -94,3 +94,32 @@ a {
   display: flex;
   gap: 1rem;
 }
+
+label,
+legend {
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: gray;
+}
+
+.input-container {
+  padding-block: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.input-container .input-text {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+input:focus-visible {
+  outline-color: #fcd200;
+  border: 1px solid transparent;
+}
+
+.input-text span {
+  color: red;
+}

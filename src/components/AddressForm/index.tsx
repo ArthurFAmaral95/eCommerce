@@ -1,6 +1,6 @@
 import './styles.css'
 
-import { SubmitPurchase } from '../../types/types'
+import { GetAddressData } from '../../types/types'
 
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -18,7 +18,7 @@ const AddressFormSchema = z.object({
 
 export type AddressFormProps = z.infer<typeof AddressFormSchema>
 
-export function AddressForm(props: SubmitPurchase) {
+export function AddressForm(props: GetAddressData) {
   const {
     register,
     handleSubmit,
@@ -36,7 +36,7 @@ export function AddressForm(props: SubmitPurchase) {
       country: data.country
     }
 
-    props.submitPurchase(addressData)
+    props.getAddressData(addressData)
   }
 
   return (

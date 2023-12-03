@@ -1,28 +1,10 @@
-#address-form label {
-  font-size: 1.2rem;
-  font-weight: 200;
-  color: gray;
-}
-
-#address-form .input-container {
-  padding-block: 0.5rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-#address-form .input-container .input-text {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
 #address-form .top {
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: 65% 35%;
 }
 
-#address-form input {
+#address-form input,
+#payment-form input[type='text'] {
   width: calc(100% - 1rem);
 
   padding: 1rem 0.5rem;
@@ -34,15 +16,6 @@
   border-radius: 1rem;
 }
 
-#address-form input:focus-visible {
-  outline-color: #fcd200;
-  border: 1px solid transparent;
-}
-
 #address-form #zip-code {
   width: 20rem;
-}
-
-#address-form span {
-  color: red;
 }

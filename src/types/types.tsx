@@ -1,3 +1,5 @@
+import { AddressFormProps } from '../components/AddressForm'
+
 export type CategoriesProps = {
   category: string
   id: number
@@ -289,6 +291,6 @@ export type ChangeUserName = {
   changeUserName: (user: string) => void
 }
 
-export type SubmitPurchase = {
-  submitPurchase: (data: any) => void
+export type GetAddressData = {
+  getAddressData: (address: AddressFormProps) => void
 }
