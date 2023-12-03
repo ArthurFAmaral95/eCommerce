@@ -7,6 +7,7 @@ import { ProductPage } from './pages/ProductPage'
 import { CartPage } from './pages/CartPage'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
+import { CheckoutPage } from './pages/CheckoutPage'
 
 import {
   MainArrayProps,
@@ -153,6 +154,16 @@ export function Main(props: MainProps) {
             changeUserStatus={props.changeUserStatus}
             userLoggedIn={props.userLoggedIn}
             changeUserName={props.changeUserName}
+          />
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <CheckoutPage
+            cartProducts={props.cartProducts}
+            total={props.total}
+            userLoggedIn={props.userLoggedIn}
           />
         }
       />

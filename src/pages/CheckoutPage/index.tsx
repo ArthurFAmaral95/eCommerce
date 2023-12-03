@@ -1,6 +1,14 @@
 import './styles.css'
 
-export function CheckoutPage() {
+import {
+  CartProductArrayProps,
+  Total,
+  UserLoggedInProps
+} from '../../types/types'
+
+type CheckoutPageProps = CartProductArrayProps & Total & UserLoggedInProps
+
+export function CheckoutPage(props: CheckoutPageProps) {
   return (
     <main id="checkout-page">
       <section id="purchase-overview">
