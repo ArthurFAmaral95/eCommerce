@@ -16,13 +16,6 @@ import { PaymentForm } from '../../components/PaymentForm'
 type CheckoutPageProps = CartProductArrayProps & Total & UserLoggedInProps
 
 export function CheckoutPage(props: CheckoutPageProps) {
-  const addressFormBtn: HTMLFormElement | null = document.querySelector(
-    'button#address-form'
-  )
-  const paymentFormBtn: HTMLFormElement | null = document.querySelector(
-    'button#payment-form'
-  )
-
   const renderOverviewList: any = []
 
   props.cartProducts.map(order => {
@@ -65,6 +58,12 @@ export function CheckoutPage(props: CheckoutPageProps) {
       <button id="payment-form" type="submit" form="payment-form"></button>
       <button
         onClick={() => {
+          const addressFormBtn: HTMLFormElement | null = document.querySelector(
+            'button#address-form'
+          )
+          const paymentFormBtn: HTMLFormElement | null = document.querySelector(
+            'button#payment-form'
+          )
           addressFormBtn?.click()
           paymentFormBtn?.click()
         }}
