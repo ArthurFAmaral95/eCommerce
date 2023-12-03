@@ -7,6 +7,7 @@ import {
 } from '../../types/types'
 
 import { AddressFormProps } from '../../components/AddressForm'
+import { PaymentFormProps } from '../../components/PaymentForm'
 
 import { CheckoutOverviewListItem } from '../../components/CheckoutOverviewListItem'
 import { AddressForm } from '../../components/AddressForm'
@@ -36,10 +37,10 @@ export function CheckoutPage(props: CheckoutPageProps) {
     console.log(stringAddress)
   }
 
-  // function getPaymentData(payment: any) {
-  //   const stringPayment = JSON.stringify(payment)
-  //   console.log(stringPayment)
-  // }
+  function getPaymentData(payment: PaymentFormProps) {
+    const stringPayment = JSON.stringify(payment)
+    console.log(stringPayment)
+  }
 
   return (
     <main id="checkout-page">
@@ -57,18 +58,11 @@ export function CheckoutPage(props: CheckoutPageProps) {
       <hr />
       <section id="payment-method">
         <h2>Payment</h2>
-        <PaymentForm />
+        <PaymentForm getPaymentData={getPaymentData} />
       </section>
       <hr />
       <button id="address-form" type="submit" form="address-form"></button>
-      <button
-        id="payment-form"
-        type="submit"
-        form="payment-form"
-        onClick={() => {
-          console.log('payment')
-        }}
-      ></button>
+      <button id="payment-form" type="submit" form="payment-form"></button>
       <button
         onClick={() => {
           addressFormBtn?.click()

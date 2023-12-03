@@ -1,5 +1,7 @@
 import { AddressFormProps } from '../components/AddressForm'
 
+import { PaymentFormProps } from '../components/PaymentForm'
+
 export type CategoriesProps = {
   category: string
   id: number
@@ -293,4 +295,8 @@ export type ChangeUserName = {
 
 export type GetAddressData = {
   getAddressData: (address: AddressFormProps) => void
+}
+
+export type GetPaymentData={
+  getPaymentData: (payment: PaymentFormProps) => void
 }
