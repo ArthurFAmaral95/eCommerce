@@ -55,7 +55,8 @@ a {
 #login-form button,
 #register-form button,
 #register-page button,
-#login-page button {
+#login-page button,
+#checkout-page button {
   border-radius: 10rem;
 
   font-size: 1.6rem;
@@ -85,7 +86,8 @@ a {
 .pop-up .btns button:nth-child(3),
 #cart-page .checkout,
 .login-pop-up #register,
-#register-form button {
+#register-form button,
+#checkout-page button {
   background-color: #ffa41c;
   border: #ff8f00;
 }

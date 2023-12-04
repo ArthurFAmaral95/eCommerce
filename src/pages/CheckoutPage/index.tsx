@@ -35,6 +35,11 @@ export function CheckoutPage(props: CheckoutPageProps) {
     console.log(stringPayment)
   }
 
+  // function finishPurchase(){
+  //   //conferir de ambos os formularios foram preenchidos
+  //   //fazer dois estados para receber o valor de cada formulario e verificar se não tem nenhum vazio
+  // }
+
   return (
     <main id="checkout-page">
       <section id="purchase-overview">
