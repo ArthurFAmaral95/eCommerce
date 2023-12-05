@@ -3,6 +3,8 @@ import './styles.css'
 import { CartProductArrayProps, RemoveCartItem, Total } from '../../types/types'
 import { CartProductBox } from '../../components/CartProductBox'
 
+import { Link } from 'react-router-dom'
+
 type CartPageProps = CartProductArrayProps & RemoveCartItem & Total
 
 export function CartPage(props: CartPageProps) {
@@ -34,7 +36,9 @@ export function CartPage(props: CartPageProps) {
         <span className="total">Total: </span>
         <span className="value">${props.total}</span>
       </div>
-      <button className="checkout">Checkout</button>
+      <Link to={'/checkout'}>
+        <button className="to-checkout">Checkout</button>
+      </Link>
     </main>
   )
 }

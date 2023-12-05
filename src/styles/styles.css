@@ -50,7 +50,7 @@ a {
 
 .product .info .btns button,
 .pop-up .btns button,
-#cart-page .checkout,
+.to-checkout,
 .login-pop-up button,
 #login-form button,
 #register-form button,
@@ -67,7 +67,17 @@ a {
   cursor: pointer;
 }
 
-.pop-up .btns a:nth-child(1) button,
+.pop-up .btns,
+.pop-up .btns a,
+#cart-page a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  width: 100%;
+}
+
+.to-home,
 #register-page button,
 #login-page button {
   background-color: #b7a23b;
@@ -75,7 +85,7 @@ a {
 }
 
 .product .info .btns button:nth-child(1),
-.pop-up .btns a:nth-child(2) button,
+.to-cart,
 .login-pop-up #login,
 #login-form button {
   background-color: #ffd814;
@@ -83,8 +93,7 @@ a {
 }
 
 .product .info .btns button:nth-child(2),
-.pop-up .btns button:nth-child(3),
-#cart-page .checkout,
+.to-checkout,
 .login-pop-up #register,
 #register-form button,
 #checkout-page button {

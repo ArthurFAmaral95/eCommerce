@@ -16,6 +16,8 @@ import { PaymentForm } from '../../components/PaymentForm'
 type CheckoutPageProps = CartProductArrayProps & Total & UserLoggedInProps
 
 export function CheckoutPage(props: CheckoutPageProps) {
+  window.scrollTo(0, 0)
+
   const renderOverviewList: any = []
 
   props.cartProducts.map(order => {
