@@ -13,10 +13,21 @@ import { CheckoutOverviewListItem } from '../../components/CheckoutOverviewListI
 import { AddressForm } from '../../components/AddressForm'
 import { PaymentForm } from '../../components/PaymentForm'
 
+import { useEffect, useState } from 'react'
+
 type CheckoutPageProps = CartProductArrayProps & Total & UserLoggedInProps
 
 export function CheckoutPage(props: CheckoutPageProps) {
   window.scrollTo(0, 0)
+
+  const [address, setAddress] = useState('')
+  const [payment, setPayment] = useState('')
+
+  useEffect(() => {
+    if (address !== '' && payment !== '') {
+      finishPurchase()
+    }
+  }, [address, payment])
 
   const renderOverviewList: any = []
 
@@ -28,19 +39,19 @@ export function CheckoutPage(props: CheckoutPageProps) {
 
   function getAddressData(address: AddressFormProps) {
     const stringAddress = JSON.stringify(address)
-
-    console.log(stringAddress)
+    setAddress(stringAddress)
   }
 
   function getPaymentData(payment: PaymentFormProps) {
     const stringPayment = JSON.stringify(payment)
-    console.log(stringPayment)
+    setPayment(stringPayment)
   }
 
-  // function finishPurchase(){
-  //   //conferir de ambos os formularios foram preenchidos
-  //   //fazer dois estados para receber o valor de cada formulario e verificar se não tem nenhum vazio
-  // }
+  //função precisa primeiro verificar se o usuário está logado
+  //vai enviar para o bd o id do user, todo o carrinho, o valor total da compra, o address e os dados de pagamento
+  function finishPurchase() {
+    console.log('deu certo')
+  }
 
   return (
     <main id="checkout-page">
