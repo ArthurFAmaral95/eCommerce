@@ -145,6 +145,31 @@ const checkLogin = async (req, res) => {
     })
 }
 
+const registerOrder = async (req, res) => {
+  knx
+    .insert([
+      {
+        user_id: req.body.userId,
+        products: req.body.products,
+        order_total: req.body.total,
+        shipping_address: req.body.address,
+        payment: req.body.payment
+      }
+    ])
+    .into('orders')
+    .then(() => {
+      res.json(
+        'Thank you for buying at e-Commerce. Your products will arrive in five minutes.'
+      )
+    })
+    .catch(err => {
+      res.status(400).send({
+        error: err,
+        message: 'Something went wrong with your order.'
+      })
+    })
+}
+
 export {
   categories,
   products,
@@ -153,5 +178,6 @@ export {
   product,
   productInfo,
   registerNewUser,
-  checkLogin
+  checkLogin,
+  registerOrder
 }
