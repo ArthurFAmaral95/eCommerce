@@ -158,9 +158,10 @@ const registerOrder = async (req, res) => {
     ])
     .into('orders')
     .then(() => {
-      res.json(
-        'Thank you for buying at e-Commerce. Your products will arrive in five minutes.'
-      )
+      res.json({
+        message:
+          'Thank you for buying at e-Commerce. Your products will arrive in five minutes.'
+      })
     })
     .catch(err => {
       res.status(400).send({

@@ -15,6 +15,8 @@ import { PaymentForm } from '../../components/PaymentForm'
 
 import { useEffect, useState } from 'react'
 
+import axios from 'axios'
+
 type CheckoutPageProps = CartProductArrayProps & Total & UserLoggedInProps
 
 export function CheckoutPage(props: CheckoutPageProps) {
@@ -50,7 +52,26 @@ export function CheckoutPage(props: CheckoutPageProps) {
   //função precisa primeiro verificar se o usuário está logado
   //vai enviar para o bd o id do user, todo o carrinho, o valor total da compra, o address e os dados de pagamento
   function finishPurchase() {
-    console.log('deu certo')
+    if (!props.userLoggedIn) {
+      console.log('please login')
+    } else {
+      const userId = JSON.parse(localStorage.getItem('user') || 'false').userId
+
+      axios
+        .post('http://localhost:4001/finishPurchase', {
+          userId: userId,
+          products: JSON.stringify(props.cartProducts),
+          total: props.total,
+          address: address,
+          payment: payment
+        })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    }
   }
 
   return (
