@@ -56,7 +56,9 @@ export function CheckoutPage(props: CheckoutPageProps) {
 
   function finishPurchase() {
     if (!props.userLoggedIn) {
-      console.log('please login')
+      const errorSpan = document.querySelector('#error-message')
+      errorSpan?.classList.remove('hidden')
+      setMessage('Please login to continue shopping.')
     } else {
       const userId = JSON.parse(localStorage.getItem('user') || 'false').userId
 
