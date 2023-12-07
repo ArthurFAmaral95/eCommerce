@@ -107,7 +107,8 @@ export function RegisterForm(props: FormProps) {
           'user',
           JSON.stringify({
             userFirstName: response.data.user.firstName,
-            userLastName: response.data.user.lastName
+            userLastName: response.data.user.lastName,
+            userId: response.data.user.userId
           })
         )
 

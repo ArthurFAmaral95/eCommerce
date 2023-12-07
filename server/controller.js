@@ -97,12 +97,13 @@ const registerNewUser = async (req, res) => {
       }
     ])
     .into('users')
-    .then(() =>
+    .then(user =>
       res.json({
         message: `Welcome to e-Commerce, ${req.body.firstName} ${req.body.lastName}`,
         user: {
           firstName: req.body.firstName,
-          lastName: req.body.lastName
+          lastName: req.body.lastName,
+          userId: user[0]
         }
       })
     )
@@ -133,13 +134,41 @@ const checkLogin = async (req, res) => {
           message: `Welcome to e-Commerce, ${user[0].first_name} ${user[0].last_name}`,
           user: {
             firstName: user[0].first_name,
-            lastName: user[0].last_name
+            lastName: user[0].last_name,
+            userId: user[0].user_id
           }
         })
       }
     })
     .catch(err => {
       res.json(err)
+    })
+}
+
+const registerOrder = async (req, res) => {
+  knx
+    .insert([
+      {
+        user_id: req.body.userId,
+        products: req.body.products,
+        order_total: req.body.total,
+        shipping_address: req.body.address,
+        payment: req.body.payment,
+        date_time: req.body.dateTime
+      }
+    ])
+    .into('orders')
+    .then(() => {
+      res.json({
+        message:
+          'Thank you for buying at e-Commerce. Your products will arrive in five minutes.'
+      })
+    })
+    .catch(err => {
+      res.status(400).send({
+        error: err,
+        message: 'Something went wrong with your order. Please try again later.'
+      })
     })
 }
 
@@ -151,5 +180,6 @@ export {
   product,
   productInfo,
   registerNewUser,
-  checkLogin
+  checkLogin,
+  registerOrder
 }

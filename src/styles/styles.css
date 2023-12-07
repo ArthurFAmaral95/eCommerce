@@ -50,12 +50,13 @@ a {
 
 .product .info .btns button,
 .pop-up .btns button,
-#cart-page .checkout,
+.to-checkout,
 .login-pop-up button,
 #login-form button,
 #register-form button,
 #register-page button,
-#login-page button {
+#login-page button,
+#checkout-page button {
   border-radius: 10rem;
 
   font-size: 1.6rem;
@@ -66,7 +67,17 @@ a {
   cursor: pointer;
 }
 
-.pop-up .btns a:nth-child(1) button,
+.pop-up .btns,
+.pop-up .btns a,
+#cart-page a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  width: 100%;
+}
+
+.to-home,
 #register-page button,
 #login-page button {
   background-color: #b7a23b;
@@ -74,7 +85,7 @@ a {
 }
 
 .product .info .btns button:nth-child(1),
-.pop-up .btns a:nth-child(2) button,
+.to-cart,
 .login-pop-up #login,
 #login-form button {
   background-color: #ffd814;
@@ -82,10 +93,10 @@ a {
 }
 
 .product .info .btns button:nth-child(2),
-.pop-up .btns button:nth-child(3),
-#cart-page .checkout,
+.to-checkout,
 .login-pop-up #register,
-#register-form button {
+#register-form button,
+#checkout-page button {
   background-color: #ffa41c;
   border: #ff8f00;
 }
@@ -93,4 +104,33 @@ a {
 .product .info .sender-seller {
   display: flex;
   gap: 1rem;
+}
+
+label,
+legend {
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: gray;
+}
+
+.input-container {
+  padding-block: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.input-container .input-text {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+input:focus-visible {
+  outline-color: #fcd200;
+  border: 1px solid transparent;
+}
+
+.input-text span {
+  color: red;
 }

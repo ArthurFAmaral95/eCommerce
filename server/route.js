@@ -20,4 +20,6 @@ router.post('/registerUser', routes.registerNewUser)
 
 router.post('/userLogin', routes.checkLogin)
 
+router.post('/finishPurchase', routes.registerOrder)
+
 export { router }

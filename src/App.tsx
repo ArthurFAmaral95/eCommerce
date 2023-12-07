@@ -541,6 +541,11 @@ export function App() {
     populateCartProducts()
   }
 
+  function emptyCart() {
+    localStorage.removeItem('order')
+    setCartProducts([])
+  }
+
   function removeCartItem(id: number) {
     const updatedCart: CartProductProps[] = []
 
@@ -676,6 +681,7 @@ export function App() {
         changeUserStatus={changeUserStatus}
         userLoggedIn={userLoggedIn}
         changeUserName={changeUserName}
+        emptyCart={emptyCart}
       />
       <Footer />
     </div>

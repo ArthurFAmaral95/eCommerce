@@ -3,6 +3,8 @@ import './styles.css'
 import { CartProductArrayProps, RemoveCartItem, Total } from '../../types/types'
 import { CartProductBox } from '../../components/CartProductBox'
 
+import { Link } from 'react-router-dom'
+
 type CartPageProps = CartProductArrayProps & RemoveCartItem & Total
 
 export function CartPage(props: CartPageProps) {
@@ -30,11 +32,24 @@ export function CartPage(props: CartPageProps) {
         ? 'Your cart is empty :('
         : renderCartProducts}
       <hr />
-      <div className="order-total">
-        <span className="total">Total: </span>
-        <span className="value">${props.total}</span>
+      <div
+        id="cart-container"
+        className={
+          props.cartProducts.length === 0 ||
+          props.cartProducts.length === undefined ||
+          props.cartProducts[0].product.product_id === 0
+            ? 'hidden'
+            : ''
+        }
+      >
+        <div className="order-total">
+          <span className="total">Total: </span>
+          <span className="value">${props.total}</span>
+        </div>
+        <Link to={'/checkout'}>
+          <button className="to-checkout">Checkout</button>
+        </Link>
       </div>
-      <button className="checkout">Checkout</button>
     </main>
   )
 }

@@ -1,0 +1,21 @@
+#address-form .top {
+  display: grid;
+  grid-template-columns: 65% 35%;
+}
+
+#address-form input,
+#payment-form input[type='text'] {
+  width: calc(100% - 1rem);
+
+  padding: 1rem 0.5rem;
+
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: gray;
+
+  border-radius: 1rem;
+}
+
+#address-form #zip-code {
+  width: 20rem;
+}

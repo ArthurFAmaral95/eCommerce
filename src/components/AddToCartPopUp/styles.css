@@ -27,15 +27,6 @@
   max-width: 15rem;
 }
 
-.pop-up .btns,
-.pop-up .btns a {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  width: 100%;
-}
-
 .pop-up.hidden {
   display: none;
 }

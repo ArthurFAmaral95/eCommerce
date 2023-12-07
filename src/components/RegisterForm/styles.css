@@ -14,7 +14,7 @@
   display: none;
 }
 
-#register-form fieldset {
+fieldset {
   gap: 1rem;
 
   border: none;
@@ -47,11 +47,6 @@
   border-radius: 1rem;
 
   width: 100%;
-}
-
-#register-form input:focus-visible {
-  outline: #fcd200 1px solid;
-  border: 1px solid transparent;
 }
 
 #register-form fieldset:nth-child(2) {

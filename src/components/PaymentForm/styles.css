@@ -1,0 +1,16 @@
+#payment-form .input-values {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+#payment-form .input-values .input-value {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+#payment-form #card-info .bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

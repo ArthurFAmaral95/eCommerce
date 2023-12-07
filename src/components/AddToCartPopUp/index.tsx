@@ -14,12 +14,14 @@ export function AddToCartPopUp(props: ProductProps) {
       />
       <div className="btns">
         <a href="/">
-          <button>Continue shopping</button>
+          <button className="to-home">Continue shopping</button>
         </a>
         <Link to={`/cart`}>
-          <button>Go to cart</button>
+          <button className="to-cart">Go to cart</button>
         </Link>
-        <button>Procede to checkout</button>
+        <Link to={`/checkout`}>
+          <button className="to-checkout">Procede to checkout</button>
+        </Link>
       </div>
     </div>
   )

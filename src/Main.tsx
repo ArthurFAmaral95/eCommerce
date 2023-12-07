@@ -2,6 +2,12 @@ import { Routes, Route } from 'react-router-dom'
 
 import { LandingPage } from './pages/LandingPage'
 import { CategoryPage } from './pages/CategoryPage'
+import { SearchResultPage } from './pages/SearchResultPage'
+import { ProductPage } from './pages/ProductPage'
+import { CartPage } from './pages/CartPage'
+import { LoginPage } from './pages/LoginPage'
+import { RegisterPage } from './pages/RegisterPage'
+import { CheckoutPage } from './pages/CheckoutPage'
 
 import {
   MainArrayProps,
@@ -29,14 +35,9 @@ import {
   FetchAllProducts,
   ChangeUserStatus,
   UserLoggedInProps,
-  ChangeUserName
+  ChangeUserName,
+  EmptyCart
 } from './types/types'
-
-import { SearchResultPage } from './pages/SearchResultPage'
-import { ProductPage } from './pages/ProductPage'
-import { CartPage } from './pages/CartPage'
-import { LoginPage } from './pages/LoginPage'
-import { RegisterPage } from './pages/RegisterPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -63,7 +64,8 @@ type MainProps = MainArrayProps &
   FetchAllProducts &
   ChangeUserStatus &
   UserLoggedInProps &
-  ChangeUserName
+  ChangeUserName &
+  EmptyCart
 
 export function Main(props: MainProps) {
   return (
@@ -154,6 +156,17 @@ export function Main(props: MainProps) {
             changeUserStatus={props.changeUserStatus}
             userLoggedIn={props.userLoggedIn}
             changeUserName={props.changeUserName}
+          />
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <CheckoutPage
+            cartProducts={props.cartProducts}
+            total={props.total}
+            userLoggedIn={props.userLoggedIn}
+            emptyCart={props.emptyCart}
           />
         }
       />
