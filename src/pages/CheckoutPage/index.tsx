@@ -24,6 +24,7 @@ export function CheckoutPage(props: CheckoutPageProps) {
 
   const [address, setAddress] = useState('')
   const [payment, setPayment] = useState('')
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     if (address !== '' && payment !== '') {
@@ -49,8 +50,6 @@ export function CheckoutPage(props: CheckoutPageProps) {
     setPayment(stringPayment)
   }
 
-  //função precisa primeiro verificar se o usuário está logado
-  //vai enviar para o bd o id do user, todo o carrinho, o valor total da compra, o address e os dados de pagamento
   function finishPurchase() {
     if (!props.userLoggedIn) {
       console.log('please login')
@@ -63,52 +62,66 @@ export function CheckoutPage(props: CheckoutPageProps) {
           products: JSON.stringify(props.cartProducts),
           total: props.total,
           address: address,
-          payment: payment
+          payment: payment,
+          dateTime: new Date().toLocaleString()
         })
         .then(response => {
-          console.log(response)
+          const container = document.querySelector('.checkout-container')
+          const successP = document.querySelector('#success-message')
+
+          container?.classList.add('hidden')
+          successP?.classList.remove('hidden')
+          setMessage(response.data.message)
         })
         .catch(error => {
-          console.error(error)
+          const errorSpan = document.querySelector('#error-message')
+          errorSpan?.classList.remove('hidden')
+          setMessage(error.response.data.message)
         })
     }
   }
 
   return (
     <main id="checkout-page">
-      <section id="purchase-overview">
-        <h2>Purchase Overview</h2>
-        <ul className="overview-list">{renderOverviewList}</ul>
+      <div className="checkout-container">
+        <section id="purchase-overview">
+          <h2>Purchase Overview</h2>
+          <ul className="overview-list">{renderOverviewList}</ul>
 
-        <p>Total: ${props.total}</p>
-      </section>
-      <hr />
-      <section id="delivery-address">
-        <h2>Address</h2>
-        <AddressForm getAddressData={getAddressData} />
-      </section>
-      <hr />
-      <section id="payment-method">
-        <h2>Payment</h2>
-        <PaymentForm getPaymentData={getPaymentData} />
-      </section>
-      <hr />
-      <button id="address-form" type="submit" form="address-form"></button>
-      <button id="payment-form" type="submit" form="payment-form"></button>
-      <button
-        onClick={() => {
-          const addressFormBtn: HTMLFormElement | null = document.querySelector(
-            'button#address-form'
-          )
-          const paymentFormBtn: HTMLFormElement | null = document.querySelector(
-            'button#payment-form'
-          )
-          addressFormBtn?.click()
-          paymentFormBtn?.click()
-        }}
-      >
-        Finish Purchase
-      </button>
+          <p>Total: ${props.total}</p>
+        </section>
+        <hr />
+        <section id="delivery-address">
+          <h2>Address</h2>
+          <AddressForm getAddressData={getAddressData} />
+        </section>
+        <hr />
+        <section id="payment-method">
+          <h2>Payment</h2>
+          <PaymentForm getPaymentData={getPaymentData} />
+        </section>
+        <hr />
+        <button id="address-form" type="submit" form="address-form"></button>
+        <button id="payment-form" type="submit" form="payment-form"></button>
+        <button
+          onClick={() => {
+            const addressFormBtn: HTMLFormElement | null =
+              document.querySelector('button#address-form')
+            const paymentFormBtn: HTMLFormElement | null =
+              document.querySelector('button#payment-form')
+            addressFormBtn?.click()
+            paymentFormBtn?.click()
+          }}
+        >
+          Finish Purchase
+        </button>
+        <span id="error-message" className="hidden">
+          {message}
+        </span>
+      </div>
+      <p id="success-message" className="hidden">
+        {message}
+      </p>
     </main>
   )
 }

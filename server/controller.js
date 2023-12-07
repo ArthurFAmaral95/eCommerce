@@ -153,7 +153,8 @@ const registerOrder = async (req, res) => {
         products: req.body.products,
         order_total: req.body.total,
         shipping_address: req.body.address,
-        payment: req.body.payment
+        payment: req.body.payment,
+        date_time: req.body.dateTime
       }
     ])
     .into('orders')
@@ -166,7 +167,7 @@ const registerOrder = async (req, res) => {
     .catch(err => {
       res.status(400).send({
         error: err,
-        message: 'Something went wrong with your order.'
+        message: 'Something went wrong with your order. Please try again later.'
       })
     })
 }
