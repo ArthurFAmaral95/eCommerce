@@ -297,6 +297,10 @@ export type GetAddressData = {
   getAddressData: (address: AddressFormProps) => void
 }
 
-export type GetPaymentData={
+export type GetPaymentData = {
   getPaymentData: (payment: PaymentFormProps) => void
+}
+
+export type EmptyCart = {
+  emptyCart: () => void
 }

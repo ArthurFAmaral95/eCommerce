@@ -3,7 +3,8 @@ import './styles.css'
 import {
   CartProductArrayProps,
   Total,
-  UserLoggedInProps
+  UserLoggedInProps,
+  EmptyCart
 } from '../../types/types'
 
 import { AddressFormProps } from '../../components/AddressForm'
@@ -17,7 +18,10 @@ import { useEffect, useState } from 'react'
 
 import axios from 'axios'
 
-type CheckoutPageProps = CartProductArrayProps & Total & UserLoggedInProps
+type CheckoutPageProps = CartProductArrayProps &
+  Total &
+  UserLoggedInProps &
+  EmptyCart
 
 export function CheckoutPage(props: CheckoutPageProps) {
   window.scrollTo(0, 0)
@@ -72,6 +76,7 @@ export function CheckoutPage(props: CheckoutPageProps) {
           container?.classList.add('hidden')
           successP?.classList.remove('hidden')
           setMessage(response.data.message)
+          props.emptyCart()
         })
         .catch(error => {
           const errorSpan = document.querySelector('#error-message')

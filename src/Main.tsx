@@ -35,7 +35,8 @@ import {
   FetchAllProducts,
   ChangeUserStatus,
   UserLoggedInProps,
-  ChangeUserName
+  ChangeUserName,
+  EmptyCart
 } from './types/types'
 
 type MainProps = MainArrayProps &
@@ -63,7 +64,8 @@ type MainProps = MainArrayProps &
   FetchAllProducts &
   ChangeUserStatus &
   UserLoggedInProps &
-  ChangeUserName
+  ChangeUserName &
+  EmptyCart
 
 export function Main(props: MainProps) {
   return (
@@ -164,6 +166,7 @@ export function Main(props: MainProps) {
             cartProducts={props.cartProducts}
             total={props.total}
             userLoggedIn={props.userLoggedIn}
+            emptyCart={props.emptyCart}
           />
         }
       />
