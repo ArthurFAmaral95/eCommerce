@@ -63,6 +63,8 @@ export type ProductsInfoProps = {
 
 export type Item = { [item: string]: string | number }
 
+export type CardType = { [type: string]: string }
+
 export type ProductsInfoArrayProps = {
   productsInfo: ProductsInfoProps[]
 }

@@ -13,6 +13,7 @@ import { PaymentFormProps } from '../../components/PaymentForm'
 import { CheckoutOverviewListItem } from '../../components/CheckoutOverviewListItem'
 import { AddressForm } from '../../components/AddressForm'
 import { PaymentForm } from '../../components/PaymentForm'
+import { Card } from '../../components/Card'
 
 import { useEffect, useState } from 'react'
 
@@ -106,6 +107,7 @@ export function CheckoutPage(props: CheckoutPageProps) {
         <section id="payment-method">
           <h2>Payment</h2>
           <PaymentForm getPaymentData={getPaymentData} />
+          <Card />
         </section>
         <hr />
         <button id="address-form" type="submit" form="address-form"></button>

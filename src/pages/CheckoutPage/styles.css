@@ -47,3 +47,16 @@ button#payment-form {
 .checkout-container.hidden {
   display: none;
 }
+
+.card-mask {
+  width: fit-content;
+  margin-inline: auto;
+
+  padding-top: 1rem;
+}
+
+@media (max-width: 374px) {
+  .card-mask {
+    display: none;
+  }
+}
