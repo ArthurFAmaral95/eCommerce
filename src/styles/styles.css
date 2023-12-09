@@ -54,7 +54,6 @@ BUTTONS
 
 .product .info .btns button,
 .pop-up .btns button,
-.to-checkout,
 .login-pop-up button,
 #login-form button,
 #register-form button,
@@ -97,6 +96,10 @@ BUTTONS
 #login-form button {
   background-color: #ffd814;
   border: #fcd200;
+}
+
+.pop-up .btns button {
+  width: 18rem;
 }
 
 .product .info .btns .buy-now,
