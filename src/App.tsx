@@ -591,6 +591,21 @@ export function App() {
     localStorage.setItem('buyNow', JSON.stringify(order))
   }
 
+  function clearBuyNow() {
+    const mock = {
+      configs: [{ id: 'qtd', value: 1 }],
+      orderId: 1234,
+      product: {
+        category: '',
+        img_path: '',
+        price: 1,
+        product_id: 0,
+        product_name: ''
+      }
+    }
+    localStorage.setItem('buyNow', JSON.stringify(mock))
+  }
+
   function handleLoginPopUp() {
     setLoginPopUpStatus(!loginPopUpStatus)
   }
@@ -704,6 +719,7 @@ export function App() {
         changeUserName={changeUserName}
         emptyCart={emptyCart}
         setBuyNow={setBuyNow}
+        clearBuyNow={clearBuyNow}
       />
       <Footer />
     </div>

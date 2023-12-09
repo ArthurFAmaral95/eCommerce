@@ -1,5 +1,7 @@
 import './styles.css'
 
+import { Link } from 'react-router-dom'
+
 import {
   ProductProps,
   ProductInfoArrayProps,
@@ -119,14 +121,16 @@ export function Product(props: ProductPageProps) {
           >
             Add to cart
           </button>
-          <button
-            className="buy-now"
-            onClick={() => {
-              props.setBuyNow(props.product)
-            }}
-          >
-            Buy now
-          </button>
+          <Link to={`/buynowcheckout`}>
+            <button
+              className="buy-now"
+              onClick={() => {
+                props.setBuyNow(props.product)
+              }}
+            >
+              Buy now
+            </button>
+          </Link>
         </div>
         <div className="sender-seller">
           <span>Delivered by</span>

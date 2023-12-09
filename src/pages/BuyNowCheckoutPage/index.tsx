@@ -1,28 +1,24 @@
 import {
-  CartProductArrayProps,
-  Total,
   UserLoggedInProps,
-  EmptyCart
+  ClearBuyNow,
+  CartProductProps
 } from '../../types/types'
 
-import { AddressFormProps } from '../../components/AddressForm'
-import { PaymentFormProps } from '../../components/PaymentForm'
-
-import { CheckoutOverviewListItem } from '../../components/CheckoutOverviewListItem'
 import { AddressForm } from '../../components/AddressForm'
 import { PaymentForm } from '../../components/PaymentForm'
 import { Card } from '../../components/Card'
 
-import { useEffect, useState } from 'react'
+import { AddressFormProps } from '../../components/AddressForm'
+import { PaymentFormProps } from '../../components/PaymentForm'
+import { CheckoutOverviewListItem } from '../../components/CheckoutOverviewListItem'
+
+import { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
-type CheckoutPageProps = CartProductArrayProps &
-  Total &
-  UserLoggedInProps &
-  EmptyCart
+type BuyNowProps = UserLoggedInProps & ClearBuyNow
 
-export function CheckoutPage(props: CheckoutPageProps) {
+export function BuyNowCheckoutPage(props: BuyNowProps) {
   window.scrollTo(0, 0)
 
   const [address, setAddress] = useState('')
@@ -35,13 +31,13 @@ export function CheckoutPage(props: CheckoutPageProps) {
     }
   }, [address, payment])
 
-  const renderOverviewList: any = []
+  const product: CartProductProps = JSON.parse(
+    localStorage.getItem('buyNow') || 'false'
+  )
 
-  props.cartProducts.map(order => {
-    renderOverviewList.push(
-      <CheckoutOverviewListItem key={order.orderId} product={order} />
-    )
-  })
+  const price = product.product.price
+  const qtd = Number(product.configs[0].value)
+  const total = qtd * price
 
   function getAddressData(address: AddressFormProps) {
     const stringAddress = JSON.stringify(address)
@@ -64,8 +60,8 @@ export function CheckoutPage(props: CheckoutPageProps) {
       axios
         .post('http://localhost:4001/finishPurchase', {
           userId: userId,
-          products: JSON.stringify(props.cartProducts),
-          total: props.total,
+          products: localStorage.getItem('buyNow'),
+          total: total,
           address: address,
           payment: payment,
           dateTime: new Date().toLocaleString()
@@ -77,7 +73,7 @@ export function CheckoutPage(props: CheckoutPageProps) {
           container?.classList.add('hidden')
           successP?.classList.remove('hidden')
           setMessage(response.data.message)
-          props.emptyCart()
+          props.clearBuyNow()
         })
         .catch(error => {
           const errorSpan = document.querySelector('#error-message')
@@ -88,13 +84,15 @@ export function CheckoutPage(props: CheckoutPageProps) {
   }
 
   return (
-    <main id="checkout-page">
+    <main id="buy-now-checkout-page">
       <div className="checkout-container">
         <section id="purchase-overview">
           <h2>Purchase Overview</h2>
-          <ul className="overview-list">{renderOverviewList}</ul>
+          <ul className="overview-list">
+            <CheckoutOverviewListItem key={product.orderId} product={product} />
+          </ul>
 
-          <p>Total: ${props.total}</p>
+          <p>Total: ${total}</p>
         </section>
         <hr />
         <section id="delivery-address">

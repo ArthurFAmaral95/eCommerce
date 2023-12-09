@@ -310,3 +310,7 @@ export type GetPaymentData = {
 export type EmptyCart = {
   emptyCart: () => void
 }
+
+export type ClearBuyNow = {
+  clearBuyNow: () => void
+}
