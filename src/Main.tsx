@@ -36,8 +36,11 @@ import {
   ChangeUserStatus,
   UserLoggedInProps,
   ChangeUserName,
-  EmptyCart
+  EmptyCart,
+  SetBuyNow,
+  ClearBuyNow
 } from './types/types'
+import { BuyNowCheckoutPage } from './pages/BuyNowCheckoutPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -65,7 +68,9 @@ type MainProps = MainArrayProps &
   ChangeUserStatus &
   UserLoggedInProps &
   ChangeUserName &
-  EmptyCart
+  EmptyCart &
+  SetBuyNow &
+  ClearBuyNow
 
 export function Main(props: MainProps) {
   return (
@@ -126,6 +131,7 @@ export function Main(props: MainProps) {
             product={props.product}
             productInfo={props.productInfo}
             addToCart={props.addToCart}
+            setBuyNow={props.setBuyNow}
           />
         }
       />
@@ -167,6 +173,15 @@ export function Main(props: MainProps) {
             total={props.total}
             userLoggedIn={props.userLoggedIn}
             emptyCart={props.emptyCart}
+          />
+        }
+      />
+      <Route
+        path="/buynowcheckout"
+        element={
+          <BuyNowCheckoutPage
+            userLoggedIn={props.userLoggedIn}
+            clearBuyNow={props.clearBuyNow}
           />
         }
       />

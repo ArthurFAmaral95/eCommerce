@@ -570,6 +570,42 @@ export function App() {
     setTotal(Number(total.toFixed(2)))
   }
 
+  function setBuyNow(product: ProductsProps) {
+    const selectInputs = document.querySelectorAll('select')
+    const orderConfiguration: ConfigProps[] = []
+
+    selectInputs.forEach(selectInput => {
+      const config = {
+        id: selectInput.id,
+        value: selectInput.value
+      }
+      orderConfiguration.push(config)
+    })
+
+    const order = {
+      product: product,
+      configs: orderConfiguration,
+      orderId: Number(Math.random().toFixed(5)) * 100000 + product.product_id
+    }
+
+    localStorage.setItem('buyNow', JSON.stringify(order))
+  }
+
+  function clearBuyNow() {
+    const mock = {
+      configs: [{ id: 'qtd', value: 1 }],
+      orderId: 1234,
+      product: {
+        category: '',
+        img_path: '',
+        price: 1,
+        product_id: 0,
+        product_name: ''
+      }
+    }
+    localStorage.setItem('buyNow', JSON.stringify(mock))
+  }
+
   function handleLoginPopUp() {
     setLoginPopUpStatus(!loginPopUpStatus)
   }
@@ -682,6 +718,8 @@ export function App() {
         userLoggedIn={userLoggedIn}
         changeUserName={changeUserName}
         emptyCart={emptyCart}
+        setBuyNow={setBuyNow}
+        clearBuyNow={clearBuyNow}
       />
       <Footer />
     </div>

@@ -283,6 +283,10 @@ export type AddToCart = {
   addToCart: (product: ProductsProps) => void
 }
 
+export type SetBuyNow = {
+  setBuyNow: (product: ProductsProps) => void
+}
+
 export type HandleLoginPopUp = {
   handleLoginPopUp: () => void
 }
@@ -305,4 +309,8 @@ export type GetPaymentData = {
 
 export type EmptyCart = {
   emptyCart: () => void
+}
+
+export type ClearBuyNow = {
+  clearBuyNow: () => void
 }

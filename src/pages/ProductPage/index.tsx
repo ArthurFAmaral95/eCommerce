@@ -3,10 +3,14 @@ import { Product } from '../../components/Product'
 import {
   ProductProps,
   ProductInfoArrayProps,
-  AddToCart
+  AddToCart,
+  SetBuyNow
 } from '../../types/types'
 
-type ProductPageProps = ProductInfoArrayProps & ProductProps & AddToCart
+type ProductPageProps = ProductInfoArrayProps &
+  ProductProps &
+  AddToCart &
+  SetBuyNow
 
 export function ProductPage(props: ProductPageProps) {
   window.scrollTo(0, 0)
@@ -23,6 +27,7 @@ export function ProductPage(props: ProductPageProps) {
           productInfo={props.productInfo}
           showAddToCartpopUp={showAddToCartPopUp}
           addToCart={props.addToCart}
+          setBuyNow={props.setBuyNow}
         />
       </main>
       <AddToCartPopUp product={props.product} />
