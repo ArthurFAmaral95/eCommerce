@@ -570,6 +570,27 @@ export function App() {
     setTotal(Number(total.toFixed(2)))
   }
 
+  function setBuyNow(product: ProductsProps) {
+    const selectInputs = document.querySelectorAll('select')
+    const orderConfiguration: ConfigProps[] = []
+
+    selectInputs.forEach(selectInput => {
+      const config = {
+        id: selectInput.id,
+        value: selectInput.value
+      }
+      orderConfiguration.push(config)
+    })
+
+    const order = {
+      product: product,
+      configs: orderConfiguration,
+      orderId: Number(Math.random().toFixed(5)) * 100000 + product.product_id
+    }
+
+    localStorage.setItem('buyNow', JSON.stringify(order))
+  }
+
   function handleLoginPopUp() {
     setLoginPopUpStatus(!loginPopUpStatus)
   }
@@ -682,6 +703,7 @@ export function App() {
         userLoggedIn={userLoggedIn}
         changeUserName={changeUserName}
         emptyCart={emptyCart}
+        setBuyNow={setBuyNow}
       />
       <Footer />
     </div>

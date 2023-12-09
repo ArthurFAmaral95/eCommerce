@@ -4,7 +4,8 @@ import {
   ProductProps,
   ProductInfoArrayProps,
   ShowAddToCartpopUp,
-  AddToCart
+  AddToCart,
+  SetBuyNow
 } from '../../types/types'
 
 import { SelectInput } from '../SelectInput'
@@ -12,7 +13,8 @@ import { SelectInput } from '../SelectInput'
 type ProductPageProps = ProductInfoArrayProps &
   ProductProps &
   ShowAddToCartpopUp &
-  AddToCart
+  AddToCart &
+  SetBuyNow
 
 export function Product(props: ProductPageProps) {
   const textPrice = String(props.product.price)
@@ -117,7 +119,14 @@ export function Product(props: ProductPageProps) {
           >
             Add to cart
           </button>
-          <button className="buy-now">Buy now</button>
+          <button
+            className="buy-now"
+            onClick={() => {
+              props.setBuyNow(props.product)
+            }}
+          >
+            Buy now
+          </button>
         </div>
         <div className="sender-seller">
           <span>Delivered by</span>

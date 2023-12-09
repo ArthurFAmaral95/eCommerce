@@ -36,7 +36,8 @@ import {
   ChangeUserStatus,
   UserLoggedInProps,
   ChangeUserName,
-  EmptyCart
+  EmptyCart,
+  SetBuyNow
 } from './types/types'
 
 type MainProps = MainArrayProps &
@@ -65,7 +66,8 @@ type MainProps = MainArrayProps &
   ChangeUserStatus &
   UserLoggedInProps &
   ChangeUserName &
-  EmptyCart
+  EmptyCart &
+  SetBuyNow
 
 export function Main(props: MainProps) {
   return (
@@ -126,6 +128,7 @@ export function Main(props: MainProps) {
             product={props.product}
             productInfo={props.productInfo}
             addToCart={props.addToCart}
+            setBuyNow={props.setBuyNow}
           />
         }
       />
