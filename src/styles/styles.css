@@ -94,7 +94,8 @@ BUTTONS
 .product .info .btns .add-to-cart,
 .to-cart,
 .login-pop-up #login,
-#login-form button {
+#login-form button,
+#to-orders {
   background-color: #ffd814;
   border: #fcd200;
 }

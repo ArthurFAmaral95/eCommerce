@@ -47,6 +47,16 @@ export function LoginPopUp(props: LoginPopUpProps) {
           Register
         </button>
       </Link>
+      <Link to={`/orders`} className={props.userLoggedIn ? '' : 'hidden'}>
+        <button
+          id="to-orders"
+          onClick={() => {
+            props.handleLoginPopUp()
+          }}
+        >
+          Orders
+        </button>
+      </Link>
       <button
         className={props.userLoggedIn ? '' : 'hidden'}
         onClick={() => {
