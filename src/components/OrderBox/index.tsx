@@ -14,11 +14,19 @@ export function OrderBox(props: OrderBoxProps) {
 
   const renderProducts: any = []
 
-  products.map(product => {
+  if (products.length === undefined) {
+    const product: CartProductProps = JSON.parse(props.order.products)
+
     renderProducts.push(
-      <CheckoutOverviewListItem key={product.orderId} product={product} />
+      <CheckoutOverviewListItem product={product} key={product.orderId} />
     )
-  })
+  } else {
+    products.map(product => {
+      renderProducts.push(
+        <CheckoutOverviewListItem key={product.orderId} product={product} />
+      )
+    })
+  }
 
   return (
     <section className="order-box">
