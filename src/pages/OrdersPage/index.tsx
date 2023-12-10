@@ -36,6 +36,13 @@ export function OrdersPage(props: OrdersPageProps) {
       <h2>Hello, {props.userName}</h2>
       <h3>Your orders</h3>
       <div className="orders">{renderOrders}</div>
+      {userOrders.length === 0 ? (
+        <span className="message">
+          You still have no purchases at e-Commerce.
+        </span>
+      ) : (
+        <span></span>
+      )}
     </main>
   )
 }

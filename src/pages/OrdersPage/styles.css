@@ -30,3 +30,9 @@
 .order-products .overview-list-item:last-child {
   border-bottom: none;
 }
+
+#orders-page .message {
+  font-size: 1.5rem;
+  font-weight: 200;
+  font-family: 'Roboto', sans-serif;
+}
