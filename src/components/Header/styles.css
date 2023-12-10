@@ -64,3 +64,9 @@ header {
   border: none;
   box-shadow: 0 0.3rem 1rem #bababa;
 }
+
+@media (min-width: 768px) {
+  header {
+    max-width: 114rem;
+  }
+}
