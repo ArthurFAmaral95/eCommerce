@@ -172,6 +172,25 @@ const registerOrder = async (req, res) => {
     })
 }
 
+const userOrders = async (req, res) => {
+  knx
+    .select(
+      'order_number',
+      'products',
+      'order_total',
+      'shipping_address',
+      'date_time'
+    )
+    .from('orders')
+    .where('user_id', req.params.userId)
+    .then(data => {
+      res.json(data)
+    })
+    .catch(err => {
+      res.json(err)
+    })
+}
+
 export {
   categories,
   products,
@@ -181,5 +200,6 @@ export {
   productInfo,
   registerNewUser,
   checkLogin,
-  registerOrder
+  registerOrder,
+  userOrders
 }
