@@ -1,0 +1,38 @@
+#orders-page {
+  padding-top: 2rem;
+}
+
+#orders-page h2 {
+  font-size: 2rem;
+}
+
+#orders-page h3 {
+  font-size: 1.5rem;
+}
+
+#orders-page h2,
+#orders-page h3 {
+  margin-bottom: 1rem;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+#orders-page .orders {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.order-products .overview-list-item {
+  padding-inline: 1rem;
+}
+
+.order-products .overview-list-item:last-child {
+  border-bottom: none;
+}
+
+#orders-page .message {
+  font-size: 1.5rem;
+  font-weight: 200;
+  font-family: 'Roboto', sans-serif;
+}

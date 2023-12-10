@@ -207,6 +207,14 @@ export type UserName = {
   userName: string
 }
 
+export type Order = {
+  order_number: number
+  products: string
+  order_total: number
+  shipping_address: string
+  date_time: string
+}
+
 export type FetchAllProducts = {
   fetchAllProducts: () => void
 }

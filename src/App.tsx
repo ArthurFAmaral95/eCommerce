@@ -720,6 +720,7 @@ export function App() {
         emptyCart={emptyCart}
         setBuyNow={setBuyNow}
         clearBuyNow={clearBuyNow}
+        userName={userName}
       />
       <Footer />
     </div>

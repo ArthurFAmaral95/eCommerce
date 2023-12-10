@@ -38,9 +38,11 @@ import {
   ChangeUserName,
   EmptyCart,
   SetBuyNow,
-  ClearBuyNow
+  ClearBuyNow,
+  UserName
 } from './types/types'
 import { BuyNowCheckoutPage } from './pages/BuyNowCheckoutPage'
+import { OrdersPage } from './pages/OrdersPage'
 
 type MainProps = MainArrayProps &
   SelectedCategoryProps &
@@ -70,7 +72,8 @@ type MainProps = MainArrayProps &
   ChangeUserName &
   EmptyCart &
   SetBuyNow &
-  ClearBuyNow
+  ClearBuyNow &
+  UserName
 
 export function Main(props: MainProps) {
   return (
@@ -184,6 +187,10 @@ export function Main(props: MainProps) {
             clearBuyNow={props.clearBuyNow}
           />
         }
+      />
+      <Route
+        path="/orders"
+        element={<OrdersPage userName={props.userName} />}
       />
     </Routes>
   )

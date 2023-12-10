@@ -48,6 +48,10 @@ a {
   color: #0f1111;
 }
 
+ul.configs {
+  list-style-type: none;
+}
+
 /*
 BUTTONS
 */
@@ -94,7 +98,8 @@ BUTTONS
 .product .info .btns .add-to-cart,
 .to-cart,
 .login-pop-up #login,
-#login-form button {
+#login-form button,
+#to-orders {
   background-color: #ffd814;
   border: #fcd200;
 }
