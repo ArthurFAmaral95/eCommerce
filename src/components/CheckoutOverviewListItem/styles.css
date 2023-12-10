@@ -1,6 +1,4 @@
-#checkout-page #purchase-overview ul,
-#buy-now-checkout-page #purchase-overview ul {
-  list-style: none;
+.overview-list {
   font-size: 1.2rem;
   font-weight: 200;
   color: gray;
@@ -8,34 +6,27 @@
   padding-top: 1rem;
 }
 
-#checkout-page #purchase-overview ul li,
-#buy-now-checkout-page #purchase-overview ul li {
+.overview-list-item {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-#checkout-page #purchase-overview .overview-list-item,
-#buy-now-checkout-page #purchase-overview .overview-list-item {
+  list-style: none;
   padding-block: 1rem;
 
   border-bottom: 1px dashed gray;
 }
 
-#checkout-page #purchase-overview .configs,
-#buy-now-checkout-page #purchase-overview .configs {
+.configs {
   display: flex;
   gap: 1rem;
   padding-top: 0;
   border: none;
 }
 
-#checkout-page #purchase-overview .configs .configs-list-item,
-#buy-now-checkout-page #purchase-overview .configs .configs-list-item {
+.configs-list-item {
   flex-direction: row;
 }
 
-#checkout-page #purchase-overview .configs .configs-list-item .field,
-#buy-now-checkout-page #purchase-overview .configs .configs-list-item .field {
+.configs-list-item .field {
   text-transform: capitalize;
 }

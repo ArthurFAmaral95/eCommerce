@@ -1,7 +1,10 @@
+import './styles.css'
+
 import { UserName, Order } from '../../types/types'
 import { useState, useEffect } from 'react'
 
 import axios from 'axios'
+import { OrderBox } from '../../components/OrderBox'
 
 type OrdersPageProps = UserName
 
@@ -13,8 +16,6 @@ export function OrdersPage(props: OrdersPageProps) {
     fetchOrders()
   }, [])
 
-  console.log({ userId, userOrders })
-
   function fetchOrders() {
     axios
       .get(`http://localhost:4001/orders/${userId}`)
@@ -24,10 +25,17 @@ export function OrdersPage(props: OrdersPageProps) {
       .catch(err => console.error(err))
   }
 
+  const renderOrders: any = []
+
+  userOrders.map(order => {
+    renderOrders.push(<OrderBox key={order.order_number} order={order} />)
+  })
+
   return (
     <main id="orders-page">
       <h2>Hello, {props.userName}</h2>
       <h3>Your orders</h3>
+      <div className="orders">{renderOrders}</div>
     </main>
   )
 }

@@ -174,13 +174,7 @@ const registerOrder = async (req, res) => {
 
 const userOrders = async (req, res) => {
   knx
-    .select(
-      'order_number',
-      'products',
-      'order_total',
-      'shipping_address',
-      'date_time'
-    )
+    .select('order_number', 'products', 'order_total', 'date_time')
     .from('orders')
     .where('user_id', req.params.userId)
     .then(data => {

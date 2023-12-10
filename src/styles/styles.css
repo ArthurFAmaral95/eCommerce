@@ -48,6 +48,10 @@ a {
   color: #0f1111;
 }
 
+ul.configs {
+  list-style-type: none;
+}
+
 /*
 BUTTONS
 */

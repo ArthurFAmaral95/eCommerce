@@ -1,0 +1,39 @@
+#orders-page .order-box {
+  border: 1px solid #f0f2f2;
+
+  border-radius: 1rem;
+}
+
+#orders-page .order-box header {
+  position: initial;
+
+  height: fit-content;
+
+  background-color: #f0f2f2;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem;
+
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+#orders-page .order-box header .date,
+#orders-page .order-box header .total,
+#orders-page .order-box header .order-number {
+  display: flex;
+  flex-direction: column;
+}
+
+#orders-page .order-box header .left {
+  display: flex;
+  gap: 1rem;
+}
+
+#orders-page .order-box header span {
+  color: #000;
+}
