@@ -47,3 +47,16 @@
 #search-list.hidden {
   display: none;
 }
+
+@media (min-width: 769px) {
+  .search form input {
+    width: 100%;
+    max-width: calc(100% - 2rem);
+  }
+
+  #search-list {
+    top: 4.5rem;
+    width: 100%;
+    max-width: calc(100% - 2rem);
+  }
+}

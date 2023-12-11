@@ -85,16 +85,18 @@ export function Header(props: HeaderProps) {
               <ShoppingCart />
             </div>
           </div>
-          <Search
-            handleSearchInput={props.handleSearchInput}
-            selectedCategory={props.selectedCategory}
-            handleFormSubmit={props.handleFormSubmit}
-            searchedTerm={props.searchedTerm}
-            updateProductsOfPage={props.updateProductsOfPage}
-            setPages={props.setPages}
-            setPageNumber={props.setPageNumber}
-          />
-          <ul id="search-list">{renderListItens}</ul>
+          <div className="search-container">
+            <Search
+              handleSearchInput={props.handleSearchInput}
+              selectedCategory={props.selectedCategory}
+              handleFormSubmit={props.handleFormSubmit}
+              searchedTerm={props.searchedTerm}
+              updateProductsOfPage={props.updateProductsOfPage}
+              setPages={props.setPages}
+              setPageNumber={props.setPageNumber}
+            />
+            <ul id="search-list">{renderListItens}</ul>
+          </div>
           <Categories
             categories={props.categories}
             handleMenu={props.handleMenu}

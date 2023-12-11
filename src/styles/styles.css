@@ -226,8 +226,8 @@ button#payment-form {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .container {
-    max-width: 114rem;
+    max-width: 144rem;
   }
 }
