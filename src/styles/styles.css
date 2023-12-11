@@ -227,6 +227,10 @@ button#payment-form {
 }
 
 @media (min-width: 769px) {
+  main {
+    top: 11rem;
+  }
+
   .container {
     max-width: 144rem;
   }
