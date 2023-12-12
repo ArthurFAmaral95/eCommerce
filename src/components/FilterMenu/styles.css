@@ -86,3 +86,13 @@
   gap: 0.5rem;
   flex-wrap: wrap;
 }
+
+@media (min-width: 769px) {
+  .filter-menu {
+    max-width: 144rem;
+  }
+
+  .filter-menu .menu {
+    max-width: 144rem;
+  }
+}

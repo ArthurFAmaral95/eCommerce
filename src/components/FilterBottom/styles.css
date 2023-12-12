@@ -46,3 +46,9 @@
 
   cursor: pointer;
 }
+
+@media (min-width: 769px) {
+  .filter-bottom {
+    max-width: 144rem;
+  }
+}
