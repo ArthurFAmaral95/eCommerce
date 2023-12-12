@@ -3,7 +3,7 @@
   left: 50%;
   margin-left: -45%;
 
-  top: 50%;
+  top: 45rem;
   margin-top: -15rem;
 
   width: 90%;
@@ -29,4 +29,11 @@
 
 .pop-up.hidden {
   display: none;
+}
+
+@media (min-width: 769px) {
+  .pop-up {
+    left: calc(96vw - 34.6rem);
+    top: 29rem;
+  }
 }
