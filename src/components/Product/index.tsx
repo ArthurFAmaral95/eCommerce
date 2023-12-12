@@ -88,61 +88,65 @@ export function Product(props: ProductPageProps) {
 
   return (
     <div className="product">
-      <h2 className="product-name">{props.product.product_name}</h2>
-      <img
-        src={props.product.img_path}
-        alt={props.product.product_name}
-        title={props.product.product_name}
-      />
+      <div className="left-side">
+        <h2 className="product-name">{props.product.product_name}</h2>
+        <img
+          src={props.product.img_path}
+          alt={props.product.product_name}
+          title={props.product.product_name}
+        />
+      </div>
       <hr />
-      <div className="info">
-        <p className="price">
-          <sup className="over-line">$</sup>&nbsp;
-          <span className="unit">{priceUnit}</span>
-          <sup className="over-line">{priceCents}</sup>
-        </p>
-        <span className="delivery">FREE shipping</span>
+      <div className="right-side">
+        <div className="info">
+          <p className="price">
+            <sup className="over-line">$</sup>&nbsp;
+            <span className="unit">{priceUnit}</span>
+            <sup className="over-line">{priceCents}</sup>
+          </p>
+          <span className="delivery">FREE shipping</span>
 
-        <form className="select-inputs">
-          <SelectInput
-            selectId="qtd"
-            values={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
-            key={`qtd`}
-          />
-          {renderSelectInputs}
-        </form>
-        <div className="btns">
-          <button
-            className="add-to-cart"
-            onClick={() => {
-              props.addToCart(props.product)
-              props.showAddToCartpopUp()
-            }}
-          >
-            Add to cart
-          </button>
-          <Link to={`/buynowcheckout`}>
+          <form className="select-inputs">
+            <SelectInput
+              selectId="qtd"
+              values={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+              key={`qtd`}
+            />
+            {renderSelectInputs}
+          </form>
+          <div className="btns">
             <button
-              className="buy-now"
+              className="add-to-cart"
               onClick={() => {
-                props.setBuyNow(props.product)
+                props.addToCart(props.product)
+                props.showAddToCartpopUp()
               }}
             >
-              Buy now
+              Add to cart
             </button>
-          </Link>
-        </div>
-        <div className="sender-seller">
-          <span>Delivered by</span>
-          <span>e-Commerce</span>
-        </div>
-        <div className="sender-seller">
-          <span>Sold by</span>
-          <span>
-            {props.productInfo[0].seller
-              ? props.productInfo[0].seller
-              : 'e-Commerce'}
-          </span>
+            <Link to={`/buynowcheckout`}>
+              <button
+                className="buy-now"
+                onClick={() => {
+                  props.setBuyNow(props.product)
+                }}
+              >
+                Buy now
+              </button>
+            </Link>
+          </div>
+          <div className="sender-seller">
+            <span>Delivered by</span>
+            <span>e-Commerce</span>
+          </div>
+          <div className="sender-seller">
+            <span>Sold by</span>
+            <span>
+              {props.productInfo[0].seller
+                ? props.productInfo[0].seller
+                : 'e-Commerce'}
+            </span>
+          </div>
         </div>
       </div>
     </div>
