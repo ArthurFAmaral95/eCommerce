@@ -20,7 +20,7 @@
 
 @media (min-width: 769px) {
   #register-page {
-    max-width: 80%;
+    max-width: 50%;
     margin-inline: auto;
   }
 }
