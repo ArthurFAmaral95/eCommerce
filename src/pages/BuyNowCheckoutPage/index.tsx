@@ -86,43 +86,50 @@ export function BuyNowCheckoutPage(props: BuyNowProps) {
   return (
     <main id="buy-now-checkout-page">
       <div className="checkout-container">
-        <section id="purchase-overview">
-          <h2>Purchase Overview</h2>
-          <ul className="overview-list">
-            <CheckoutOverviewListItem key={product.orderId} product={product} />
-          </ul>
+        <div className="left-side">
+          <section id="purchase-overview">
+            <h2>Purchase Overview</h2>
+            <ul className="overview-list">
+              <CheckoutOverviewListItem
+                key={product.orderId}
+                product={product}
+              />
+            </ul>
 
-          <p>Total: ${total}</p>
-        </section>
-        <hr />
-        <section id="delivery-address">
-          <h2>Address</h2>
-          <AddressForm getAddressData={getAddressData} />
-        </section>
-        <hr />
-        <section id="payment-method">
-          <h2>Payment</h2>
-          <PaymentForm getPaymentData={getPaymentData} />
-          <Card />
-        </section>
-        <hr />
-        <button id="address-form" type="submit" form="address-form"></button>
-        <button id="payment-form" type="submit" form="payment-form"></button>
-        <button
-          onClick={() => {
-            const addressFormBtn: HTMLFormElement | null =
-              document.querySelector('button#address-form')
-            const paymentFormBtn: HTMLFormElement | null =
-              document.querySelector('button#payment-form')
-            addressFormBtn?.click()
-            paymentFormBtn?.click()
-          }}
-        >
-          Finish Purchase
-        </button>
-        <span id="error-message" className="hidden">
-          {message}
-        </span>
+            <p>Total: ${total}</p>
+          </section>
+        </div>
+        <hr className="hidden" />
+        <div className="right-side">
+          <section id="delivery-address">
+            <h2>Address</h2>
+            <AddressForm getAddressData={getAddressData} />
+          </section>
+          <hr />
+          <section id="payment-method">
+            <h2>Payment</h2>
+            <PaymentForm getPaymentData={getPaymentData} />
+            <Card />
+          </section>
+          <hr />
+          <button id="address-form" type="submit" form="address-form"></button>
+          <button id="payment-form" type="submit" form="payment-form"></button>
+          <button
+            onClick={() => {
+              const addressFormBtn: HTMLFormElement | null =
+                document.querySelector('button#address-form')
+              const paymentFormBtn: HTMLFormElement | null =
+                document.querySelector('button#payment-form')
+              addressFormBtn?.click()
+              paymentFormBtn?.click()
+            }}
+          >
+            Finish Purchase
+          </button>
+          <span id="error-message" className="hidden">
+            {message}
+          </span>
+        </div>
       </div>
       <p id="success-message" className="hidden">
         {message}
