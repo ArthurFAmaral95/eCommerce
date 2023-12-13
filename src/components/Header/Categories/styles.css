@@ -17,3 +17,14 @@
   align-items: center;
   gap: 1.5rem;
 }
+
+@media (min-width: 769px) {
+  .categories {
+    top: 0;
+    display: grid;
+  }
+
+  .categories ul {
+    justify-self: center;
+  }
+}

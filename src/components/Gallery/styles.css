@@ -11,3 +11,9 @@ main .products-gallery {
     grid-template-columns: 1fr;
   }
 }
+
+@media (min-width: 769px) {
+  main .products-gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

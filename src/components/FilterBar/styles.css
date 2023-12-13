@@ -62,3 +62,9 @@
 .filter .filters .arrow {
   transform: rotate(180deg);
 }
+
+@media (min-width: 769px) {
+  .filter {
+    top: 11rem;
+  }
+}

@@ -225,3 +225,13 @@ button#payment-form {
     display: none;
   }
 }
+
+@media (min-width: 769px) {
+  main {
+    top: 11rem;
+  }
+
+  .container {
+    max-width: 144rem;
+  }
+}

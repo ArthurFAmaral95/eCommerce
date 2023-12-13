@@ -48,3 +48,10 @@
 #search-result-page .page-buttons #next-btn {
   text-align: center;
 }
+
+@media (min-width: 769px) {
+  #search-result-page {
+    max-width: 76.8rem;
+    margin-inline: auto;
+  }
+}

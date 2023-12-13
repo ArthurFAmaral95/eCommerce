@@ -44,3 +44,10 @@
 #category-page .page-buttons #next-btn {
   text-align: center;
 }
+
+@media (min-width: 769px) {
+  #category-page {
+    max-width: 76.8rem;
+    margin-inline: auto;
+  }
+}

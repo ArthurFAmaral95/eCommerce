@@ -25,7 +25,7 @@ export function CheckoutOverviewListItem(props: CheckoutOverviewListItemProps) {
       <span className="product-name">{props.product.product.product_name}</span>
       <ul className="configs">{renderConfigsList}</ul>
       <span className="subtotal">
-        Subtotal:{' '}
+        Subtotal: $
         {(
           Number(props.product.configs[0].value) * props.product.product.price
         ).toFixed(2)}

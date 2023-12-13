@@ -1,3 +1,5 @@
+import './styles.css'
+
 import {
   CartProductArrayProps,
   Total,
@@ -90,41 +92,45 @@ export function CheckoutPage(props: CheckoutPageProps) {
   return (
     <main id="checkout-page">
       <div className="checkout-container">
-        <section id="purchase-overview">
-          <h2>Purchase Overview</h2>
-          <ul className="overview-list">{renderOverviewList}</ul>
+        <div className="left-side">
+          <section id="purchase-overview">
+            <h2>Purchase Overview</h2>
+            <ul className="overview-list">{renderOverviewList}</ul>
 
-          <p>Total: ${props.total}</p>
-        </section>
-        <hr />
-        <section id="delivery-address">
-          <h2>Address</h2>
-          <AddressForm getAddressData={getAddressData} />
-        </section>
-        <hr />
-        <section id="payment-method">
-          <h2>Payment</h2>
-          <PaymentForm getPaymentData={getPaymentData} />
-          <Card />
-        </section>
-        <hr />
-        <button id="address-form" type="submit" form="address-form"></button>
-        <button id="payment-form" type="submit" form="payment-form"></button>
-        <button
-          onClick={() => {
-            const addressFormBtn: HTMLFormElement | null =
-              document.querySelector('button#address-form')
-            const paymentFormBtn: HTMLFormElement | null =
-              document.querySelector('button#payment-form')
-            addressFormBtn?.click()
-            paymentFormBtn?.click()
-          }}
-        >
-          Finish Purchase
-        </button>
-        <span id="error-message" className="hidden">
-          {message}
-        </span>
+            <p>Total: ${props.total}</p>
+          </section>
+        </div>
+        <hr className='hidden'/>
+        <div className="right-side">
+          <section id="delivery-address">
+            <h2>Address</h2>
+            <AddressForm getAddressData={getAddressData} />
+          </section>
+          <hr />
+          <section id="payment-method">
+            <h2>Payment</h2>
+            <PaymentForm getPaymentData={getPaymentData} />
+            <Card />
+          </section>
+          <hr />
+          <button id="address-form" type="submit" form="address-form"></button>
+          <button id="payment-form" type="submit" form="payment-form"></button>
+          <button
+            onClick={() => {
+              const addressFormBtn: HTMLFormElement | null =
+                document.querySelector('button#address-form')
+              const paymentFormBtn: HTMLFormElement | null =
+                document.querySelector('button#payment-form')
+              addressFormBtn?.click()
+              paymentFormBtn?.click()
+            }}
+          >
+            Finish Purchase
+          </button>
+          <span id="error-message" className="hidden">
+            {message}
+          </span>
+        </div>
       </div>
       <p id="success-message" className="hidden">
         {message}

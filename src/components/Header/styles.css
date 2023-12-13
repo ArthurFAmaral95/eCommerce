@@ -64,3 +64,18 @@ header {
   border: none;
   box-shadow: 0 0.3rem 1rem #bababa;
 }
+
+@media (min-width: 769px) {
+  header {
+    max-width: 144rem;
+    height: 11rem;
+  }
+
+  .search-container {
+    position: absolute;
+    top: 1rem;
+    left: 20rem;
+
+    width: calc(100% - 20rem - 10rem);
+  }
+}

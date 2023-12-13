@@ -16,3 +16,10 @@
 #login-page a.hidden {
   display: none;
 }
+
+@media (min-width: 769px) {
+  #login-page {
+    max-width: 50%;
+    margin-inline: auto;
+  }
+}

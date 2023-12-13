@@ -26,29 +26,33 @@ export function CartPage(props: CartPageProps) {
 
   return (
     <main id="cart-page">
-      {props.cartProducts.length === 0 ||
-      props.cartProducts.length === undefined ||
-      props.cartProducts[0].product.product_id === 0
-        ? 'Your cart is empty :('
-        : renderCartProducts}
+      <div className="left-side">
+        {props.cartProducts.length === 0 ||
+        props.cartProducts.length === undefined ||
+        props.cartProducts[0].product.product_id === 0
+          ? 'Your cart is empty :('
+          : renderCartProducts}
+      </div>
       <hr />
-      <div
-        id="cart-container"
-        className={
-          props.cartProducts.length === 0 ||
-          props.cartProducts.length === undefined ||
-          props.cartProducts[0].product.product_id === 0
-            ? 'hidden'
-            : ''
-        }
-      >
-        <div className="order-total">
-          <span className="total">Total: </span>
-          <span className="value">${props.total}</span>
+      <div className={props.total === 0 ? 'right-side hidden' : 'right-side'}>
+        <div
+          id="cart-container"
+          className={
+            props.cartProducts.length === 0 ||
+            props.cartProducts.length === undefined ||
+            props.cartProducts[0].product.product_id === 0
+              ? 'hidden'
+              : ''
+          }
+        >
+          <div className="order-total">
+            <span className="total">Total: </span>
+            <span className="value">${props.total}</span>
+          </div>
+          <Link to={'/checkout'}>
+            <button className="to-checkout">Checkout</button>
+          </Link>
         </div>
-        <Link to={'/checkout'}>
-          <button className="to-checkout">Checkout</button>
-        </Link>
       </div>
     </main>
   )

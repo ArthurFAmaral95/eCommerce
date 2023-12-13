@@ -17,3 +17,10 @@
 #register-page a.hidden {
   display: none;
 }
+
+@media (min-width: 769px) {
+  #register-page {
+    max-width: 50%;
+    margin-inline: auto;
+  }
+}

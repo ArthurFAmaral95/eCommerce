@@ -1,5 +1,11 @@
-.menu img{
+.menu img {
   width: 1.7rem;
 
   cursor: pointer;
+}
+
+@media (min-width: 769px) {
+  .menu img {
+    display: none;
+  }
 }
