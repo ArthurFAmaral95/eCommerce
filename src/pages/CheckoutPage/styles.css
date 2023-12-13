@@ -1,0 +1,24 @@
+@media (min-width: 1024px) {
+  .checkout-container hr.hidden {
+    display: none;
+  }
+
+  .checkout-container {
+    display: grid;
+    grid-template-areas: 'left-side right-side';
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .checkout-container .left-side {
+    grid-area: left-side;
+    align-self: baseline;
+
+    position: sticky;
+    top: 0;
+  }
+
+  .checkout-container .right-side {
+    grid-area: right-side;
+  }
+}
