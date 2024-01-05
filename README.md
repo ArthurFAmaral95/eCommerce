@@ -1,7 +1,7 @@
 <h1 align="center">🛒 e-Commerce 🛍</h1>
 
 <p align="center">
-  <img alt="Tic Tac Toe game" src="./public/e-commerce_desktop.png" width="100%">
+  <img alt="e-Commerce home page" src="./public/e-commerce_desktop.png" width="100%">
 </p>
 
 <h2>
