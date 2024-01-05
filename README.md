@@ -5,7 +5,7 @@
 </p>
 
 <h2>
-This was a project is a mock of a e-commerce web page where you can simulate the process of buying online.
+This project is a mock of a e-commerce web page where you can simulate the process of buying online.
 </h2>
 
 ## 💻 Project
